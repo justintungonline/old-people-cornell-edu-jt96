@@ -42,7 +42,7 @@ public class TransformXml2Html {
 
         String[] elements = {"index", "siteinfo/index", "siteinfo/sitemap", "siteinfo/support",
                 "resources/academic", "resources/articles", "resources/index", "resources/oscoms",
-                "resources/projects/cs490/cs490", "resources/projects/cs501/cs501",
+                "resources/projects/cs490/cs490", "resources/projects/cs501/cs501", "resources/projects/cs501/feasibility", 
                 "resources/docs/essays", "resources/docs/texts", "explore/links", "explore/personalink", "explore/writeme", "aboutme/bio", "aboutme/coursework", "aboutme/index", "aboutme/interests", "aboutme/readinglist", "aboutme/resume" };
         for (String fileName : elements) {
             transformer.transform(new StreamSource(fileName + ".xml"),

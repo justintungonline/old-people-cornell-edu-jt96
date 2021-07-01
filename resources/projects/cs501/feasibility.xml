@@ -1,123 +1,98 @@
-<!DOCTYPE DOC PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/xml2html.xsl"?>
 <DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="feasibility.xml">
+    <dc:description about="feasibility.html">
+      A Feasibility Report of PDF Versions of US Code Project 
+      reporting on software, design, and cost/benefit analysis.
+    </dc:description>
+    <dc:title>Feasibility Study</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
 
-<!--Document created via transformation from xml to html--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:dcq="http://purl.org/dc/qualifiers/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:my="http://www.people.cornell.edu/pages/jt96/">
-<head>
-<title>Feasibility Study</title>
-<link href="https://justintungonline.github.io/old-people-cornell-edu-jt96/stylesheets/artemis.css" type="text/css" rel="stylesheet" />
-<link href="/feasibility.xml" type="text/xml" rel="alternate" />
-<link href="http://purl.org/dc/elements/1.1/" rel="schema.DC" />
-<!--META Information for searching and page description-->
-<meta content="text/html; charset=utf-8" http-equiv="Content-type" />
-<meta content="&#10;      A Feasibility Report of PDF Versions of US Code Project &#10;      reporting on software, design, and cost/benefit analysis.&#10;    " name="DC.description" />
-<meta content="Justin Tung" name="DC.creator" />
-<meta content="justin tung, interval analysis, computer science,    xml, xslt, java, upper canada college, cornell, personal website, math, mathematics    numerical analysis, behavioural ecology, internet searching, resume, International    Baccalaureate, programming, xhtml, css, information technology, internet,    computer games" name="Keywords" />
-</head>
-<!--Top Panel (artemis header column)-->
-<div id="toppanel">
-<div id="artemisHeader">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/index.html" class="art">
-	    artemis v 1.2</a>
-<br />
-</div>
-<div id="pagepath">
-<div class="flowleft">
-            for alternative compatibility, try the
-            <a href="feasibility.xml" class="supt">XML version</a>
-<br />
-            if you have problems consult the
-            <a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/siteinfo/support.html" class="supt">support page</a>
-</div>
-          justin's homesite
-          <br />
-          /
-          resources/cs501feasibility.html</div>
-</div>
-
-  <body>
+  <BODY>
   
-    <!--Content (middle column)--><div id="content">
+    <CONTENT>
 
       <h1>CS 501 - Software Engineering
-	<br />
+	<br/>
 	Feasibility Report
       </h1>
       
       <h2>Project for the Cornell Legal Information Institute
-	<br />
+	<br/>
 	PDF versions of the United States Code 
       </h2>
 
       <p>
-	Version 1.1 (revised)<br />
-	November 3 2003<br />
+	Version 1.1 (revised)<br/>
+	November 3 2003<br/>
 	Project <a href="cs501.html">Homesite</a>
       </p>
       
       <p class="resume">
-      <b>Key stakeholders/organizations :</b>
-<br />
+      <b>Key stakeholders/organizations :</b><br/>
 	<b>Developer Team: </b>
 	Tsung-Yueh Chiou, Tsee Yuan Lee, Kohsuke Kawaguchi, Soyeon Kim, Justin Tung
-	<br />
+	<br/>
 	<b>Project sponsors: </b>Thomas Bruce, Professor William Arms
       </p>
 
-      <hr />
+      <hr/>
       
       <p>
 	<b>Table Contents</b>
-	<br />
+	<br/>
 	I. Introduction
 	<ol>
-	  <li>
-<a href="#po">Project Outline</a>
-</li>
-	  <li>
-<a href="#scope">Scope</a>
-</li>
-	  <li>
-<a href="#pr">Project Relations</a>
-</li>
-	  <li>
-<a href="#bene">Benefits</a>
-</li>
+	  <li><a href="#po">Project Outline</a></li>
+	  <li><a href="#scope">Scope</a></li>
+	  <li><a href="#pr">Project Relations</a></li>
+	  <li><a href="#bene">Benefits</a></li>
 	</ol>
       </p>
       <p>
 	II. Software Development Plan
 	<ol>
-	  <li>
-<a href="#con">Constraints</a>
-</li>
-	  <li>
-<a href="#oandr">Obstacles and Risk</a>
-</li>
-	  <li>
-<a href="#deliv">Deliverables</a>
-</li>
-	  <li>
-<a href="#ppro">Project Process</a>
-</li>
-	  <li>
-<a href="#res">Resources</a>
-</li>
+	  <li><a href="#con">Constraints</a></li>
+	  <li><a href="#oandr">Obstacles and Risk</a></li>
+	  <li><a href="#deliv">Deliverables</a></li>
+	  <li><a href="#ppro">Project Process</a></li>
+	  <li><a href="#res">Resources</a></li>
 	</ol>
       </p>
       
-      <hr />
+      <hr/>
 
       <h3>I. Introduction</h3>
       
-      <a name="po" />
-<h4>1. Project Outline</h4>
+      <a name="po"/><h4>1. Project Outline</h4>
       
       <p>
 	The United States Code is released to the general public by the US House of
 	Representatives on its Web site at <a href="http://uscode.house.gov/download.htm">
 	  http://uscode.house.gov/download.htm</a>. 
 	This code is a plain-vanilla ASCII version to which the Legal Information 
-	Institute (http://lii.law.cornell.edu/) adds value. This website is at: <br />
+	Institute (http://lii.law.cornell.edu/) adds value. This website is at: <br/>
 	
 	<a href="http://www4.law.cornell.edu/uscode/">http://www4.law.cornell.edu/uscode/.</a>
       </p>
@@ -149,8 +124,7 @@
 	contents, notes, cross-referencing) will be delivered to the user.
       </p>
       
-      <a name="scope" />
-<h4>2. Scope</h4>
+      <a name="scope"/><h4>2. Scope</h4>
       
       <p>
 	Required
@@ -162,7 +136,7 @@
 	</ul>
       </p>
       <p>
-	Desired<br />
+	Desired<br/>
 	PDF generation of US legal code for either:
 	
 	<ul>
@@ -178,16 +152,14 @@
         </ul>
       </p>
 
-      <a name="pr" />
-<h4>3. Project Relations</h4>
+      <a name="pr"/><h4>3. Project Relations</h4>
       
       <p>
 	Another team is working at LII on improving XML format of US code
 	but does not directly affect our project.
       </p>
       
-      <a name="bene" />
-<h4>4. Benefits</h4>
+      <a name="bene"/><h4>4. Benefits</h4>
 
       <p>
 	<ul>
@@ -198,13 +170,12 @@
 	  <li>Shopping cart payment system for LII</li>
         </ul>
       </p>
-      <hr />
+      <hr/>
       
       <h3>II. Software Development Plan</h3>
 
  
-      <a name="con" />
-<h4>1. Constraints</h4>
+      <a name="con"/><h4>1. Constraints</h4>
 
       <p>
 	The project is funded by Red Hat, therefore the client expressed a preference 
@@ -214,12 +185,11 @@
 	languages and environments.
       </p>
       
-      <a name="oandr" />
-<h4>2. Obstacles and Risk</h4>
+      <a name="oandr"/><h4>2. Obstacles and Risk</h4>
       
       <p>
 	<b>i.</b> Scalability
-	<br />
+	<br/>
 	At this moment we are not sure whether the currently deployed shopping cart
 	system can handle a large number of code sections which we will need to handle. 
 	Also, it is not clear how many users will use this PDF service. Given the number
@@ -227,7 +197,7 @@
       </p>
       <p>
 	<b>ii.</b> Lack of Experience
-	<br />
+	<br/>
 	The developers' need to learn several systems and technologies is apparent in 
 	several areas. The production system is running on Linux, but none of the team
 	members has good Linux background. The project needs to use various XML-related 
@@ -240,20 +210,19 @@
       </p>
       <p>
 	<b>iii.</b> Integration with existing systems
-	<br />
+	<br/>
 	The new system might need to coordinate with the currently deployed shopping 
 	cart system. However, at this moment we are not sure if this system provides
 	such a coordination mechanism.
       </p>
       <p>
 	<b>iv.</b> US Legal Code Complexities
-	<br />
+	<br/>
 	The code contains many irregularities in structure and data organization.
 	Also, the DTD does not capture the precise semantics of the code.
       </p>
 
-      <a name="deliv" />
-<h4>3. Deliverables</h4>
+      <a name="deliv"/><h4>3. Deliverables</h4>
       <p>
 	<ul>
 	  <li>Feasibility Report</li>
@@ -265,8 +234,7 @@
 	</ul>
       </p>
       
-      <a name="ppro" />
-<h4>4. Project Process</h4>
+      <a name="ppro"/><h4>4. Project Process</h4>
       
       <p>
 	Following feasibility and requirements analysis, we plan to produce an 
@@ -277,8 +245,7 @@
 	and debugging as well as acceptance testing. 
       </p>
 
-      <a name="res" />
-<h4>5. Resources</h4>
+      <a name="res"/><h4>5. Resources</h4>
 
       <p>
 	Software:
@@ -310,90 +277,14 @@
 	</ul>
       </p>
 
-      <!--Standard content column footer--><hr />
-<p>
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/index.html">ARTEMIS</a>
-      |
-      resources/cs501<a href="feasibility.html">feasibility.html</a>
-      by
-      <a href="mailto:kalreichi@hotmail.com">justin tung</a>
-      generated using
-      <a href="http://xml.apache.org/xalan-j">Apache Software Foundation</a>'s Xalan-J version 2.7.2</p>
-    </div>
+      <FOOTER>
+	<PATH>resources/cs501</PATH>
+      </FOOTER>
+    </CONTENT>
 
-    <!--Right Navigation Column--><div id="rightpanel">
-<div class="navbar_list">
-<b>
-<span class="navbar_section">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/aboutme/index.html">
-	      all</a>
-            about me
-          </span>
-</b>
-<ul class="none">
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/aboutme/bio.html">bio</a>
-</li>
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/aboutme/interests.html">interests</a>
-</li>
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/aboutme/resume.html">resume</a>
-</li>
-</ul>
-<span class="dot">. . . . . . . . . . . . . . . . . . .</span>
-<br />
-<b>
-<span class="navbar_section">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/siteinfo/index.html">site info</a>
-</span>
-</b>
-<ul class="none">
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/siteinfo/sitemap.html">sitemap</a>
-</li>
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/siteinfo/support.html">support</a>
-</li>
-</ul>
-<span class="dot">. . . . . . . . . . . . . . . . . . .</span>
-<br />
-<b>
-<span class="navbar_section">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/resources/index.html">
-	      resources</a>
-</span>
-</b>
-<ul class="none">
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/resources/articles.html">
-		brief documents</a>
-</li>
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/resources/academic.html">
-		essays/project</a>
-</li>
-</ul>
-<span class="dot">. . . . . . . . . . . . . . . . . . .</span>
-<br />
-<b>
-<span class="navbar_section">eXplore with me</span>
-</b>
-<ul class="none">
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/explore/writeme.html">
-		contact / write me</a>
-</li>
-<li class="linknode">
-<a href="https://justintungonline.github.io/old-people-cornell-edu-jt96/explore/links.html">
-		web gateway</a>
-</li>
-</ul>
-</div>
-    </div>
-  <!--Filler column, possible for images (left column)--><div id="leftpanel">
-<img alt="artemis on tower" id="artemis_left" src="https://justintungonline.github.io/old-people-cornell-edu-jt96/images/artemis_tower.jpg" />
-</div>
-</body>
-</html>
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
 </DOC>
+

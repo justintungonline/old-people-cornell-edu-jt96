@@ -27,6 +27,7 @@ In `stylesheets/xml2html.xsl` modify this line to change it to the root of where
 Execute this Maven command to build and generate the site from the `xml` files.
 
 ```
+mvn install
 mvn compile exec:java
 ```
 
