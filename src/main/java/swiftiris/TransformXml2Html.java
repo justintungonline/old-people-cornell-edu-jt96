@@ -40,12 +40,15 @@ public class TransformXml2Html {
         // Use the Transformer to apply the associated Templates object to an XML document
         // (index.xml) and write the output to a file (index.out).
 
-        String[] elements = {"index", "siteinfo/index", "sitemap.xml"};
+        String[] elements = {"index", "siteinfo/index", "siteinfo/sitemap", "siteinfo/support",
+                "resources/academic", "resources/articles", "resources/index", "resources/oscoms",
+                "resources/projects/cs490/cs490", "resources/projects/cs501/cs501",
+                "resources/docs/essays", "resources/docs/texts", "explore/links", "explore/peronsalink", "explore/writeme", "aboutme/bio", "aboutme/coursework", "aboutme/index", "aboutme/interests", "aboutme/readinglist", "aboutme/resume" };
         for (String fileName : elements) {
             transformer.transform(new StreamSource(fileName + ".xml"),
                     new StreamResult(new FileOutputStream(fileName + ".html")));
 
-            LOGGER.log(Level.INFO, "Transformed: " + fileName + ".xml to " + fileName + ".html");
+            LOGGER.log(Level.INFO, "Transformed: {0}.xml to {0}.html", fileName);
 
         }
 

@@ -1,6 +1,10 @@
+# Old Personal Site
+
 ## About
 
 My first website from 2003 when I was a student at [Cornell University](https://www.cornell.edu/) originally hosted at people.cornell.edu/jt96.
+
+The content for the site was managed in `xml` files and `html` was generated using an `xslt` template that managed the header, footer, and site metadata.
 
 ### Built With
 
@@ -14,15 +18,23 @@ My first website from 2003 when I was a student at [Cornell University](https://
 - [Apache Maven](https://maven.apache.org/)
 - Xalan Java libraries, see `pom.xml`
 
-## Installation
+## Installation and Build
 
 In `stylesheets/xml2html.xsl` modify this line to change it to the root of where the html pages will be
 
 `<xsl:variable name="root">https://justintungonline.github.io/old-people-cornell-edu-jt96</xsl:variable>`
 
+Execute this Maven command to build and generate the site from the `xml` files.
+
+```
+mvn compile exec:java
+```
+
+Transformation progress will be output to the console.
+
 ## Usage
 
-Visit it at the root you set in the installatio
+Visit the website at the root you set in the installation.
 
 A live version is at GitHub pages: <https://justintungonline.github.io/old-people-cornell-edu-jt96/>
 
