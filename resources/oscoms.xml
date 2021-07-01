@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="academic.xml">
+    <dc:description about="academic.html">
+      artemis academic projects and essays index page
+    </dc:description>
+    <dc:title>artemis: articles, presentations, documents</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-14"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-24"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+
+        <h1>Common Linux Commands</h1>
+
+        <p>The first command indicates the command name (searchable with a man page).
+      The parens indicate useful extensions.</p>
+  
+        <table cellpadding="3">
+      <tbody><tr>
+        
+        <td valign="top">
+          <p>
+            <b>File Searching, Browsing</b>
+          </p>
+          <pre>ls (-al)
+  find
+  grep
+  pwd
+  less
+  more
+  locate
+  cp
+  mv
+  rm (-Rf)
+          </pre>
+          <p>
+            <b>Utility</b>
+          </p>
+          <pre>cat
+  man
+  ln (-s)
+  touch
+  
+  ftp
+  ping
+  finger
+  telnet
+  ssh
+  nslookup
+  netstat
+  whois
+  traceroute
+  lynx
+  
+  mount
+  lpr
+        </pre>
+  
+        </td>
+  
+        <td class="spacercol">
+  
+        
+        </td><td valign="top">
+          <p>
+            <b>System Administration</b>
+          </p>
+          <pre>rpm
+  chkconfig
+  chown
+  chmod
+  chgrp
+  tar (-xzif)
+  sendmail
+  mail
+  head
+  tail (-f)
+  passwd
+  su, su-
+  last
+  who
+  
+  cron
+  uname (-a)
+  ps (-ef) (-Al)
+  xinetd
+  kill (-HUP)
+  shutdown
+          </pre>
+          <p>
+            <b>Programming</b>
+          </p>
+          <pre>gcc
+  pico
+  make
+          </pre>
+  
+      </td>
+        </tr>
+      </tbody></table>
+  
+      <h3>Useful Concepts</h3>
+      <span class="f_orange">Directory Structure</span>
+      <p>
+        <b>Logs, spoools, and file resources (mail, logs, temp, etc.):</b> /var
+        <br></br>
+        <b>Configuration Files:</b> /etc, /etc/rc.init (startup scripts). /etc/sendmail.cf
+        <br></br>
+        <b>Unix "blackhole":</b> /dev/null
+        <br></br>
+        <b>Core Commands:</b> /usr/(s)bin, /usr/local/(s)bin
+        <br></br>
+        <b>Devices (I/O):</b> /dev
+        <br></br>
+        <b>Mounted Systems:</b> /mnt
+        <br></br>
+        <b>Code Libraries/Modules:</b> /usr/lib, /usr/local/lib
+        <br></br>
+      </p>
+      
+      <h1>Windows Support Commands</h1>
+      <p>
+          services.msc - Services and Process manager
+          <br></br>
+          msconfig - Startup files and processes
+          <br></br>
+          regedit - Registry editor
+          <br></br>
+          defrag - Disk Defragmenter
+      </p>   
+
+      <FOOTER>
+	<PATH>resources/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>
