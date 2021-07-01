@@ -1,4 +1,4 @@
-## About 
+## About
 
 My first website from 2003 when I was a student at [Cornell University](https://www.cornell.edu/) originally hosted at people.cornell.edu/jt96.
 
@@ -19,12 +19,10 @@ My first website from 2003 when I was a student at [Cornell University](https://
 
 ### Installation
 
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Visit it on GitHub pages at: 
+Visit it on GitHub pages at <https://justintungonline.github.io/old-people-cornell-edu-jt96/>
 
 ## License
 
@@ -43,6 +41,7 @@ Original Wayback Machine archive links:
 
 - <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/index.html>
 - <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/stylesheets/artemis.css>
+- <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/stylesheets/xml2html.xsl>
 - <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/images/artemis_tower.jpg>
 - <http://web.archive.org/web/20050307024538if_/http://www.people.cornell.edu/pages/jt96/siteinfo/sitemap.html>
 - <http://web.archive.org/web/20050307023004if_/http://www.people.cornell.edu/pages/jt96/resources/index.html>
