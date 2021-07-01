@@ -96,7 +96,7 @@
 	<!-- Get link to index location, page path Information -->
 	<div id="artemisHeader">
 	  <a class="art" href="{$root}/index.html">
-	    artemis v 1.1</a><br/>
+	    artemis v 1.2</a><br/>
 	</div>
 	<div id="pagepath">
 	  <div class="flowleft">
@@ -186,7 +186,7 @@
 	  <xsl:value-of select="system-property('msxsl:version')" /> 
 	</xsl:when>
 	<xsl:when test="system-property('xsl:vendor')='Apache Software Foundation'">
-	  <xsl:text>'s Xalan-J version 2.6.0</xsl:text>
+	  <xsl:text>'s Xalan-J version 2.7.2</xsl:text>
 	</xsl:when>
 	<xsl:otherwise>
 	  <!-- Do nothing and accept supplied vendor -->

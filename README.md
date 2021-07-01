@@ -4,20 +4,27 @@ My first website from 2003 when I was a student at [Cornell University](https://
 
 ### Built With
 
-- HTML, CSS
-- [Apache Xalan-J](http://xml.apache.org/xalan-j/), XSLT
-- [RDF](https://www.w3.org/RDF/)
+- HTML, CSS, XML, [RDF](https://www.w3.org/RDF/)
+- [Apache Xalan-J](http://xalan.apache.org/xalan-j/index.html), XSLT
 - [Java](https://www.java.com/)
 
 ### Prerequisites
 
 - Java Development Kit 11+
-- Xalan-J libraries
+- [Apache Maven](https://maven.apache.org/)
+- Xalan Java libraries, see `pom.xml`
 
-<!-- USAGE EXAMPLES -->
+## Installation
+
+In `stylesheets/xml2html.xsl` modify this line to change it to the root of where the html pages will be
+
+`<xsl:variable name="root">https://justintungonline.github.io/old-people-cornell-edu-jt96</xsl:variable>`
+
 ## Usage
 
-Visit it on GitHub pages at <https://justintungonline.github.io/old-people-cornell-edu-jt96/>
+Visit it at the root you set in the installatio
+
+A live version is at GitHub pages: <https://justintungonline.github.io/old-people-cornell-edu-jt96/>
 
 ## License
 
