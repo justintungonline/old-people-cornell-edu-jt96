@@ -7,17 +7,12 @@ My first website from 2003 when I was a student at [Cornell University](https://
 - HTML, CSS
 - [Apache Xalan-J](http://xml.apache.org/xalan-j/), XSLT
 - [RDF](https://www.w3.org/RDF/)
-
-## Getting Started
-
-- TODO add Xalan-J build instructions
+- [Java](https://www.java.com/)
 
 ### Prerequisites
 
-- Java
+- Java Development Kit 11+
 - Xalan-J libraries
-
-### Installation
 
 <!-- USAGE EXAMPLES -->
 ## Usage

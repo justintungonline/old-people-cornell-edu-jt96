@@ -34,7 +34,7 @@
   <!-- alt: file://C:\Documents and Settings\justin\My Documents\My Webs\Artemis
             http://www.people.cornell.edu/pages/jt96
   -->
-  <xsl:variable name="root">http://www.people.cornell.edu/pages/jt96</xsl:variable>
+  <xsl:variable name="root"></xsl:variable>
   <xsl:variable name="metadata" select="/*/rdf:RDF" />
   <xsl:variable name="htmlfilename"
                 select="$metadata/rdf:Description[1]/dc:description/@about" />
