@@ -6,12 +6,6 @@ See <https://justintung.com/community/interval-analysis-and-its-applications-to-
 
 This directory contains Matlab files for the model and the full report is below. 
 
-<style type="text/css">
-  img {
-    background-color: white;
-  }
-</style>
-
 ## Interval Analysis and its Applications to Optimization in Behavioural Ecology
 
 by Justin Tung
