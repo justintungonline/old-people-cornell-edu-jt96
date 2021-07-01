@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="sitemap.xml">
+    <dc:description about="sitemap.html">
+      artemis site map providing an overall view of the site's
+      sections and links to the different on-site pages
+    </dc:description>
+    <dc:title>artemis sitemap</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-14"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2005-02-08"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+	
+      <h1>Sitemap</h1>
+      <p>
+	Below is an expanded version of the navigation bar containing a map of all
+	the pages contained in the website. It also provides an overall view of the
+	different pages/sections of artemis.
+      </p>
+      <p>
+	<b><a href="../aboutme/index.html">all about me</a></b>
+	<div class="tabbed">
+	  <a href="../aboutme/bio.html">bio</a><br/>
+	  
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../aboutme/coursework.html">cornell coursework</a><br/>
+
+	  <a href="../aboutme/interests.html">interests</a><br/>
+	 
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../aboutme/readinglist.html">reading list</a><br/>
+
+	  <a href="../aboutme/resume.html">resume</a>
+	</div>
+      </p>
+      <p>
+	<b><a href="../siteinfo/index.html">site info</a></b>
+	<div class="tabbed">
+	  <a href="sitemap.html">sitemap</a><br/>
+	  <a href="support.html">support</a>
+	</div>
+      </p>
+      <p>
+	<b><a href="../resources/index.html">resources</a></b>
+	<div class="tabbed">
+	  <a href="../resources/articles.html">brief documents</a><br/>
+
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../resources/oscoms.html">
+	    list of useful operating system commands</a><br/>
+
+	  <a href="../resources/academic.html">essays/projects</a><br/>
+
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../resources/projects/cs490/cs490.html">
+	    Interval Analysis and its Applications to Optimization in 
+	    Behavioural Ecology</a><br/>
+	  
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../resources/projects/cs501/cs501.html">
+	    PDF Versions of the US Legal Code</a><br/>
+
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../resources/docs/texts.html">
+	    collection of short texts and articles</a><br/>
+
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../resources/docs/essays.html">
+	    collection of essays</a><br/>
+
+	</div>
+      </p>
+      <p>
+	<b>eXplore with me</b><br/>
+	<div class="tabbed">
+	  <a href="../explore/writeme.html">contact / write me</a><br/>
+	  <a href="../explore/links.html">web gateway</a><br/>
+
+	  <img src="../images/pointer.gif" alt="pointer icon"/>
+	  <a class="site" href="../explore/personalink.html">
+	    justin's specilized links</a>
+	</div>
+      </p>
+
+      <FOOTER>
+	<PATH>siteinfo/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

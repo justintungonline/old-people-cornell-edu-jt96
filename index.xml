@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="index.xml">
+    <dc:description about="index.html">
+      artemis is Justin Tung's homesite containing information
+      about Justin, academic and research resources and documents,
+      an internet gateway to a handful of topics, as well
+      as his personal and professional information.
+    </dc:description>
+    <dc:title>artemis: justin tung's homesite</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-07"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2005-02-05"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+  <BODY>
+    <CONTENT>
+      <!-- Brief site info and welcome -->
+      <b><span class="welcome">welcome to <i>Artemis</i>: justin's homesite!</span></b><br/>
+      <p>
+	This website, like the Greek godess <a href="https://en.wikipedia.org/wiki/Artemis">
+	  Artemis</a> is a free-spirited, independent, and caring site for all those in 
+	the natural <i>internet</i> environment. Artemis serves as a 
+	<a href="resources/index.html">resource</a> about the internet and sites that I 
+	have found useful and also contains information useful for <a 
+	  href="resources/academic.html">academic</a> 
+	and research purporses. Last but not least, this site is my little home on the web,
+	a <a href="explore/links.html">portal</a> to my favourite internet sites,
+	<br/>
+      </p>
+
+      <p>
+	<b>Past computer science projects:</b><br/>
+	<ul>
+	  <li>
+	    <a href="resources/projects/cs490/cs490.html">Interval Analysis and
+	      its Applications to Optimization in Behavioural Ecology</a><br/>
+	  </li>
+	  <li>
+	    <a href="resources/projects/cs501/cs501.html">PDF versions of the United 
+	      States Legal Code</a>
+	  </li>
+	</ul>
+      </p>
+	 
+      <p>
+	<b>Last Updated:</b> February 5, 2004 <br/>
+      </p>
+     
+      <FOOTER>
+	<PATH></PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

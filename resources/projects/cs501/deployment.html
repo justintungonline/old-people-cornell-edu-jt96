@@ -1,0 +1,170 @@
+<html>
+<head><script src="http://archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app202.us.archive.org';v.server_ms=328;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="http://web.archive.org/_static/js/playback.bundle.js?v=xTFGO54E" charset="utf-8"></script>
+<script type="text/javascript" src="http://web.archive.org/_static/js/wombat.js?v=i68pdzR-" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://web.archive.org/web");
+  __wm.wombat("http://www.people.cornell.edu:80/pages/jt96/resources/projects/cs501/deployment.html","20050307072747","http://web.archive.org/","web","/_static/",
+	      "1110180467");
+</script>
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/banner-styles.css?v=omkqRugM" />
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+	<title>Deployment Plan of LIIPDF Project</title>
+	<style>
+		dt {
+			font-weight: bold;
+		}
+		dd {
+			margin-bottom: 1em;
+		}
+		pre {
+			border: 1px solid black;
+			background-color: rgb(240,240,240);
+			margin-left: 2em;
+			padding: 1em;
+		}
+	</style>
+</head>
+<body>
+	<h1 style="text-align:center">Deployment Plan of LIIPDF Project</h1>
+	<div style="text-align:right; font-size:smaller">
+		$Id: deployment.html,v 1.2 2002/04/24 02:42:20 kk277 Exp $
+		<br>
+		Editor: Kohsuke Kawaguchi
+	</div>
+
+
+
+<h2>Abstract</h2>
+<p>
+	This document describes the plan to deploy the LIIPDF project to the production web site.
+</p>
+
+
+
+<h2>First Deployment</h2>
+<p>
+	This section describes how we initially deploy the system to start testing LIIPDF in an environment that resembles the actual production environment.
+	The following things shall be deployed in this stage:
+</p>
+<dl>
+	<dt>
+		another instance of PDG shopping cart to lula
+	<dd>
+		We don't want to use the production system for testing for various reasons,
+		therefore we'd like to deploy another instance of PDG shopping cart.
+		This is a short-term solution to test LIIPDF system independently from the production system. Therefore, this can just be run just under an evaluation licence.<br>
+		We also need to decide the location where we deploy this second instance of the shopping cart. One candidate would be <code>/var/www/cgi-bin/pdf/pdg</code>.
+	<dt>
+		mailing list
+	<dd>
+		We need an internal mailing list to which PDG shopping cart will send e-mail. For this stage, this mailing list will only contain the e-mail address of the current administrator, and the PDG shopping cart in the production web site should be re-configured to send verification e-mail to this list. We will not use this mailing list for the this stage, but this can be done in this stage (to average the workload.)
+	<dt>
+		mail box for LIIPDF system
+	<dd>
+		We need a mail box somewhere in LII for use by the order fulfillment engine of the system. This mailbox will be used for testing LIIPDF.
+	<dt>
+		location of PDF files
+	<dd>
+		We need to decide the location of the directory where we store PDF files. It can be anywhere as long as it can be accessed from lula (because, according to the system design document, we will deploy GetPDF cgi into lula). We will start using this location for testing LIIPDF. One candidate would be <code>/usr/local/uscode/pdf/pdf</code>.
+	<dt>
+		location of the CGI program to deliver PDFs.
+	<dd>
+		This location needs to be decided as well. One candidate would be <code>/var/www/cgi-bin/pdf</code>, which will be visible from the world as <code>http://lula.law.cornell.edu/cgi-bin/pdf/</code>.
+	<dt>
+		location of LIIPDF program files.
+	<dd>
+		One candidate would be <code>/usr/local/uscode/pdf/bin</code>.
+</dl>
+<p>
+	This deployment also allows other interested people to play with the system and give us feedbacks.
+</p>
+
+
+
+<h2>Second Deployment</h2>
+<p>
+	After the first phase is deployed, we will gradually perform the following tasks to get the test system close to the production system.
+</p>
+<dl>
+	<dt>Adding OFE mailbox to the mailing list
+	<dd>
+		The mail box for the order fulfillment engine shall be added to the mailing list, which was created during the first deployment. With this, we will make sure that OFE works well with the real environment.
+	
+	<dt>Set up a <code>cron</code> task for OFE
+	<dd>
+		OFE shall be scheduled to launch every 15 minutes or so to process new orders.
+</dl>
+
+
+
+<h2>Third Deployment</h2>
+<p>
+	In this phase of the deployment, we will start deploying LIIPDF into the actual production system. The following things need to be done:
+</p>
+<dl>
+	<dt>
+		Incorporate PDF generation capability into the batch process
+	<dd>
+		I <i><b>guess</b></i> we need to modify the <code>transformRange.pl</code> file at
+		<code>/usr/local/uscode/scripts</code> dir of lula to invoke xmlSplitter and xml2pdf. Right now, this script is directly using Xalan for converting XML into HTML. See the appendix for the relevant part of the script.
+		<br>
+		This script will be modified to invoke xml2html as well, but only to generateHTML for our test web site. We still use the existing <code>LDMS/ldms.xsl</code> for generating HTML for the production website, so PDFs are still invisible from the outside world.
+		<br>
+		We also need to develop a mechanism to deliver PDG catalog files to <code>www.law.cornell.edu</code> and update the system with those files.
+	<dt>
+		Modify the test web site to use the real PDG shopping cart
+	<dd>
+		We modify the test LIIPDF web site to use the real PDG shopping cart, to see if the PDG shopping cart on <code>www</code> is properly handling PDFs.
+</dl>
+
+
+
+<h2>Final Deployment</h2>
+<p>
+	We will change <code>transformRange.pl</code> to use our <code>xml2html</code> for the production website as well. This is the moment when the new system goes "live". Now the whole world will see the new web site!
+</p>
+
+
+<h2>Schedule</h2>
+<p>
+	The whole thing needs to be done probably within two weeks, which is a bit of hurry.
+</p>
+
+
+<h2>Appendix</h2>
+<h3><code>transformRange.pl</code></h3>
+<pre>
+print "Starting ldms.xsl\n";
+system("java","-mx1024M","org.apache.xalan.xslt.Process",
+   "-DIAG","-PARAM","dir","$dirName","-IN","$file","-XSL",
+   "LDMS/ldms.xsl");
+print "Done building html files\n";
+</pre>
+
+</body>
+</html>
+
+<!--
+     FILE ARCHIVED ON 07:27:47 Mar 07, 2005 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:02:22 Jul 01, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 230.52
+  exclusion.robots: 0.149
+  exclusion.robots.policy: 0.134
+  RedisCDXSource: 18.062
+  esindex: 0.009
+  LoadShardBlock: 192.867 (3)
+  PetaboxLoader3.datanode: 180.427 (4)
+  CDXLines.iter: 17.136 (3)
+  load_resource: 94.199
+  PetaboxLoader3.resolve: 43.558
+-->

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="index.xml">
+    <dc:description about="index.html">
+      Index page for personal information section on justin
+    </dc:description>
+    <dc:title>all about justin</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-07"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-09"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+
+    <CONTENT>
+      
+      <div class="index">
+	
+	<center><b><h1>who am i?</h1></b></center>
+	<br/>
+	<span class="f_orange">in life:</span>
+	<p>
+	  A "brief" personality test <a href="bio.html#person">result</a>
+	  and some <a href="bio.html#bio">brief</a> information about me.
+	</p>
+	
+	<span class="f_purple">@ Play:</span>
+	<p>
+	  Everyone has <a href="interests.html">hobbies</a> and interests
+	  and here they are along with some websites relating to them. As an addition
+	  there is also the standard "<b><u>favourite stuff</u></b>" 
+	  section you see in some internet profiles.
+	</p>
+
+	<span class="f_green">@ Work:</span>
+	<p>
+	  Aside from play, here's what I do or did in my other time; essentially 
+	  my <a href="resume.html">resume</a>.
+	</p>
+
+      </div>
+      <br/>
+	
+      <FOOTER>
+	<PATH>aboutme/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

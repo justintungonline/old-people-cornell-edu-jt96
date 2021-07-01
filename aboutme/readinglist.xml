@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="readinglist.xml">
+    <dc:description about="readinglist.html">
+      justin's list of books read within the past few years
+    </dc:description>
+    <dc:title>justin's reading list</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+
+      <!-- Reading list here -->
+      <h2>under construction, soon to be posted</h2>
+
+      <FOOTER>
+	<PATH>aboutme/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

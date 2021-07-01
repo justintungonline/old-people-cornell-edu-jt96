@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="cs501.xml">
+    <dc:description about="cs501.html">
+      Computer Science 501 Software Engineering Project for the
+      Cornell's Legal Information Institute. The purpose 
+      of the project is to produce PDF documents matching
+      up to corresponding "sections" in the US Legal Code.
+    </dc:description>
+    <dc:title>PDF Versions of the US Legal Code</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2004-08-27"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+      <h1>CS 501 Project for the Cornell Legal Information Institute</h1>
+      <h2>PDF versions of the United States Code</h2>
+
+      <p>
+	<b>Project Information:</b> <a href="#deliv">Deliverables</a> | 
+	<a href="#links">Links</a>
+      </p>
+
+      <h3>PROJECT SUMMARY:</h3>
+      
+      <p class="resume">
+	The United States Code is released to the general public by the US House
+	of Representatives on its Web site (at <a href="http://uscode.house.gov/download.htm">
+	  http://uscode.house.gov/download.htm</a> ).  
+	This is a fairly plain-vanilla ASCII version to which the Legal Information 
+	Institute adds value (visible at <a href="http://www4.law.cornell.edu/uscode/">
+	  http://www4.law.cornell.edu/uscode/</a> ). An earlier CS 501 team
+	(Legal Data Markup Software Project) and a later student project developed 
+	programs for the Legal Information Institute that convert the raw ASCII output
+	of the House of Representatives to XML, for subsequent reuse in various settings.
+	The US Code currently gets about half a million hits daily.
+      </p>
+      <p class="resume"> 
+	This group project was to create PDF versions from the existing XML based on the
+	user interface which already supports searching of sections of legal code. 
+	These PDFs would be requested from http://www4.law.cornell.edu/uscode/ via a
+	shopping cart system where cart functionality is present in each division of
+	legal code. The idea is then to conduct on-the-fly XML to PDF conversion 
+	following credit card verification. Then the user would receive an email 
+	of the PDF document containing the sections of code requested along with
+	additional information.
+      </p>
+      
+      <a name="deliv"/><h3>Deliverables</h3>
+
+      <table>
+	<tr>
+	  <td valign="top">
+	    <p class="resume">
+	      <b>Documents</b>
+	      <br/>
+	      Feasibility Study [<a 
+		href="feasibility.html">V1.1</a>]<br/>
+	      Requirement Analysis [<a 
+		href="requirement.html">V1.2</a>]<br/>
+	      System/Program Design [<a 
+		href="SystemDesign.html">V1.51</a>]<br/>
+	      Deployment Document [<a 
+		href="deployment.html">V1.2</a>]<br/>   
+	      Maintenance Document [<a
+		href="SystemMaintenance.html">V1.40</a>]<br/>
+	      Fault Report [<a href="faultreport.html">V1.3</a>]  
+	    </p>
+	  </td>
+	  <td valign="top">
+	    <p class="resume">
+	      <b>Presentations</b>
+	      <br/>
+	      Requirement Analysis Presentation [<a 
+		href="CS501ReqPresentation.ppt">.ppt</a>]<br/>
+	      System Design Presentation [<a 
+		href="presentation.ppt">.ppt</a>]<br/>
+	      Final Project Presentation [<a
+		href="CS501FinalPresentation.ppt">.ppt</a>]<br/>
+	    </p>
+	  </td>
+        </tr>
+      </table>
+
+      <a name="links"/><h3>Links</h3>   
+
+      <p>
+	<a href="http://groups.yahoo.com/group/cs501/">CS501 Project Group</a> @ Yahoo!<br/> 
+	<a href="http://www.w3schools.com/xml">XML Tutorial</a><br/>
+	<a href="http://xml.apache.org/fop">XSL/FO</a><br/>
+	<a href="http://www.w3schools.com/xsl/">XSL Tutorial</a><br/>
+	<a href="http://lii.law.cornell.edu/">Legal Information Institute</a><br/>
+	<a href="http://www.wincvs.org/">WinGUI Client</a><br/>
+	<a href="http://www.cvshome.org">CVS Home</a><br/>
+	<a href="http://winscp.sourceforge.net/eng/">WinSCP</a><br/>
+	<a href="http://www.openssh.com/">OpenSSH</a><br/>
+	<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY Client</a><br/>
+	PDG (Shopping Cart): <a href="http://www.pdgsoft.com/">PDGSoft</a>
+      </p>
+	
+      <p>
+	Website created by the developer team.
+	For any questions, maintenance issues, or comments email Justin Tung (
+	<a href="mailto:jt96@cornell.edu">jt96@cornell.edu</a>)
+      </p>
+
+      <FOOTER>
+	<PATH>resources/cs501/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>
+

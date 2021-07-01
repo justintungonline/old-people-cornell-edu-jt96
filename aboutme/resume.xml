@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="resume.xml">
+    <dc:description about="resume.html">
+      Justin Tung's Resume
+    </dc:description>
+    <dc:title>justin @ work: Justin Tung's Resume</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-07"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2004-12-07"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+
+<HTMLPAGE>
+  
+  <BODY>
+
+    <CONTENT>
+      
+      <p>
+	Justin Tung &lt;<a 
+	  href="mailto:kalreichi@yahoo.com">kalreichi@yahoo.com</a>&gt;
+      </p>
+      
+      <h2>Objective</h2>
+      <p class="resume">
+	A position in information technology using my knowledge of programming, 
+	software engineering, and mathematical analysis.
+      </p>
+      
+      <h2>Education</h2>
+      <p>
+	<a href="http://www.cornell.edu/">CORNELL UNIVERSITY</a>, 
+	<a href="http://www.arts.cornell.edu/">College of Arts and Sciences</a>
+	<br/>
+	Ithaca, New York, USA<br/>
+	Bachelor of Arts, May 2003<br/>
+	<b>Major</b>: <a href="http://www.math.cornell.edu/">Mathematics</a>
+	<SPACE/>
+	<b>Minor</b>: <a HREF="http://www.cs.cornell.edu/">Computer Science</a>
+	<br/>
+      </p>
+      <p>
+	<a href="http://www.ucc.on.ca/">UPPER CANADA COLLEGE</a>
+	<br/>
+	Toronto, Ontario, Canada <br/>
+	<a href="http://www.ibo.org/">International Baccalaureate</a> 1999
+      </p>
+      
+      <h2>Relevant Courses</h2>
+      
+      <p class="resume">
+	Computational/Applied Analysis and Optimization, Applied 
+	Systems/Software Engineering, International Economics, Internet Psychology, 
+	College Teaching
+      </p>
+      
+      <h2>Technical Experience</h2>
+
+      <p>
+	<b>IT Security Analyst</b>
+	<SPACE/>
+	June 2004 - Present
+	<br/>
+	Corporate Security Branch, <a href="http://www.gov.on.ca/MBS/english/mbs/index.html">Management Board Secretariat</a>, 
+	<a href="http://www.gov.on.ca">Government of Ontario</a>,
+	Toronto, Ontario
+
+	<ul>
+	  <li>Researched and evaluated technologies and tools for Corporate Security group</li>
+	  <li>Aided in Corporate Security and PKI operations and provided security services to
+	    government program areas.</li>
+	  <li>Participated in cross-functional teams for analysis of security systems and
+	    methodologies</li>
+	</ul>
+      </p>
+
+      <p>
+	<b>Network Administrator and Programmer</b>
+	<SPACE/>
+	August - December 2003
+	<br/>
+	<a href="http://www.unified.ca">Unified Communications</a>,
+	Toronto, Ontario
+
+	<ul>
+	  <li>Designed and researched a Content Management System Project for
+	    publishing XML data to web and print formats using Java/XSL and Adobe 
+	    InDesign</li>
+	  <li>Co-engineered and researched a Project Management and Job Tracking
+	    system to organize workflow logistics</li>
+	  <li>Performed installation, networking, and maintenance duties on
+	    Macintosh software and systems</li>
+	</ul>
+      </p>
+
+      <p>
+	<b>System Administrator and Programmer</b> 
+	<SPACE/>
+	May 2002 - August 2003
+	<br/>
+	<a href="http://www.law.cornell.edu/">Legal Information Institute (LII)</a>,
+	<a href="http://www.lawschool.cornell.edu/">Cornell University Law School</a>, 
+	Ithaca, New York 
+	
+	<ul>
+	  <li>Aided in security, installation, monitoring, and maintenance of 1 Windows
+	    and 15 various Linux systems with head system administrator and Cornell Network
+	    Operations Center</li>
+	  <li>Team member of LII's US Legal Code Project involving requirements analysis,	
+	    design, implementation, and maintenance of markup software and transformation of
+	    code data to various formats using XSL, XML, and Java</li>
+        </ul>
+      </p>
+
+      <p>
+	<b>Web Research and Design Assistant</b>
+	<SPACE/>
+	Summer 2000
+        <br/>
+	<a href="http://www.argun.com/">Argun Communications Inc.</a>, Toronto, Ontario
+
+	<ul>
+	  <li>Investigated methods and outlines for better customer service on dot 
+	    com website</li>
+	  <li>Aided in graphics layout, website navigation, quality assurance, and 
+	    research of over 200 products</li>
+        </ul>
+      </p>
+      
+      <h2>Leadership and Communication Experience</h2>
+      
+      <p>
+	<b>Resident Advisor</b>	
+	<SPACE/>
+	August 2002 - May 2003
+	<br/>
+	<a href="http://www.campuslife.cornell.edu/">Campus Life</a>,
+	<a href="http://www.cornell.edu/">Cornell University</a>, Ithaca, New York
+	
+	<ul>
+	  <li>Organized and led over 50 activities and programs to promote community, 
+	    educational, and social awareness as well as administrative duties including
+	    office and on-call coverage with a community development staff of 10</li>
+	  <li>Worked as a peer counselor, mediator, and liaison (to administration)
+	    for residence hall of 270 students</li>
+	</ul>
+      </p>
+
+      <p>
+	<b>Teaching Assistant for Explorations in Engineering</b> 
+	<SPACE/>
+	Summer 2001
+	<br/>
+	<a href="http://www.sce.cornell.edu/sc/">Cornell Summer College</a>,
+	<a href="http://www.cornell.edu/">Cornell University</a>, Ithaca, New York
+	<ul>
+	  <li>Formulated, organized, and taught introductory engineering labs as
+	    well as advising a class of 75 students</li>
+	  <li>Planned, scheduled, and supported course activities with professor and 
+	    5 other TAs</li>
+        </ul>
+      </p>
+
+      <p>
+	<b>Internal Sales Representative</b>
+	<SPACE/>
+	Summer 1999
+	<br/>
+	<a href="http://www.sja.ca/">St. John Ambulance</a>, Toronto, Ontario
+	<ul>
+	  <li>Promoted coursework and answered inquiries over the phone</li>
+	  <li>Registered participants in sales center with 150 customers per day</li>
+	  <li>Performed administrative duties using organization specialized 
+	    computer software</li>
+        </ul>
+      </p>
+      
+      <h2>Special Skills</h2>
+      
+      <p class="resume">
+	<i>Operating Systems</i>: Macintosh &#8226; Windows &#8226; Linux<br/>
+	<i>Web Technologies</i>: XML &#8226; HTML &#8226; CSS &#8226; RDF &#8226;
+	JavaScript &#8226; PHP<br/>
+	<i>Programming Languages</i>: Java &#8226; C/C++ &#8226; XSL &#8226; 
+	Matlab &#8226; Perl &#8226; SML &#8226;	UML &#8226; SQL<br/>
+	<i>Languages</i>: Advanced French &#8226; Proficiency in speaking 
+	Cantonese &#8226; Basic Latin
+      </p>
+
+	<h2>Activities</h2>
+	<p>
+	  <a href="http://www.ewb-isf.org/">Engineers Without Borders</a><br/>
+	  <a href="http://www.opsdbc.ca/">OPS Dragon Boat Club</a><br/>
+	  <a href="http://www.alumni.cornell.edu/orgs/clubs/toronto/">Cornell Club of 
+	    Toronto</a>
+	</p>
+
+
+
+      <FOOTER>
+	<PATH>aboutme/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

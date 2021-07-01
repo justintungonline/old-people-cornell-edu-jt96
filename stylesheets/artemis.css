@@ -1,0 +1,334 @@
+/* Stylesheet for artemis
+   Author: justin
+*/
+
+/* Generic fallback font family */
+body { font-family: Verdana, sans-serif }
+
+/* ****************
+ * HTML link styles
+ * ****************
+ */
+
+/* no border on img links */
+a:link img, a:visited img { border-style: none }
+	
+a:link, a:visited, a:active, a:hover { text-decoration: none }
+a:link, a:visited { 	color: #0066CC; }
+a:active { 		color: #CC0000; }	
+a:hover	{ 		color: #003366; }
+
+/* Artemis head link properties */
+a.art:link, a.art:visited, a.art:active, a.art:hover { text-decoration: none }	
+a.art:link, a.art:visited {	color: #0066CC; }
+a.art:active {			color: #0066CC; }	
+a.art:hover {			color: #33999F; }
+
+/* Artemis sitemap subpage link properties */
+a.site:link, a.site:visited, a.site:active, a.site:hover { text-decoration: none }	
+a.site:link, a.site:visited {	color: #339900; }
+a.site:active {			color: #0066CC; }	
+a.site:hover {			color: #006633; }
+
+/* Support Link */
+a.supt:link, a.supt:visited, a.supt:active, a.supt:hover { text-decoration: none }	
+a.supt:link, a.supt:visited {	color: #FF99FF; }
+a.supt:active {			color: #9999CC; }	
+a.supt:hover {			color: #999999; }
+
+/* ****************
+ * Header Styles
+ * ****************
+ */
+
+h1, h2, h3, h4 { font-family: Verdana, sans-serif; }
+
+h1 {
+	font-size: 1em;
+	color: green;
+}
+
+h2 { font-size: 0.8em; }
+
+h3 {
+	font-size: 0.7em;
+	color: #990033;
+}
+
+h4 {
+  	font-size: 0.7em;
+	color: black;
+}
+
+/* **************************
+ * Div identifiers and styles
+ * **************************
+ */
+
+#toppanel {
+    	position: absolute; 
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+#leftpanel { 
+  	position: absolute; 
+	top: 10em;
+	left: 0; 
+	width: 10%;
+}     
+
+#rightpanel { 
+	position: absolute; 
+	top: 10em;
+	right: 0; 
+	width: 28%;
+} 
+
+#content {
+  	position: absolute; 
+	top: 11em;
+	margin-left: 12%;
+	width: 58%;
+}
+
+#centerleftcontent {
+	position: absolute;
+	left: 12%;
+	width: 30%;
+	top: 11em;
+}
+
+#centerrightcontent {
+		position: absolute;
+		left: 42%;
+		width: 30%;
+		top: 11em;
+}
+
+
+#artemisHeader {
+  	font-family: "Times New Roman", Times, serif ;
+	font-size: 3em;	
+	font-weight:bold;
+	color: #333333;
+	
+	text-align: right;
+	background: #99FF99;
+	padding-bottom: .1em;
+}
+
+#pagepath {
+  	font-family: "Arial", Arial, sans-serif ;
+	font-size: 0.7em;	
+	color: white;
+
+	text-align: right;
+  	background: #336699;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+} 
+ 
+/* For content panel in section index pages */
+.index {
+	padding: 1em;
+	color: black;
+	width: 95%;
+	background-color: white;
+	border: 1px dashed black;
+}
+
+/* Correctly set formatting of nav bar */
+.navbar_list { line-height: 80%; }
+
+.tabbed {
+  	font-family: Verdana, sans-serif; 
+	font-size: 0.7em; 
+	color: black; 
+	line-height: 130%; 
+	margin-left: 3%;
+}
+
+.flowleft {  float: left }
+.flowright { float: right }
+
+/* ****************
+ * Images styles
+ * ****************
+ */
+
+#front_bio { float: right; padding: 1em; }
+
+#side_bio {
+	padding-top: 35em;
+  	border: 0;
+    	height: 100%;
+	width: 100%;
+}
+
+#artemis_left {
+  	border: 0;
+    	height: 100%;
+	width: 100%;
+	text-align: left;
+}
+
+/* ****************
+ * Span Styles
+ * ****************
+ */
+
+/* Initial messages on pages, title-like */
+.welcome { 
+  	font-family: Arial, "Arial" sans-serif; 
+	font-size: .9em; 
+	color: #6633CC;
+	word-spacing: 0.5em;
+}
+
+
+.f_purple, .f_orange, .f_green, .f_red { font-family: Verdana, sans-serif; font-size: 0.7em; }
+.f_purple  { 	color: #6600FF }
+.f_orange { 	color: #CC6600 }
+.f_green { 	color: green }
+.f_red { 	color: red }
+.f_blue {       color: #003399 }
+
+.linkhead {
+  	font-family: Verdana, sans-serif; 
+	font-size: 0.8em; 
+	color: black; 
+	text-align: center; 
+	font-weight: bold;
+	color: #666666;
+}
+
+/* dot graphic fontstyle on nav bar */
+.dot {
+  	font-family: Verdana, sans-serif; 
+	font-size: .8em; 
+	color: red; 
+	text-align: center; 
+}
+
+.coms {
+    	font-family: Courier New, Courier, monospace; 
+	font-size: 0.7em; 
+	text-align: left; 
+}
+
+/* Section titles on nav bar */
+.navbar_section {
+  	font-family: Verdana, sans-serif; 
+	font-size: .7em; 
+	color: black; 
+}
+
+.bluebox {
+	padding: 1em;
+	background-color: #99CCCC;
+	width: 95%
+}
+
+.yellowbox {
+	padding: 1em;
+	background-color: #FFFF66;
+	width: 95%
+}
+
+/* ****************
+ * Paragraph styles
+ * ****************
+ */
+
+/* Default */
+p, .resume, .center, span { 
+	font-family: Verdana, sans-serif; 
+	font-size: 0.7em; 
+	color: black; 
+	line-height: 140%; 
+}
+
+.norm {	
+  	font-family: Verdana, sans-serif; 
+	font-size: 0.7em; 
+	color: black; 
+}
+
+p { text-align:justify; }
+
+/* Used mainly for resume or unjustified text */
+.resume { text-align:left; }
+
+.center { text-align:center; }
+
+p em { color: red; }
+
+/* ****************
+ * List Support
+ * ****************
+ */
+
+ul.none { list-style-type: none;}
+
+li { 
+  	font-family: Verdana, sans-serif; 
+	font-size: 0.7em; 
+	color: black; 
+	line-height: 140%;
+	text-align: left; 
+}
+
+/* Normal line height list node */
+li.navbar {
+  	font-family: Verdana, sans-serif; 
+	font-size: 0.7em; 
+	color: black; 
+	text-align: left; 
+}
+
+/* ****************
+ * Table styles
+ * ****************
+ */
+
+thead.lite {
+	background-color: #6699FF;
+	font-weight: bold;
+	color: white;
+	text-align: left;
+}
+
+td.norm {
+  	font-family: Verdana, sans-serif; 
+	font-size: 0.7em; 
+	text-align: left; 
+}
+
+/* Spacing Row */
+tr.spacer { padding-top: 1.5em; padding-bottom: 1.5em; }
+
+/* Spacing Column */
+td.spacer { width: 4em; }
+
+/*
+     FILE ARCHIVED ON 02:49:29 Mar 07, 2005 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 06:44:57 Jul 01, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  PetaboxLoader3.resolve: 223.179 (2)
+  LoadShardBlock: 200.849 (3)
+  esindex: 0.011
+  RedisCDXSource: 1.69
+  captures_list: 223.331
+  CDXLines.iter: 17.734 (3)
+  exclusion.robots.policy: 0.271
+  PetaboxLoader3.datanode: 358.693 (4)
+  exclusion.robots: 0.283
+  load_resource: 413.38
+*/

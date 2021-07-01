@@ -1,0 +1,781 @@
+<html>
+<head><script src="http://archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app201.us.archive.org';v.server_ms=170;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="http://web.archive.org/_static/js/playback.bundle.js?v=xTFGO54E" charset="utf-8"></script>
+<script type="text/javascript" src="http://web.archive.org/_static/js/wombat.js?v=i68pdzR-" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://web.archive.org/web");
+  __wm.wombat("http://www.people.cornell.edu:80/pages/jt96/resources/projects/cs501/requirement.html","20050307073424","http://web.archive.org/","web","/_static/",
+	      "1110180864");
+</script>
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/banner-styles.css?v=omkqRugM" />
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Software Requirement Document</title>
+<base target="_top">
+</head>
+
+<body leftmargin="50" marginwidth="50" topmargin="50" marginheight="50">
+<basefont size="3">
+
+<p><font face="Arial"><b>CS 501 - Software Engineering<br>
+<font color="#808080">Project for the Cornell Legal Information Institute</font><br>
+<font color="#999999">PDF versions of the United States Code</font></b></font></p>
+<p><b><font size="5">Software Requirements Document</font></b></p>
+<p><font size="4">Version 1.2 (revised - links fixed)</font><br>
+<font size="2"><b>August 27 2004</b></font></p>
+<p><b>Project <a href="http://web.archive.org/web/20050307073424if_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/cs501.html">Homesite</a></b></p>
+<p><b>Key Stakeholders / Organizations :</b><br>
+<i>Developer Team</i>: Tsung-Yueh Chiou, Tsee Yuan Lee, Kohsuke Kawaguchi, Soyeon Kim, Justin Tung<br>
+<i>Project sponsors</i>: Professor Thomas Bruce, Professor William Arms<br>
+<i>TA Consultant:</i> Matthew Harris<br>
+<i>LII Associates:</i> Sylvia Kwakye, Patrice Crooks, Peter Martin<br>
+<i>User Input and Acceptance:</i> Robert Green</p>
+<hr color="#C0C0C0">
+<p><b>Revision History</b></p>
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"><u>Date</u></td>
+    <td width="33%"><u>Version</u></td>
+    <td width="34%"><u>Description</u></td>
+  </tr>
+  <tr>
+    <td width="33%">2/14/02</td>
+    <td width="33%">0.1</td>
+    <td width="34%">Initial Draft</td>
+  </tr>
+  <tr>
+    <td width="33%">3/5/02</td>
+    <td width="33%">0.5</td>
+    <td width="34%">Preview</td>
+  </tr>
+  <tr>
+    <td width="33%">3/8/02</td>
+    <td width="33%">1.0</td>
+    <td width="34%">Deliverable</td>
+  </tr>
+</table>
+<hr color="#C0C0C0">
+<p><b><a name="toc">Table of Contents</a></b></p>
+<p align="left"><a href="requirement.html#1">1.</a> Introduction</p>
+<blockquote>
+  <p><a href="requirement.html#1.1">1.1</a> Goals<br>
+  <a href="requirement.html#1.2">1.2</a>  Glossary</p>
+</blockquote>
+<p><a href="requirement.html#2">2.</a> Operating and Development Environments</p>
+<blockquote>
+<p><a href="requirement.html#2.1">2.1</a> Hardware Platform<br>
+<a href="requirement.html#2.2">2.2</a> Software Platform<br>
+<a href="requirement.html#2.3">2.3</a> Additional Software for Project<br>
+<a href="requirement.html#2.4">2.4</a> Timetable<br>
+<a href="requirement.html#2.5">2.5</a> Reference books</p>
+</blockquote>
+<p><a href="requirement.html#3">3.</a>  PDF Conversion Requirements</p>
+<blockquote>
+<p><a href="requirement.html#3.1">3.1</a> Interfaces<br>
+<a href="requirement.html#3.2">3.2</a> Functionality<br>
+<a href="requirement.html#3.3">3.3</a> Usability<br>
+<a href="requirement.html#3.4">3.4</a> Reliability<br>
+<a href="requirement.html#3.5">3.5</a> Performance<br>
+<a href="requirement.html#3.6">3.6</a> Capacity and Resource Utilization<br>
+<a href="requirement.html#3.7">3.7</a> Structure Specification<br>
+<a href="requirement.html#3.8">3.8</a> Acceptable Bugs</p>
+</blockquote>
+<p><a href="requirement.html#4">4.</a>   Document Selection and Order Placement Requirements</p>
+<blockquote>
+<p><a href="requirement.html#4.1">4.1</a> Document Selection<br>
+<a href="requirement.html#4.2">4.2</a> Shopping Cart<br>
+<a href="requirement.html#4.3">4.3</a> Usability<br>
+<a href="requirement.html#4.4">4.4</a> Performance<br>
+<a href="requirement.html#4.5">4.5</a> Acceptable Bugs</p>
+</blockquote>
+<p><a href="requirement.html#5">5.</a>   Order Fulfillment Requirements</p>
+<blockquote>
+<p><a href="requirement.html#5.1">5.1</a> Functionality<br>
+<a href="requirement.html#5.2">5.2</a> Usability<br>
+<a href="requirement.html#5.3">5.3</a> Performance<br>
+<a href="requirement.html#5.4">5.4</a> Logging<br>
+<a href="requirement.html#5.5">5.5</a> Invalid Information<br>
+<a href="requirement.html#5.6">5.6</a> Acceptable Bugs</p>
+</blockquote>
+<p><a href="requirement.html#6">6.</a> Quality Assurance Requirements</p>
+<blockquote>
+<p><a href="requirement.html#6.1">6.1</a> Testing<br>
+<a href="requirement.html#6.2">6.2</a> Bug Reports</p>
+</blockquote>
+<p><a href="requirement.html#7">7.</a> Documentation Requirements</p>
+<blockquote>
+<p><a href="requirement.html#7.1">7.1</a> PPD<br>
+<a href="requirement.html#7.2">7.2</a> Website Users<br>
+<a href="requirement.html#7.3">7.3</a> LII Personnel and Future CS 501 Teams<br>
+<a href="requirement.html#7.4">7.4</a> CS 501 Staff&nbsp;</p>
+</blockquote>
+<p align="left"><a href="requirement.html#8">8.</a> Future Considerations</p>
+   <p> <a href="requirement.html#9">9.</a> Legal Requirements</p>
+<blockquote>
+   <p> <a href="requirement.html#9.1">9.1</a> Licensing Requirements<br>
+   <a href="requirement.html#9.1.1">9.1.1</a> Software Development Contract<br>
+   <a href="requirement.html#9.2">9.2</a> Legal, Copyright, and Other Notices</p>
+</blockquote>
+<p><a href="requirement.html#10">10.</a> References</p>
+<hr color="#C0C0C0">
+<p><b><a name="1">1</a>. Introduction</b></p>
+<p>The United States Code is released to the general public by the <a href="http://web.archive.org/web/20050307073424/http://uscode.house.gov/download.htm">U.S. House of Representatives</a>.  This code is an ASCII version to which the
+<a href="http://web.archive.org/web/20050307073424/http://lii.law.cornell.edu/"> Legal Information Institute</a> (LII) adds value.
+The improved version is <a href="http://web.archive.org/web/20050307073424/http://www4.law.cornell.edu/uscode/">here</a>.<br>
+<br>
+An earlier CS 501 team (Legal Data Markup Software Project) and a later
+student project developed programs for the LII that convert the raw ASCII output of
+the House of Representatives to XML, for subsequent reuse in various settings. This XML is then converted to
+HTML producing the current website. This conversion was facilitated by XSLT scripts. The existing web user
+interface supports a search engine, HTML legal code, cross-referencing, and notes on each section of the code.
+The US Code currently gets about half a million hits a day.</p>
+<p align="center"><img border="0" src="http://web.archive.org/web/20050307073424im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/lii1.jpg" width="400" height="288"><br>
+Figure 1: LII Front Page</p>
+<p align="center"><img border="0" src="http://web.archive.org/web/20050307073424im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/lii2.jpg" width="400" height="288"><br>
+Figure 2: Search or browse the U.S. Code.</p>
+<p align="center"><img border="0" src="http://web.archive.org/web/20050307073424im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/lii3.jpg" width="400" height="288"><br>
+Figure 3: A section of the Code.</p>
+<p><i><a name="1.1">1.1</a> Goals</i></p>
+<p>
+The new project, overseen by Thomas Bruce, Co-Director of the LII, is to create PDF versions of code from the existing
+XML. In the current website, users navigate through HTML links to see the
+leaves of the legal code tree, which are called 'sections'. Our goal is to implement a system
+so that users can print more than one section at a time, and in a format that
+preserves the meaning of the Code.</p>
+<p>Users can pick sections and larger divisions (called 'chapter', 'part',
+and other similar names) via a shopping cart system. The new PDF format
+adds printability and portability to the legal code, which was hard to achieve with HTML.</p>
+<p>The cart
+functionality will be integrated into the existing website and will be present in each HTML page of legal code. The
+idea is to charge the user for the service, which includes the delivery of PDF documents.
+Customers will also receive additional
+information (e.g. table of contents, notes, cross-referencing) relevant to their
+selections. The reason for adding a shopping cart is to charge users for PDF
+conversion, which inhibits overuse of the system and reminds users not to waste paper, since most saved documents are printed.</p>
+<p>The purpose of this document is to define all the requirements of the PDF delivery
+system needed to:</p>
+<ul>
+  <li>convert XML data to PDF for portability and printability;</li>
+  <li>create a logical and easy-to-use document selection user interface and order placement
+    process;</li>
+  <li>create a shopping cart system that allows the LII to recoup some of the
+    costs of maintaining, updating, and delivering the large document database;</li>
+  <li>allow adequate testing for the products;</li>
+  <li>assist the client in maintaining and updating the products (software designed by the team) 
+    after the end of the semester.</li>
+</ul>
+<p><i><a name="1.2">1.2</a>   Glossary</i></p>
+<p>Since the products are not intended for public consumption, most of the
+terminology used in this document should be understandable to the technical
+personnel involved in the project. This glossary serves to provide a common
+understanding among the parties involved in the project.</p>
+<table border="1" width="90%" bordercolor="#C0C0C0">
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b><i>Term</i></b></td>
+    <td width="76%" valign="top" align="left"><i>Definition</i></td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><i>Legal</i></td>
+    <td width="76%" valign="top" align="left">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Appendices</b></td>
+    <td width="76%" valign="top" align="left">Contains important
+additional materials pertinent to the Code body</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Catchline</b></td>
+    <td width="76%" valign="top" align="left">Short headers in the U.S. Code that specify the current position in the
+organizational hierarchy by including a short description of the ensuing text.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Chapter,
+      Part</b></td>
+    <td width="76%" valign="top" align="left">These are sub-divisions that
+      appear within each title. Some may use all of these, and others only a few
+      of them. Others have finer divisions, such as <b>sub-chapter</b>s and <b>sub-part</b>s.
+      The logical levels to which these correspond vary from title to title. Elsewhere on the project we have
+      begun to refer to these generically as &quot;supersections.&quot;</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Division</b></td>
+    <td width="76%" valign="top" align="left">Along with <b>sub-division</b>,
+      this is a somewhat informal term that refers to a logical block of the
+      Code, such as a section, sub-part, or title.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Notes</b></td>
+    <td width="76%" valign="top" align="left">Each sub-division in the Code may
+      have notes, which contain information relevant to that division.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Table of
+      Contents</b></td>
+    <td width="76%" valign="top" align="left">Used to present an overview of the
+various titles and their sub-divisions. A.k.a. TOC.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b> Section</b></td>
+    <td width="76%" valign="top" align="left">Like <b>chapter</b>s and <b>part</b>s,
+      this is a sub-division, and is the lowest division or leaf node of U.S.
+      Code.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Title</b></td>
+    <td width="76%" valign="top" align="left">The U.S. Code is currently divided
+      into 50 titles, each on a different topic. Examples: Title 1 is
+      &quot;General Provisions&quot; and Title 26 is the &quot;Internal Revenue
+      Code,&quot; otherwise known as the Tax Code.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>U.S.
+      Code</b></td>
+    <td width="76%" valign="top" align="left">&quot;A consolidation and
+      codification by subject matter of the general and permanent laws of the
+      United States&quot; prepared by the Office of the Law Revision Counsel of the U.S. House of
+      Representatives. Sometimes shortened to the <b>Code</b>.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><i>Technical</i></td>
+    <td width="76%" valign="top" align="left">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>DDD</b></td>
+    <td width="76%" valign="top" align="left">DTD Design Document</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>DTD</b></td>
+    <td width="76%" valign="top" align="left">Document Type Definition</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>LDMS</b></td>
+    <td width="76%" valign="top" align="left">Legal Data Markup Software, a
+      previous CS 501 project that provides tools to convert the U.S. Code (in
+      ASCII format from Congress) to the XML format. It also converts XML into
+      HTML for web users.</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Lula</b></td>
+    <td width="76%" valign="top" align="left">Name of server running
+      development and application environment (lula.law.cornell.edu)</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>LII</b></td>
+    <td width="76%" valign="top" align="left">Legal Information Institute</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>PDD</b></td>
+    <td width="76%" valign="top" align="left">Program Design Document</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>XML</b></td>
+    <td width="76%" valign="top" align="left">Extensible Markup Language</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>XSL</b></td>
+    <td width="76%" valign="top" align="left">Extensible Stylesheet
+      Language</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>XSL-FO</b></td>
+    <td width="76%" valign="top" align="left">Extensible Stylesheet Language
+      Formatting Objects</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>XSLT</b></td>
+    <td width="76%" valign="top" align="left">Extensible Style Language Transformation</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Xalan</b></td>
+    <td width="76%" valign="top" align="left">Open-source XSLT engine developed
+      at Apache Software Foundation</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Xerces</b></td>
+    <td width="76%" valign="top" align="left">Open-source XML parser developed
+      at Apache Software Foundation</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>FOP</b></td>
+    <td width="76%" valign="top" align="left">Open-source XSL-FO engine
+      developed at Apache Software Foundation</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><i>Miscellaneous</i></td>
+    <td width="76%" valign="top" align="left">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE" valign="top" align="left" nowrap><b>Website
+      Users</b></td>
+    <td width="76%" valign="top" align="left">People who access
+      the LII website to obtain the U.S. Code ranging from lawyers, legal/criminal
+      experts, to the general public.</td>
+  </tr>
+</table>
+<p>We expect to add, during development, a section of typographic terms and other specialized vocabulary related to the print version.</p>
+<p><i><a name="1.3">1.3</a> Knowledge Constraints</i></p>
+<p>At the current time, neither the client nor the developers possess the
+necessary typographical expertise to properly and adequately express the
+requirements for typesetting in the PDF files. As a result, Version 1.0 of this
+document does not include the vocabulary or the requirements for this portion of
+the project. Instead, the developers will meet with the client and other quality
+assurance personnel to develop such requirements. At this time, the client will
+provide various samples, and the developers will present outputs that are
+possible. Differences will then be discussed and a consensus reached on the
+proper handling.</p>
+<p><a href="requirement.html#toc">back to TOC</a></p>
+<hr color="#C0C0C0">
+
+<p><b><a name="2">2.</a> Operating and Development Environments</b></p>
+<p><i><a name="2.1">2.1</a> Hardware Platform</i></p>
+<p>The client requests that both development work and the production system be hosted on Lula, which is
+a P-III 800MHz with 2 GB of SDRAM and a RAID array of 2 40GB hard drive. Lula
+may be replaced sometime in the future. In the meantime, performance and
+resource requirements are described in terms of Lula, and in terms of users'
+Internet connection speed where applicable.</p>
+<p><i><a name="2.2">2.2</a> Software Platform</i></p>
+<p>Lula is running on Red Hat Linux v 7.1. The web server is powered by Apache.
+Java version is 1.3.1.02. The various Apache-derived XSL software - Xalan,
+Xerces, their FOP processor, and others - are also hosted here. These software
+are pre-installed by the client. In addition, a PDG Shopping Cart system is also
+available. Currently, this system provides software purchasing
+capabilities.&nbsp;</p>
+<p><i><a name="2.3">2.3</a> Additional software for project</i></p>
+<p>Partly due to the fact that this project is mostly funded by Red Hat Linux,
+and partly at the client's insistence, it is highly encouraged
+that only free software is used for the production and development processes.
+The developers do not yet foresee any use for proprietary software at this time.</p>
+<p>The developers should know or learn the following technologies in order to
+complete the project:</p>
+<ul>
+  <li>Windows/Unix - general development and testing, such as generating PDF
+    files;</li>
+  <li>XML - the format of source input, it is also the language in which the
+    following are written;</li>
+  <li>XSLT - the language that converts XML into XSL-FO;</li>
+  <li>XSL-FO - the final step, which converts FO into PDF.</li>
+</ul>
+<p><i><a name="2.4">2.4</a> Timetable</i></p>
+<table border="1" width="90%" bordercolor="#C0C0C0">
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE"><i>Deadline</i></td>
+    <td width="60%"><i>Goals</i></td>
+    <td width="16%"><i>Progress</i></td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">2/14/02</td>
+    <td width="60%">Feasibility Report regarding PDF conversion</td>
+    <td width="16%">Completed</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">3/5/02</td>
+    <td width="60%">Requirement Report (presentation &amp; documentation)</td>
+    <td width="16%">Preview</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">c. 4/3/02</td>
+    <td width="60%">Design (presentation &amp; documentation)</td>
+    <td width="16%">Initialized</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">c. 4/10/02</td>
+    <td width="60%">Milestone 1 (PDF converter beta)</td>
+    <td width="16%">Planned</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">c. 4/17/02</td>
+    <td width="60%">Milestone 2 (Shopping cart testing)</td>
+    <td width="16%">Planned</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">c. 4/24/02</td>
+    <td width="60%">Milestone 3 (Project beta)</td>
+    <td width="16%">Planned</td>
+  </tr>
+  <tr>
+    <td width="24%" bgcolor="#EEEEEE">c. 5/3/02</td>
+    <td width="60%">Final Delivery (presentation &amp; documentation)</td>
+    <td width="16%">Planned</td>
+  </tr>
+</table>
+<p><i><a name="2.5">2.5</a> Reference books</i></p>
+<p>Prof. Bruce has offered to purchase any books necessary in implementing this
+project. No book is required at this time.</p>
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="3">3.</a>  PDF Conversion Requirements</b></p>
+
+<p>This section discusses the both functional and non-functional requirements
+relating to the production of PDF files based on XML files from the LDMS
+project.</p>
+
+<p><i><a name="3.1">3.1</a> Interfaces</i></p>
+<p>It is assumed that the XML source will be provided at a specified location,
+supplied to the converter via command-line argument or settings file. The output
+will be stored in one specified directory or its subfolder, if pre-generation is used, or in a
+cache directory, if on-the-fly conversion is adopted. There may be a tree
+structure for the folders, such as one folder for each title.</p>
+
+<p>A wrapper should be provided to convert one title at a time. It should be
+modifiable so that in the future, more than one title can be converted at a
+time. It can then be invoked as necessary.</p>
+
+<p><i><a name="3.2">3.2</a> Functionality</i></p>
+
+<p>The foremost objective is to faithfully re-create a PDF version of the print
+edition as provided by the Government Printing Office. Lawyers depend highly on
+the visual structure of the legal code, and any alteration to the visual format, such as indentation or
+extra whitespace, can significantly change the meaning of the Code. Due to resource constraints, we must rely on
+the XML conversion provided by the previous CS 501 team in LDMS, although efforts
+will be made where bugs are found. The tagging in XML source is
+thus assumed to be accurate.</p>
+
+<p>The
+print edition of the U.S. Code thus serves as a useful reference for formatting, such as heading, typefaces, and so
+on.
+Sample sections will be provided in the future as neither the developers nor the
+client currently has the knowledge about typesetting terminology or constraints to specify such
+requirements at the present time.&nbsp;</p>
+
+<p> There are two ways to convert XML into PDF.
+Pre-generation means doing the conversion at the time updates are received.
+On-the-fly means converting at time of order fulfillment - after a user places
+an order for a
+document. Most of the requirements are independent of the method of conversion,
+unless otherwise noted.</p>
+
+<p><i><a name="3.3">3.3</a> Usability</i></p>
+
+<p> The PDF conversion tool will be invoked at specified intervals or upon
+stimuli, such as changes in XML, if pre-generation is used, or invoked
+automatically, such as when requested by a user, if on-the-fly conversion is
+used. In either case, maintenance personnel can quickly find out how to operate
+the conversion, if at all, through documentation.</p>
+
+<p>System administrators and future developers will need approximately 5-7 days to familiarize with the
+tools and code, to be able to trouble-shoot, fix bugs, and deliver new features.</p>
+
+<p><i><a name="3.4">3.4</a> Reliability</i></p>
+
+<p>Due to the large number of users, reliability is a top priority. It should be optimized
+even at the cost of functionality or performance. Downtime should be limited to
+an hour per year. The current site and services should remain available during feature addition or bug
+fixing, and not be affected by any work on this project.</p>
+
+<p><i><a name="3.5">3.5</a> Performance</i></p>
+
+<p> Currently, a bot checks for U.S. Code updates on the
+Congressional website once a day. Each updates usually consists of one title, or
+a series of consecutive titles. PDF conversion for each title should finish within 12 hours.
+This applies whether pre-generation is used, in which case the timer starts when
+XML input becomes
+available, or whether on-the-fly is used, in which case the 12 hours start when an order for that part of the Code
+is placed.</p>
+
+<p><i><a name="3.6">3.6</a> Capacity and Resource Utilization</i></p>
+
+<p>There is no efficient way that the developers know of to control the amount
+of resources used for conversion, such as preventing the PDF converter from
+occupying more than half of the computing cycles. Instead, the process should be able to run with a lower priority than normal tasks,
+thus not using excessive amounts of system resources.</p>
+
+<p>Storage usage is not expected to be significant. Prototyping tests
+show no more than 3-to-1 ration between PDF and HTML file sizes in the worst
+case.</p>
+
+<p><i><a name="3.7">3.7</a> Structure Specification</i></p>
+
+<p>The follow is regarding the format of PDFs to be delivered to user:</p>
+
+<p>Each section of the U.S. Code shall begin on a new page.</p>
+
+<p>For higher hierarchies, multiple sections are presented in the same file. To
+save space (and paper), the developers will investigate the possibility of
+placing multiple sections on a page when they do not overflow.</p>
+
+<p>Each section (or chapter, part, etc.) shall be delivered in a separate
+document. Preferably, an optimization will allow the user to receive the
+immediate supersection if many divisions on the same level are requested.</p>
+
+<p>Each division that is delivered as a document should include extra information relevant to that division,
+including notes and cross-references.</p>
+
+<p>Each page shall have a header showing the higher hierarchy necessary for
+identifying page contents. It should include the title number, and the chapter
+number, part number, and so on, if applicable. A footer showing the page number appears on the page as
+well, and should correspond to the information on the Table of Contents. A TOC
+shall be created for each delivered division. Appendices (without restructuring due to inconsistent organizational
+structures), and catchlines will also be included where available. Structural navigation-aiding tags
+should be used to create cross-links so
+as to provide ease of use of documents.</p>
+
+<p>For this project, one level above section, and the individual sections, are desired for conversion. This should be controlled by a line in the
+settings file so future improvements can be made as resources become adequate.</p>
+
+<p><i><a name="3.8">3.8</a> Acceptable Bugs</i></p>
+
+<p>Defects that do not directly contradict the above PDF conversion requirements are deemed acceptable. Examples include long-term memory leaks,
+spurious error messages, and minor differences between output and print
+editions.</p>
+
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="4">4.</a>  Document Selection and Order Placement Requirements</b></p>
+
+<p>These relate to what the user should be able to do on the website.</p>
+
+<p><i><a name="4.1">4.1</a>  Document Selection</i></p>
+
+<p>A user can add a section or its immediate supersection
+to the shopping cart for delivery in PDF format. The Code will be presented
+hierarchically as it is. The user can browse by following links that lead to lower
+levels, such as chapters and sections. Or they may arrive at some division
+via the search engine. A link to add a particular sub-division to the cart
+should be placed next to links to such divisions in the hierarchy and on the page
+containing that section itself.</p>
+
+<p><i><a name="4.2">4.2</a>  Shopping Cart</i></p>
+
+<p>There will be a link to the shopping cart on all pages where the user can review orders,
+remove items, or confirm the order. He or she then enters payment
+or credit card information, which will be passed onto Verisign for verification.</p>
+
+<p>The client shall be responsible for determining the fee structure (charging
+scheme). The developer shall be responsible for creating a system that supports
+different charges for differing amounts of material (eg. a section can be
+charged differently than a chapter).</p>
+
+<p><i><a name="4.3">4.3</a> Usability</i></p>
+
+<p>Since the output is delivered from web pages, UI complexity should be kept to a
+minimum. Users, who are mostly casual users of computers, should be able to intuitively
+know how to use the site or spend no more than 3 minutes learning though easy to read
+help documents. Some useful references are e-commerce sites: most people find
+sites such as Amazon.com easy and intuitive.</p>
+
+<p><i><a name="4.4">4.4</a> Performance</i></p>
+
+<p>The website should be quick, since most information is text (or rather,
+HTML). Response time should not differ significantly than current performance
+levels.</p>
+
+<p><i><a name="4.5">4.5</a> Acceptable Bugs</i></p>
+
+<p>Defects that do not directly contradict selection or placement requirements
+are deemed acceptable. Examples include bugs in the supplied shopping cart
+system that do not prevent orders from being placed or fulfilled.</p>
+
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="5">5.</a>  Order Fulfillment Requirements</b></p>
+
+<p>These relate to the experience after an order is confirmed.</p>
+
+<p><i><a name="5.1">5.1</a> Functionality</i></p>
+
+<p>Order confirmation should be emailed to the user. Each
+email shall include the identity of the purchaser, the time of purchase and
+cost, and the identity of the document.</p>
+
+<p>The AOL email limit, 5 MB, may well be insufficient for certain long
+sections. Other services may have even lower limits on attachment size.
+Therefore, documents will not be sent. Rather, links to the generated PDF files
+will be emailed to the user after they become available. Each section or
+immediate supersection
+shall be contained in one file, but the actual file path will be invisible. An
+indecipherable URL will be generated for each document in every order, and the
+system shall redirect file requests to the correct file. In this way, users
+cannot guess or obtain the paths to other files they did not order, but at the
+same time can download the documents at a convenient time.</p>
+
+<p><i><a name="5.2">5.2</a> Usability</i></p>
+
+<p>The system sends links to PDF files to the user by email.
+It is assumed that the user knows how to download files and use them. A short tutorial will be provided on the site for
+reference for those who do not.</p>
+
+<p><i><a name="5.3">5.3</a> Performance</i></p>
+
+<p>An order confirmation shall be provided by email within 5 minutes after the order is confirmed. The
+PDF conversion time has already been discussed in the conversion requirements.
+Since links are provided to users, the files are downloaded directly by users,
+so that the time to receive the documents will be constrained by the user's
+Internet connection.</p>
+
+<p><i><a name="5.4">5.4</a> Logging</i></p>
+
+<p>Each order should be logged. In the future, this log can be expanded in
+functionality and will be used for system analysis, usage
+pattern recognition, and in
+cases where customers have questions or problems with orders.</p>
+
+<p><i><a name="5.5">5.5</a> Invalid Information</i></p>
+
+<p>If a credit card is rejected, the order shall be rejected, and no
+confirmation should be sent. The user shall be responsible for mistyped email
+addresses, although efforts will be made to confirm the address more than once.
+If on-the-fly conversion is used, and document conversion fails, the user will receive an email
+notice.&nbsp;The system will not support refunds at this time.</p>
+
+<p><i><a name="5.6">5.6</a> Acceptable Bugs</i></p>
+
+<p>Defects that do not directly contradict selection or placement requirements
+are deemed acceptable. Examples include long-term memory leaks.</p>
+
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="6">6.</a> Quality Assurance Requirements</b></p>
+<p>The development team shall be responsible for testing permissible during the
+Spring 2002 semester.</p>
+<p><i><a name="6.1">6.1</a> Testing</i></p>
+<p>Testing shall be done through the implementation phase, with special emphasis
+on structural soundness in PDF files and large numbers of simultaneous requests.
+The development team will meet with the client and other quality assurance
+personnel at least once a week to resolve problems. Sample outputs will be
+provided to ensure that the structure does not deviate materially from the print
+edition of the U.S. Code.</p>
+<p><a name="6.2">6.2</a> Bug Reports</p>
+<p>Bug reports filed by the client or website users before the end of the
+project shall be handled by the developers as time permits (all last minute bugs
+may not be resolved).</p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="7">7.</a> Documentation Requirements</b></p>
+<p>Documentation is divided into three parts: for LII personnel and future CS
+501 teams, for CS 501 staff, and for website users. First, some required
+documents.</p>
+<p><i><a name="7.1">7.1</a>  Program Design Document</i></p>
+<p>Development of the LDMS shall be documented by a program design document (PDD)
+outlining the implementation. It shall be the central reference for developers
+responsible for understanding, maintaining, and extending the LDMS. The PDD
+shall contain a high level view of the LDMS processing engine, detail individual
+processing components, and display all interfaces, within and external to, the
+system. To aid in supporting the LDMS, no development diverging from the
+requirements shall occur without peer approval, without modifying requirements,
+nor without modifying the PDD.</p>
+<p><i><a name="7.2">7.2</a> Website Users</i></p>
+<p>A simple walk-through will be provided in case a website user is unable to
+order his or her desired documents. It will link to customer support
+information. Prominent help should be placed next to ordering links and lead
+users to walk-throughs and detailed instructions as well as contact information
+for personal technical support.</p>
+<p><i><a name="7.3">7.3</a> LII Personnel and Future CS 501 Teams</i></p>
+<p>Documentation will be provided so that both LII personnel and future CS 501
+teams who work with LII can understand the design and implementation of the PDF
+conversion, shopping cart system, and PDF delivery system. Scripts modified or
+created will have helpful documentation in the source code. Other documents will
+address possible failure modes and suggests remedies.</p>
+<p>PDF filenames will be inherited from the corresponding XML files. For
+instance, Title1Chpt1Sec1.xml will be converted into a PDF file named
+Title1Chpt1Sec1.pdf. Higher nodes in the hierarchy, such as Title1Chpt1, will be
+created as well, aggregating all lower levels in that portion of the U.S. code.</p>
+<p><i><a name="7.4">7.4</a> CS 501 Staff</i></p>
+<p>This requirement specification, as well as other documentation in the future,
+will be designed to allow Professor Arms and TA consultant to understand the
+progression of the project.</p>
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="8">8.</a> Future Considerations</b></p>
+<p>On-the-fly PDF generation is more flexible in allowing more presentation
+formats. The current project will attempt to allow such a feature to be
+&quot;plugged in&quot; in the future. Additional plugins may include queueing, so
+that system administrators can manually assign priorities to user requests (eg.
+shorter jobs receive higher priority); statistics can be collected to monitor
+the use of the system and allow intelligent updates and improvements. On the user
+side, an improved user interface with radio buttons, tree navigation of the code, and
+an optimized ordering system that incorporates data gathering by the LII may be implemented.
+In addition, PDF files that contain arbitrary levels of hierarchy may be created with
+the ability to convert more than one title at once. Logging may be extended to
+provide more in-depth and advanced data mining regarding usage patterns. </p>
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="9">9.</a> Legal Requirements</b></p>
+
+<p><i><a name="9.1">9.1</a>     Licensing Requirements</i></p>
+
+<p>The final product should be extendable at the source level by the client. Additionally, the issue of possible revenues generated by such extension of
+the product must be addressed.  As much of the code may result in deriving from freely-available sources, care must be taken to ensure that use of such
+code does not entail legal duties which are inconsistent with possible future commercial use of the product.  Therefore, a contract has been drawn
+up to address these issues.</p>
+
+<p><i><a name="9.1.1">9.1.1</a>     Software Development Contract</i></p>
+
+<p>Both Project Sponsors and Developers agree to the following:</p>
+
+<p>1.      That all code, documentation and other copyright-protected material produced in the course of this CS501 project (PROJECT MATERIAL) shall
+understood by all to be the work of joint authors and not as a work made for hire;</p>
+
+<p>2.      That the joint authors shall include all the undersigned, the CS501 students working on the project and Thomas R. Bruce;</p>
+
+<p>3.      That despite joint authorship there will be no duty on the part of the student authors, individually or as a group, to account for any return
+on subsequent commercial use or development of the PROJECT MATERIAL;</p>
+
+<p>4.      That, in contrast, should Thomas R. Bruce or the Legal Information Institute realize royalties or other direct financial return from licensing
+any of the PROJECT MATERIAL there will be a duty to account to the other joint authors for any such revenue net of costs; and</p>
+
+<p>5.      That the developers will use care to assure that the PROJECT MATERIAL does not incorporate code covered by copyright and licensed on
+terms that are inconsistent with unlimited noncommercial distribution.</p>
+
+<p><i><a name="9.2">9.2</a> Legal, Copyright and Other Notices</i></p>
+
+<p>At this juncture, the final product shall be distributed without any warranty, express or implied, and without even the implications of
+merchantability or fitness for a particular purpose.  The developers will make every effort to ensure that the product fulfills the requirements
+listed above. There will, however, be no legal duties to ensure any of them are fulfilled.</p>
+
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+<hr color="#C0C0C0">
+
+<p><b><a name="10">10.</a> References</b></p>
+
+<ul>
+  <li><a href="http://web.archive.org/web/20050307073424/http://www.people.cornell.edu/pages/jt96/research/cs501/projindex.htm">Project
+Developers' Website</a></li>
+  <li><a href="http://web.archive.org/web/20050307073424/http://groups.yahoo.com/group/cs501/">CS501 Project Group @ Yahoo!</a></li>
+  <li><a href="http://web.archive.org/web/20050307073424/http://lii.law.cornell.edu/">Legal Information Institute</a></li>
+  <li><a href="http://web.archive.org/web/20050307073424/http://uscode.house.gov/">The U.S. Code</a></li>
+  <li><a href="http://web.archive.org/web/20050307073424/http://leda.law.cornell.edu/~LDMS/">Legal Data Markup Software Project</a></li>
+  </ul>
+  <p>Other sources are documented on the developers' website.</p>
+<p><a href="requirement.html#toc">back to TOC</a></p>
+
+</body>
+
+</html>
+
+<!--
+     FILE ARCHIVED ON 07:34:24 Mar 07, 2005 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:02:19 Jul 01, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 106.098
+  exclusion.robots: 0.102
+  exclusion.robots.policy: 0.094
+  RedisCDXSource: 1.546
+  esindex: 0.009
+  LoadShardBlock: 79.473 (3)
+  PetaboxLoader3.datanode: 77.634 (4)
+  CDXLines.iter: 22.232 (3)
+  load_resource: 49.763
+  PetaboxLoader3.resolve: 27.259
+-->

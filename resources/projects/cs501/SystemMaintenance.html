@@ -1,0 +1,873 @@
+<!--
+Please do not modify this document directly so conflicting versions do not appear.
+Instead, access the LIIPDF CVS to make the changes.
+-->
+<html>
+<head><script src="http://archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app200.us.archive.org';v.server_ms=352;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="http://web.archive.org/_static/js/playback.bundle.js?v=xTFGO54E" charset="utf-8"></script>
+<script type="text/javascript" src="http://web.archive.org/_static/js/wombat.js?v=i68pdzR-" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://web.archive.org/web");
+  __wm.wombat("http://www.people.cornell.edu:80/pages/jt96/resources/projects/cs501/SystemMaintenance.html","20050307072504","http://web.archive.org/","web","/_static/",
+	      "1110180304");
+</script>
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/banner-styles.css?v=omkqRugM" />
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<link rel="stylesheet" type="text/css" href="http://web.archive.org/web/20050307072504cs_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/SystemMaintenance.css"/>
+	<title>LIIPDF Project: System Maintenance Document</title>
+</head>
+
+<body>
+<div class="title">
+	System Maintenance Document
+</div>
+<div class="meta">
+	$Id: SystemMaintenance.html,v 1.41 2002/05/16 05:13:27 jt96 Exp $<br>
+	CS501 Project of LII PDF conversion<br>
+</div>
+
+<h1>Table of Contents</h1>
+<ol>
+
+	<li><a href="SystemMaintenance.html#intro">Introduction</a>
+	<li><a href="SystemMaintenance.html#install">Installation</a>
+
+	<li><a href="SystemMaintenance.html#server">Server Configuration</a>
+	<ol>
+		<li><a href="SystemMaintenance.html#s_directory">Directory Structure</a>
+		<li><a href="SystemMaintenance.html#s_config">Properties and File Configuration</a>
+	</ol>
+
+	<li><a href="SystemMaintenance.html#run">Running the Programs</a>
+	<ol>
+		<li><a href="SystemMaintenance.html#r_script">Scripts</a>
+		<li><a href="SystemMaintenance.html#r_crontab">Crontab</a>
+	</ol>
+
+	<li><a href="SystemMaintenance.html#trouble">Troubleshooting</a>
+	<ol>
+		<li><a href="SystemMaintenance.html#t_ofe">Order Fulfillment Engine</a>
+		<li><a href="SystemMaintenance.html#t_catalog">PDG Catalog Generation</a>
+		<li><a href="SystemMaintenance.html#t_xsl">XSL</a>
+		<li><a href="SystemMaintenance.html#t_permission">Permission Problem</a>
+		<li><a href="SystemMaintenance.html#t_jvm">JVM</a>
+		<li><a href="SystemMaintenance.html#t_PDGerror ">PDG Error Code -3</a>
+	</ol>
+
+	<li><a href="SystemMaintenance.html#cont">Continuous Development</a>
+	<ol>
+		<li><a href="SystemMaintenance.html#cont_ext">Extensibility</a>
+		<ol>
+			<li><a href="SystemMaintenance.html#cont_ext_otf">On-the-fly PDF Generation</a>
+			<li><a href="SystemMaintenance.html#cont_ext_policies">Generation and Pricing Policies</a>
+			<li><a href="SystemMaintenance.html#cont_ext4_logging">Logging to Database</a>
+		</ol>
+		<li><a href="SystemMaintenance.html#cont_dev">Development</a>
+		<ol>
+			<li><a href="SystemMaintenance.html#cont_CVS">Build Script and CVS</a>
+			<li><a href="SystemMaintenance.html#cont_LDMS">Problems with LDMS</a>
+		</ol>
+	</ol>
+	<li><a href="SystemMaintenance.html#security">Security Issues</a>
+</ol>
+
+
+
+<h1><a name="intro">Introduction</a></h1>
+<p>
+	This document describes issues involved in the maintenance and continued development of the PDF versions of the US code system.
+</p><p>
+	The first section deals with how to install and deploy the system using set configurations and outlines which programs to run. The
+	next talks about troubleshooting the system, followed by issues involved with extensibility of the system and its continued development.
+</p>
+<dl>
+	<dt>If you are an administrator,
+	<dd>
+	read the <a href="SystemMaintenance.html#run">Running the Programs</a> section to how to use the system. Then proceed to the 
+	<a href="SystemMaintenance.html#server">Server Configuration</a> section.
+	
+	<dt>If you are a developer,
+	<dd>
+		read the whole document.
+</dl>
+
+
+<h1><a name="install">Installation</a></h1>
+<ol>
+	<li>
+		Obtain the copy of the workspace. See the <a href="SystemMaintenance.html#cont">Continuous Development</a> section of this document to see how to do this.
+	<li>
+		Run the "build.sh" script with the <code>package</code> target. This will compile the whole program and package them into a set 
+		of jar files.
+<pre>
+$ build.sh package
+</pre>
+	<li>
+	If you are installing (or upgrading) <code>lula</code>, run the <code>deploy</code> target. This will copy all the necessary files into the appropriate directories on lula so that you are prepared to run the programs.
+	<li>
+		Otherwise, first set up a directory structure by following the <a href="SystemMaintenance.html#s_directory">Directory Structure</a> section. We will call it the stage directory.
+	<li>
+		The packages directory in your workspace should contain jar files that are produced by <code>build.sh package</code>. Copy all of them into the binary directory of the stage directory.
+	<li>
+		Copy everything in the <code>yourworkspace/bin</code> directory to the binary directory of the stage directory, where you just put jar files. These shell scripts allow you to quickly launch LIIPDF programs. See the <a href="SystemMaintenance.html#run">Running the Programs</a> sections for the details about how to run them.
+	<li>
+		Set up PDG shopping cart (see <a href="http://web.archive.org/web/20050307072504/http://www.pdgsoft.com/cart.htm#Doc">their manuals</a> for details.)
+		Also, see <a href="SystemMaintenance.html#t_catalog">PDG Catalog Generation</a> in the <a href="SystemMaintenance.html#trouble">Troubleshooting</a> section.
+	<li>
+		Copy the <code>yourworkspace/website</code> directory to some directory where an HTTP server can serve them. Those are mainly images and some other static files. <!-- Users need to be able to configure the static file path.-->
+	<li>
+		Schedule OFE to run periodically. See <a href="SystemMaintenance.html#r_crontab">crontab</a> section for details. Depending on the configuration of the target environment, you can use other approaches, such as <code>procmail</code>.
+	<li>
+		A mailbox is necessary for OFE. So create an e-mail account for it, then configure PDG shopping cart so that vendor notification e-mail shall be sent to this address.
+	<li>
+		To further reduce human intervention, a batch process can be set up to fecth updates of U.S. Code and generate contents automatically. See <code>/usr/local/uscode/scripts/transformRange.pl</code> for the example of such a configuration.
+	<li>
+		Finally, configure the <code>liipdf.properties</code> file in the binary directory of the stage directory. See the <a href="SystemMaintenance.html#server">server configuration</a> section for details.
+</ol>
+
+
+<h1><a name="server">Server Configuration</a></h1>
+<h2><a name="s_directory">Directory Structure</a></h2>
+
+<p>
+	The directories described in the table below are the essential components of the system like output targets, script/source
+	file directories, PDG shopping cart directory, etc. These directories are used in configuring the properties used in the
+	<code>build.sh</code> script mentioned above.
+</p>
+
+<table cellspacing="0" border="1">
+<thead>
+	<tr>
+		<td>Directory</td>
+		<td>Information</td>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>/usr/local/uscode</td>
+		<td>
+			Main directory of US Code System. All directories in uscode were inherited from the LDMS Project except /pdf .
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/xml</td>
+		<td>
+			XML generated by the LDMS Project and to be used by the PDF versions of US Code Project.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/pdf</td>
+		<td>
+			Main directory of PDF versions of US Code Project. Contains <code>logfile.log</code>, which records all orders received
+			by the OFE and corresponding PDF request information. These are just snapshots of CVS. So do not edit them directly.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/pdf/docs</td>
+		<td>
+			Documents for the project including presentations. Contains feasibility study, requirements,
+			system design, Javadoc, PDG shopping cart documentation, and this document. Do not modify these
+			documents directly, rather modify them in the CVS and then redeploy them using <code>build.sh deploy</code>
+			in the CVS.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			/usr/local/uscode/pdf/xml<br>
+			/usr/local/uscode/pdf/html (<span class="sln">/var/www/html/uscode/pdf/</span>)<br>
+			/usr/local/uscode/pdf/pdf
+		</td>
+		<td>
+			Storage directories for the respective xml, html, and pdf files. More information is provided in the
+		    	<a href="SystemMaintenance.html#s_config">Properties and File Configuration</a> section.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/pdf/scripts (<span class="sln">/usr/local/uscode/scripts/pdf</span>)</td>
+		<td>
+			Contains scripts and java package files.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/html/walkthrough</td>
+		<td>
+			Static web pages outlining help for purchasing PDFs.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/pdf/cgi-bin (<span class="sln">/var/www/pdf-cgi/</span>)</td>
+		<td>
+			Directory containing CGI files.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/pdf/cgi-bin/pdg</td>
+		<td>
+			Directory containing PDG Shopping Cart config files.
+		</td>
+	</tr>
+	<tr>
+		<td>/usr/local/uscode/pdf/cgi-bin/pdg/PDG_Cart</td>
+		<td>
+			Main directory containing PDG Shopping Cart catalog files.
+		</td>
+	</tr>
+</table>
+
+<h2><a name="s_config">Properties and File Configuration</a></h2>
+
+<p>
+	The configurable variables are set in the <code>liipdf.properties</code> file in the binary directory in the CVS. This file is at
+	<code>/usr/local/uscode/scripts/pdf/liipdf.properties</code>.
+</p><p>
+	Here is the content of this file. We can see the variables and their explanations.
+</p>
+
+<pre>
+
+# LIIPDF configuration file
+#
+# All of the LIIPDF related programs read this configuration file.
+#
+# For details about this file, see the system design document.
+
+
+
+# Path name of the directory where division XML files are stored.
+# A sub-directory will be created for each title under this directory,
+# and actual division XML files are stored inside that directory.
+# The path name must ends with the path separator '/'.
+LIIPDF.common.path.xml = /usr/local/uscode/pdf/xml/
+
+
+# Path name of the directory where HTML files are stored. The same
+# rule and constraint applies as the "LIIPDF.common.path.xml" property.
+# Different path parameters can have the same path name (in that case
+# different file formats are stored in the same directory.)
+LIIPDF.common.path.html= /usr/local/uscode/pdf/html/
+
+
+# Path name of the directory where PDF files are stored. The same rule
+# and constraint applies as the "LIIPDF.common.path.xml" property
+LIIPDF.common.path.pdf = /usr/local/uscode/pdf/pdf/
+
+# Path name of the directory where PDG catalog files are stored.
+# Usually, this should be the PDG_Cart sub-directory where you
+# deploved PDG shopping cart.
+LIIPDF.xml2catalog.catalogpath=/usr/local/uscode/pdf/cgi-bin/pdg/PDG_Cart
+
+
+# This key will be used to scramble PDF URLs. It is a hexadecimal
+# representation of 64-bit DES key. An administrator can always generate
+# a fresh key by using a supplementary DESKeyGen tool or any other publicly
+# available tool that can generate 64-bit DES key.
+LIIPDF.common.DESKey = 04B915BA43FEB5B6
+
+
+# Fully qualified name of the Java class that implements the Logger
+# interface. This class will be used to write log messages. We don't
+# expect a system administrator to casually modify this parameter.
+LIIPDF.util.logger = edu.cornell.law.liipdf.util.FileLogger
+
+
+# Used by FileLogger, the default logger. This property specifies
+# the full path name of the log file to which log messages are sent.
+LIIPDF.util.FileLogger.logfile = /usr/local/uscode/pdf/logfile.log
+
+
+
+# Used by OrderEmailReader. This property specifies
+# the email server and addresses needed for ofe.
+#=======================================================
+
+# The name of the pop3 server from which OFE reads order verification
+# e-mail.
+LIIPDF.ofe.pop3server=pop.kohsuke.org
+
+# Username and password of the mailbox. PDG shopping cart must be
+# configured so that this mailbox will receive order notification e-mail.
+LIIPDF.ofe.pop3user=ofe
+LIIPDF.ofe.pop3password=ofe
+
+# The name of the SMTP server which OFE uses to send e-mail. This server
+# needs to allow e-mail to be sent from the following support e-mail
+# address. (Depending on the domain name of the mail address,
+# your mail server might reject the relay operation.
+LIIPDF.ofe.smtpServer=localhost
+LIIPDF.ofe.supportEMail=cs501@yahoogroups.com
+
+# The name of the class that implements PDFGenerationPolicy.
+# This object controls whether PDF files are generated for a given division.
+LIIPDF.xml2pdf.genPolicy=edu.cornell.law.liipdf.xml2pdf.policies.LowerMostTwoPolicy
+
+# The name of the class that implements PDFPricingPolicy.
+# This object determined the price for PDF files.
+LIIPDF.xml2catalog.prcPolicy=edu.cornell.law.liipdf.xml2catalog.policies.FixedPricePolicy
+
+
+# EOF
+</pre>
+
+
+
+<h1><a name="run">Running the Programs</a></h1>
+
+<h2><a name="r_script">Scripts</a></h2>
+
+<p>
+	This section outlines the procedure for typical use of the scripts (in /usr/local/uscode/pdf/scripts) and the dataflow involved.
+	Once the system is deployed, the following programs will be used to generate contents and deploy them to the web server. The diagram shows how the scripts (contents generation
+	sub system) fit into the overall data flow. For more information on the other elements, see the system design document.
+</p>
+
+<center> <img src="http://web.archive.org/web/20050307072504im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/DataFlowSM.gif"> </center>
+
+<h3>Procedure</h3>
+<dl>
+
+	<dt>LDMS: Generate XML
+	<dd>
+		Once changes are made to the ASCII version of the US Code, LDMS should be run to generate new xml files for each title.
+	<dt>XML Splitting: <code>xmlsplt.sh</code>
+	<dd>
+		Split the title xml files into smaller division xml files for manageability.
+	<dt>PDF Generation: <code>xml2pdf.sh</code>
+	<dd>
+		Convert xml US Code to pdf version
+	<dt>HTML Generation: <code>xml2html.sh</code>
+	<dd>
+		Generate the HTML from XML with modifications from LDMS project to incorporate PDF links and Shopping Cart
+	<dt> PDF Shopping Cart Catalog Generation: <code>xml2catalog.sh</code>
+	<dd>
+		Generates catalog for the shopping cart.
+</dl>
+<p>
+	All the programs run for individual titles. Therefore, for example, to process title 5 and 39, you need to run programs twice; and
+	you cannot run programs just for a particular section of a title. Everything has to be done for a whole title.
+</p><p>
+	If you invoke programs without any option, it will display the help screen that describes the syntax of the command line parameters. Consult this 
+	help screen for details about the usage. Most of the program reads configuration from a config file <code>liipdf.properties</code>.
+</p><p>
+	Also, the order you run these programs is crucial, because oftentimes ouputs of a program is used as inputs to another. 
+	The following table summarizes the dependencies.
+</p>
+<center>
+<table cellspacing="0" border="1">
+<thead>
+	<tr><td>
+		Program
+	</td><td>
+		Input
+	</td><td>
+		Output
+	</td></tr>
+<tbody>
+	<tr><td>
+		LDMS
+	</td><td>
+		US Code in the ASCII format
+	</td><td>
+		title XML
+	</td></tr>
+
+	<tr><td>
+		xmlsplt.sh
+	</td><td>
+		title XML
+	</td><td>
+		division XML
+	</td></tr>
+
+	<tr><td>
+		xml2pdf.sh
+	</td><td>
+		division XML
+	</td><td>
+		PDFs
+	</td></tr>
+
+	<tr><td>
+		xml2html.sh
+	</td><td>
+		division XML and PDF
+	</td><td>
+		HTMLs
+	</td></tr>
+
+	<tr><td>
+		xml2catalog.sh
+	</td><td>
+		division XML and PDF
+	</td><td>
+		PDG catalog files
+	</td></tr>
+</table>
+</center>
+<p>
+	<code>xml2html.sh</code> is depending on PDF because it needs to check the existence of a PDF file to determine whether it should produce a PDF icon on the web page. This allows the admin to delete problematic PDF files before running <code>xml2html.sh</code> so that the user will not be able to order them.
+</p><p>
+	In addition, to active the newly created catalog files in PDG shopping cart, the admin needs to go to the PDG shopping cart config screen and click the "make changes live" button at the bottom of the screen. Consult the PDG shopping cart manual for details.
+</p>
+
+<h2><a name="r_crontab">Crontab</a></h2>
+<p>
+	OFE program needs to be invoked periodically to process orders.
+	One easy way to do this is through <a href="http://web.archive.org/web/20050307072504/http://www.google.com/search?q=crontab">crontab</a>. To run OFE through crontab,
+	you should launch <code>ofe.cron.sh</code> instead of <code>ofe.sh</code> so that various configurations are done appropriately.
+</p>
+<p>
+	The following file is a sample crontab confiugration. It runs OFE for every hour.
+</p>
+
+<pre>
+: crontab -l
+# DO NOT EDIT THIS FILE - edit the master and reinstall.
+# (crontab.file installed on Fri Apr 26 13:19:19 2002)
+# (Cron version -- Id: cronofe,v 1.16 2002/04/28 02:36:31 jt96 Exp )
+22 * * * * /usr/local/uscode/scripts/pdf/ofe.cron.sh
+</pre>
+
+
+
+<h1><a name="trouble">Troubleshooting</a></h1>
+
+<p> In this section are listed some common problems and how to address them. </p>
+
+<h2><a name="t_ofe">Order Fulfillment Engine</a></h2>
+
+<ul>
+	<li>javax.mail.MessagingException: Connect failed
+	<p>This indicates that there are problems to connect to the mail server.</p>
+	<p>Solutions:</p>
+	<ol>
+		<li>Make sure that mail server is working.
+		<li>Check the mail server settings(LIIPDF.ofe.pop3server) in the liipdf.properties file.
+	</ol>
+	<li>javax.mail.AuthenticationFailedException: Bad login
+	<p>This indicates there are problems to login to the mail server.</p>
+	<p>Solutions:</p>
+	<ol>
+		<li>Make sure this account is still valid on the mail server.
+		<li>Check the mail account settings(LIIPDF.ofe.pop3user, LIIPDF.ofe.pop3password) in the liipdf.properties file.
+	</ol>
+</ul>
+
+<h2><a name="t_catalog">PDG Catalog Generation</a></h2>
+
+<p>
+	Catalog files must be only four characters in length, thus each product category in PDG is four characters as well.
+	As a result, the project has chosen PD to prefix all title numbers from 01 - 50. This convention means all catalog files
+	are of the form PDXX.pdg .
+</p><p>
+	There are bad characters, namely <code>&lt; &gt; / : | ;</code> that the catalog files do not accept. These characters have been escaped in the
+	source code but should be kept in mind if catalog file editing is done.
+</p><p>
+	Upon generation of the catalog files, in order to insert catalog files from the back-end of PDG, one must modify the
+	<code> shopper.conf</code> file in the /usr/local/uscode/pdf/cgi-bin/pdg/PDG_Cart as follows.</p>
+<pre>
+ProductCategory=A000:Gadgets &amp; Widgets:|Templates/A000_storebuilder.html|
+ProductCategory=B000:Sample Items:|Templates/B000_storebuilder.html|
+ProductCategory=PD01:USCode Title 01:||
+ProductCategory=PD02:USCode Title 02:||
+ProductCategory=PD03:USCode Title 03:||
+ProductCategory=PD04:USCode Title 04:||
+
+...
+
+ProductCategory=PD47:USCode Title 47:||
+ProductCategory=PD48:USCode Title 48:||
+ProductCategory=PD49:USCode Title 49:||
+ProductCategory=PD50:USCode Title 50:||
+</pre>
+
+<p>
+	This action basically involves adding product categories to PDG so the GUI will recognize the files. Once that is done,
+	changes can be made live in the GUI.
+</p>
+
+<h2><a name="t_xsl">XSL</a></h2>
+
+<p> XSL programs are located in the xml2pdf and xml2html Java packages. </p>
+<ul>
+	<li> US Code webpages do not have the expected look
+	<p> If there are problems in converting XML to HTML files, you should look at the ldms.xsl, misc.xsl. </p>
+
+	<li> Can't view the shopping cart via the link
+		<p> The link to the shopping cart is located in misc.xsl. If the location of PDG shopping cart is changed, check
+		the link and modify this correctly</p>
+<pre>
+&#60; !-- link to the shopping cart cgi --&gt;
+&#60; A href="http://lula.law.cornell.edu/pdf-cgi/pdg/shopper.cgi?display=action" &gt;
+
+</pre>
+	<li> Can't see PDF Help pages in the uscode web pages.
+		<p> The link to the PDF Help is located in misc.xsl. Make sure this is correctly linked to the current location of help files </p>
+<pre>
+&#60;!-- link to PDF walkthrough --&gt;
+&amp;#60A href="http://lula.law.cornell.edu/uscode/pdf/walkthrough/index.html"&gt;
+</pre>
+
+	<li> Can't shop pdf files by clicking pdf icon in the web pages
+		<p>Check ldms.xsl and make sure the link to PDG shopping cart and SKU value are correct.
+		If the paths are changed, modify these codes properly.
+		</p>
+
+<pre>
+	xmlns:codeDivision="xalan://edu.cornell.law.liipdf.common.CodeDivision"
+	xmlns:file="xalan://java.io.File"
+	xmlns:codeTitle   ="xalan://edu.cornell.law.liipdf.common.CodeTitle"
+......
+
+&#60;!-- The following code fragment gives you SKU --&gt;
+&#60;xsl:variable name="childDiv" select="codeTitle:getDivision($titleObject,@REF)"/&gt;
+&#60;xsl:variable name="SKU" select="codeDivision:getSKU($childDiv)"/&gt;
+
+.....
+
+&#60;!-- link to the shopping cart cgi to add --&gt;
+&amp;#60A href="http://lula.law.cornell.edu/pdf-cgi/pdg/shopper.cgi?add=action&amp;key={$SKU}"&gt;
+</pre>
+	<li> Can't shop the current division via the link "Add to Cart" in the right sidebar
+	<p> Check the misc.xsl and make sure the link to PDG shopping cart and SKU value are correct.
+	If the paths are changed, modify these codes properly.
+	</p>
+<pre>
+&#60;!-- link to the shopping cart cgi to add current division --&gt;
+&amp;#60A href="http://lula.law.cornell.edu/pdf-cgi/pdg/shopper.cgi?add=action&amp;amp;key={$SKU}"&gt;
+&lt;/pre&gt;
+
+	&lt;li&gt; Other problems
+	&lt;p&gt; Our XSL programs are aimed to transform XML files to HTML files and pdf files.
+	If there is other problems in the XSL program, review carefully the xsl files(ldms.xsl, misc.xsl, uscode.headfoot.xsl, splitter.xsl
+	code2fo.xsl) minding xml namespaces and the links to CGI programs.
+	&lt;/p&gt;&lt;p&gt;
+	Regarding PDFs, because the print formatter (&lt;a href="http://xml.apache.org/fop/"&gt;Formatting Objects Processor&lt;/a&gt;) 
+	used to transform the XML to PDF is still under outside development, some PDFs are not malformed and may not correctly resemble the HTML 
+	version of the Code.
+	&lt;/p&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;&lt;a name="t_permission"&gt;Permission Problem&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;
+	All the files (such as division XMLs, HTMLs, PDFs, and PDG catalog files) generated by programs inherit the default permission, which
+	is usually &lt;code&gt;rw-r--r--&lt;/code&gt;. If you run those programs manually from your account and other people (or an automated program) run programs
+	later, then the latter fails because of insufficient permission to overwrite files.
+&lt;/p&gt;&lt;p&gt;
+	Sometimes, this error is not so obvious from the error messages. For example, this problem can appear as
+	&lt;code&gt;InvocationTargetException&lt;/code&gt; errors.
+&lt;/p&gt;&lt;p&gt;
+	To avoid this problem, make sure that you use the &lt;code&gt;umask&lt;/code&gt; command to set file mode creation mask properly.
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name="t_jvm"&gt;JVM&lt;/a&gt;&lt;/h2&gt;
+ &lt;p&gt;
+         There seems to be a configuration problem in lula, which makes Java virtual machine
+ unstable on lula. We currently use a Windows machine instead.
+ &lt;/p&gt;&lt;p&gt;
+         Typically, you see error messages like:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ #
+ # HotSpot Virtual Machine Error, Unexpected Signal 11
+ # Please report this error at
+ # http://java.sun.com/cgi-bin/bugreport.cgi
+ #
+ # Error ID: 4F533F4C494E55580E43505005BC
+ #
+ # Problematic Thread: prio=1 tid=0x804db70 nid=0x31ad runnable
+ #
+ &lt;/pre&gt;
+ &lt;p&gt;
+         Or
+ &lt;/p&gt;
+ &lt;pre&gt;
+     si_signo [11]: SIGSEGV   11*  segmentation violation
+     si_errno [0]: Success
+     si_code [1]: SEGV_MAPERR [addr: 0x1C]
+
+         stackpointer=0xbfffc60c
+
+ Full thread dump Classic VM (1.3.0_02, green threads):
+ &lt;/pre&gt;
+ &lt;p&gt;We've experienced this problem with JDK1.3.1 and
+ JDK1.3.0 with classic VM, client HotSpot, and server HotSpot, and JDK 1.4.0 and 1.2.2. It's widely reported, but no workaround is known.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name="t_PDGerror"&gt;PDG Error Code -3&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;
+	This error occurred during testing because the file system mount the PDG shopping cart was stored on reached the maximum allowed disk 
+	space. As a result the catalog files for the PDG could not be accessed properly. One way to solve this problem would be to clear some
+	space on the mount to allow PDG shopping cart to function properly. Alternatively, one could move the PDG_Cart directory preserving 
+	permissions to a mount with sufficient space and symbolically link the directory from the previous mount to the new one.
+&lt;/p&gt;
+
+
+
+&lt;h1&gt;&lt;a name="cont"&gt;Continuous Development&lt;/a&gt;&lt;/h1&gt;
+
+&lt;h2&gt;&lt;a name="cont_ext"&gt;Extensibility&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h3&gt;&lt;a name="cont_ext_otf"&gt;On-the-fly PDF Generation&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;
+	To adapt the current pre-generation system for "On-the-fly" operation, some of our key components
+	can be reused. The following changes may be needed:
+&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+		In the PDFGeneration engine, change the PDF generation method to accept an Order object
+		as parameter. Then the PDFGeneration engine will retrive the needed data (order items in this
+		Order object) from XML files in an arbitrary level and combine them into one single PDF file.
+	&lt;li&gt;
+		Make this modified PDFGeneration engine as a CGI program. Add a "Get My PDFs" button on the
+		"Thank you page" in PDG shopping cart. After finishing the billing process, the user can click
+		this "Get My PDFs" button to trigger our PDFGeneration CGI program and get back his/her PDF files
+		within a matter of minutes.
+&lt;/ul&gt;
+
+
+&lt;h3&gt;&lt;a name="cont_ext_policies"&gt;Generation and Pricing Policies&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;
+	Currently, determining which divisions have corresponding pdfs and how to
+	price these pdfs is implemented in Java "policy" classes. Generation policies are
+	in the xml2pdf.policies package while the pricing policies are in the
+	xml2catalog.policies package. Changing these policies requires an implementation
+	of new policy classes specifying which divisions should be generated and how they
+	are priced in the catalog. For more details see the Javadoc and the source.
+&lt;/p&gt;
+
+&lt;h3&gt;&lt;a name="cont_ext4_logging"&gt;Logging to Database&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;
+	Our logging design is pretty flexible. We can easily change the logging target from a file to
+	a MySQL database. The changes needed are:
+&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;Change the logging target from a file to mysql tables in Logger.java so that when the OFE
+	calls the Logger object, it will write the order information to MySQL tables Order_Head and Order_Detail.
+	We can then put the start time of order processing and the time HTML mail has been sent out.
+	&lt;li&gt;Change the GetPDF CGI program to make it call the Logger object and put the "time_fetched" information
+	in the Order_Head table.
+&lt;/ul&gt;
+&lt;p&gt;
+	We already installed the mmMySQL JDBC driver on lula, and it has been tested to be working. To access to
+	MySQL server on lula, we have to add the following database connection code in the java program:&lt;p&gt;
+
+&lt;pre&gt;
+Class.forName("org.gjt.mm.mysql.Driver").newInstance();
+java.sql.Connection conn;
+conn = DriverManager.getConnection("jdbc:mysql://localhost/mysql?user=XXX&amp;password=XXX");
+&lt;/pre&gt;
+
+&lt;p&gt;
+	We already created two tables--Order_Head and Order_Detail on MySQL server (lula) to
+	store order information. The following are their schemas.
+&lt;/p&gt;
+&lt;p&gt;&lt;img src="DB_OrderHead.gif"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="DB_OrderDetail.gif"&gt;&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name="cont_dev"&gt;Development&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h3&gt;&lt;a name="cont_CVS"&gt;Build Script and CVS&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Use SSH authentication to log in to the CVSROOT&lt;/p&gt;
+&lt;pre&gt;user_name@lula.law.cornell.edu:/usr/local/cs501_S2002&lt;/pre&gt;
+&lt;p&gt;where user_name is for the developer who has an account on the CVS.&lt;/p&gt;
+
+&lt;h3&gt;&lt;a name="cont_LDMS"&gt;Problems with LDMS&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;Malformed filenames&lt;/h3&gt;
+&lt;p&gt;
+	According to the HTML file naming convention in the existing system,
+	some of divisions get filenames with '/'. For example, title 33 contains a division whose name is "702a-11/2". Since most of the programs
+	do not expect file names to contain the path separator, this breaks many other programs.
+&lt;/p&gt;&lt;p&gt;
+	Similarly, under this naming convention, some of the file names can get too long and cause errors. For example, one division in title 18 has the name:
+&lt;/p&gt;
+&lt;pre&gt;
+appendix-FEDERALRULESOFEVIDENCEThetextoftheFederalRulesofEvidenceenactedinto
+lawbyPubL93-595,Sec1,Jan2,1975,88Stat1929,issetoutintheAppe ndixtoTitle28,Ju
+diciaryandJudicialProcedureRule1101boftheRulesofEvidenceprovidesthattherules
+applygenerallytocivilactionsandproceedings,includingadmiraltyandmaritimecase
+s,tocriminalcasesandproceedings,tocontemptproceedingsexceptthoseinwhichtheco
+urtmayactsummarily,andtoproceedingsandcasesundertheBankruptcyAct
+&lt;/pre&gt;
+&lt;p&gt;
+	We have tentatively modified the naming convention to remove any path separators and truncate a filename if it's too long.
+	However, this could break other existing programs.
+&lt;/p&gt;
+
+
+&lt;h3&gt;Shared Sub-divisions&lt;/h3&gt;
+&lt;p&gt;
+	Title 31 contains a division called "stVIch97", and this division contains 9703 and 9704 directly. The problem is currently 9703 also
+	refers 9704. So if we generate a PDF file for "stVIch97", it contains two copies of 9704. On the HTML side, the table of contents for
+	Title 31, subtitle VI, Chapter 97 has an incorrect table of contents (namely two 9703 divisions). On a similar note, Title 46 
+	has another table of contents error where subtitles 2 and 3 are within subtitle 1.
+&lt;/p&gt;&lt;p&gt;
+	Even worse, many of our components assume that no sub-tree sharing like this is happening. Thus this breaks programs like
+	&lt;code&gt;xml2pdf&lt;/code&gt; and the HTML linking generated by &lt;code&gt;xml2html&lt;/code&gt;. Right now, we have implemented a PDF generation policy
+	that attempts to avoid those known problematic parts of the Code.
+
+
+
+&lt;h1&gt;&lt;a name="security"&gt;Security Issues&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;
+	The DES key used to scramble PDF links is stored in the configuration file. So anybody who has an account on the server can steal
+	and distribute the key, thereby compromising the secrecy of PDF files. On the other hand, such a person is likely to have read access to PDF
+	files, which means s/he can just copy all PDF files to whatever location s/he wants.
+&lt;/p&gt;&lt;p&gt;
+	The password of POP3 account is stored in clear in the configuration. So anybody who has an account on the server can read this password.
+	This could potentially allow her/him to use that account.
+&lt;/p&gt;&lt;p&gt;
+	Also the POP3 protocol sends the password in clear, so anybody with an appropriate tool can read the password from POP3 session. So the
+	current scheme of OFE to read e-mails via POP3 is inevitably unsafe.
+&lt;/p&gt;&lt;p&gt;
+	One way to fix this problem is to assume that the SMTP server is running on the server (which is true in case of &lt;code&gt;lula&lt;/code&gt;), and
+	have the server place e-mail to a well-known location. Then OFE can read e-mail from files, instead of from e-mail.
+&lt;/p&gt;
+
+
+&lt;!--
+
+$Log: SystemMaintenance.html,v $
+Revision 1.41  2002/05/16 05:13:27  jt96
+Corrected some linking errors
+
+Revision 1.40  2002/05/03 03:17:14  jt96
+Corrected, reworded, and added more content.
+
+Revision 1.39  2002/05/03 00:49:26  jt96
+Added more content to doc
+
+Revision 1.38  2002/05/02 19:55:15  jt96
+Moved some files in var/www/ pdg directories os changed corresponding info in doc
+
+Revision 1.37  2002/05/02 17:58:21  tyl2
+fixed typos and improved readability of sentences.
+
+Revision 1.36  2002/05/01 16:13:14  kk277
+augmented the running program section.
+
+Revision 1.34  2002/05/01 01:27:00  tyl2
+added warning not to alter file directly.
+
+Revision 1.33  2002/04/30 01:41:41  jt96
+Bug report.
+
+Revision 1.32  2002/04/30 01:24:09  jt96
+Added an additional bug report.
+
+Revision 1.31  2002/04/30 00:44:37  jt96
+Final edit, everyone should review this file before the presentation (for mistakes too).
+
+Revision 1.30  2002/04/29 23:38:38  sk355
+Added a little more  XSL part.
+
+Revision 1.29  2002/04/29 22:24:29  sk355
+Added XSl part.
+
+Revision 1.28  2002/04/29 22:20:12  tc226
+finished On-the-fly" section
+
+Revision 1.27  2002/04/29 22:19:10  kk277
+edited the directory structure section.
+
+Revision 1.26  2002/04/29 22:15:34  jt96
+Cleaned up HTML format.
+
+Revision 1.25  2002/04/29 22:11:52  kk277
+updated the installation section.
+
+Revision 1.24  2002/04/29 22:08:14  jt96
+Resolved some conflicts, still cleaning up
+
+Revision 1.23  2002/04/29 21:12:51  tc226
+finished "logging to DB" section
+
+Revision 1.22  2002/04/29 00:10:03  jt96
+Renamed file, changed link from html
+
+Revision 1.21  2002/04/29 00:05:52  jt96
+Finished my parts of the document. Beginning editing once everything is
+places together.
+
+Revision 1.20  2002/04/28 04:49:24  jt96
+Added more content.
+
+Revision 1.19  2002/04/28 03:57:40  kk277
+added security issues.
+
+Revision 1.18  2002/04/28 03:37:39  jt96
+Added security issues section
+
+Revision 1.17  2002/04/28 03:03:40  tyl2
+added one jdk ver that we tested
+
+Revision 1.16  2002/04/28 02:36:31  jt96
+Added some more directory info.
+
+Revision 1.15  2002/04/28 02:19:22  jt96
+Finished directory structure. Modified stylesheet.
+
+Revision 1.14  2002/04/28 01:22:44  jt96
+Merged Tsee Yuan and Kohsuke's changes with additional info from me.
+
+Revision 1.13  2002/04/28 01:13:26  kk277
+added my part.
+
+Revision 1.12  2002/04/28 01:04:58  tyl2
+no workaround.
+
+Revision 1.11  2002/04/28 00:08:18  tyl2
+updated jvm and added some cvs info. then realized that protion's already taken.
+
+Revision 1.10  2002/04/27 23:34:15  tyl2
+added jvm
+
+Revision 1.9  2002/04/27 23:26:56  jt96
+Merged Charles and my changes.
+
+Revision 1.8  2002/04/27 23:17:01  tc226
+add
+1. properties configuration
+2. troubleshooting for OFE
+
+Revision 1.7  2002/04/27 22:28:01  jt96
+Outline done, moving to body of doc
+
+Revision 1.6  2002/04/27 22:11:35  jt96
+commite for charles, writing outline still
+
+Revision 1.5  2002/04/27 20:36:14  jt96
+Added some new content and log tag.
+
+--&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+<!--
+     FILE ARCHIVED ON 07:25:04 Mar 07, 2005 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:02:23 Jul 01, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 274.875
+  exclusion.robots: 0.115
+  exclusion.robots.policy: 0.104
+  RedisCDXSource: 2.349
+  esindex: 0.01
+  LoadShardBlock: 251.65 (3)
+  PetaboxLoader3.resolve: 79.535 (2)
+  PetaboxLoader3.datanode: 224.909 (4)
+  CDXLines.iter: 17.973 (3)
+  load_resource: 71.298
+-->

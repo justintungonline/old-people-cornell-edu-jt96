@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="index.xml">
+    <dc:description about="index.html">
+      artemis site information index
+    </dc:description>
+    <dc:title>artemis site information</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-07"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2004-08-27"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+
+	<div class="index">
+
+	  <p>
+	    <b>Curiousity</b> brought knowledge to me and if you have a thousand and one
+	    questions or even one about this website, you are in the right place.
+	  </p>
+	  <p>
+	    If you need a general <b>overview/map</b> of the website, the navigation bar
+	    and <a href="sitemap.html">sitemap</a> will help you get around.
+	  </p>
+
+	  <p>
+	    The <a href="support.html">support</a> section contains information
+	    on which browsers are best for viewing the website and other compatibility 
+	    issues as well as software and specifications used to make/design the site.
+	  </p>
+	  
+	  <p>
+	    Since the question and answer format works the best, see the below <b>FAQ</b> 
+	    for the content, history, and construction details of the website.
+	  </p>
+
+	</div>
+
+	<h1>Frequently Asked Questions</h1>
+	<p>(that I ask myself or would ask if this was not my site)</p>
+	
+	<p>
+	  <a href="#whoami">Who are you and what do you do?</a><br/>
+	  <a href="#basite">What is this site about and what or who is Artemis?</a><br/>
+	  <a href="#whyart">Why is Artemis the name of the website?</a><br/>
+	  <a href="#history">Why did you make this website?</a><br/>
+	  <a href="#useful">What is the website useful for, what is around here?</a><br/>
+	  <a href="#desmake">How did you make this website and/or design it?</a><br/>
+	  <span class="dot">- - -</span><br/>
+	  <a href="#conhist">Website Construction History</a><br/>
+	</p>
+	
+	<a name="whoami"/>
+	<br/>
+	<p>
+	  <b>Who are you and what do you do?</b><br/>
+	  I kindly motion you to review the "<a 
+	    href="../aboutme/index.html">all about justin</a>"
+	  section that gives you all I would like to share with people on the internet.
+	  As for doing, I work in the Information Technology industry with experience
+	  in software engineering, system administration, and security.
+	</p>
+	
+	<a name="basite"/>
+	<p>
+	  <b>What is this site about and what or who is Artemis?</b><br/>
+	  Simply put, this site is my (justin's) personal website and the name of the
+	  website is Artemis. The "artemis v.x" in the upper right corner just stands as a 
+	  namesake for the website and v.x is the version number just to track significant
+	  changes to the website (similar to a program). The
+	  image of the statue in the upper left corner is of
+	  <a href="http://www.loggia.com/myth/artemis.html">
+	    Artemis the ancient Greek goddess</a>.
+	</p>
+
+	<a name="whyart"/>
+	<p>
+	  <b>Why is Artemis the name of the website?</b><br/>
+	  This question harder to answer than the other ones. If you are familiar with
+	  Greek mythology you will know Artemis (not to be confused with the slightly
+	  different Roman goddess Diana) was a protectress of children, lover of nature 
+	  and the hunt, and most importantly a free and independent goddess.
+	</p>
+	<p>
+	  I choose her name to name the site since my homepage is initially started
+	  as a free-spirited, independent attempt to place my favourites onto a 
+	  webpage I could use to explore the <i>natural environment</i> of the internet.
+	  Also, I admit I like many things of nature and this site is somewhat decidicated to
+	  looking for information on the net and looking for information is similar to hunting. 
+	  Since Artemis was a hunter and lover of nature, for these reasons and
+	  the fact that I like the name and the personality of the goddess in 
+	  the Greek myths made me choose Artemis.
+	</p>
+
+	<a name="history"/>
+	<p>
+	  <b>Why did you make this website?</b><br/>
+	  The idea of a homepage really started in the summer of 2000 when I 
+	  first worked on a computer at work that was not my own. I was faced with the 
+	  problem of exporting my internet bookmarks to that computer and at the time
+	  I was not that computer savy and worked on a Linux system, while my
+	  computer at home was a Windows PC.
+	</p>
+	<p>
+	  I decided it would be great if I could see my favourites on any computer
+	  that I used and decided this idea would be a good excuse to make a personal
+	  webpage. At the time, my exposure to HTML was small aside from a school project 
+	  to make a fictional website. Nevertheless, I persevered and as you can see
+	  have come a long way and that should encourage anyone that making a simple website
+	  is not too difficult.
+	</p>
+
+	<a name="useful"/>
+	<p>
+	  <b>What is the website useful for, what is around here?</b><br/>
+	  The webpage is useful since it contains:
+	  <ol>
+	    <li>A demonstration of various web technologies used to make a 
+	      simple personal web space. See the <a href="support.html">support</a>
+	      page for more details.
+	    </li>
+	    <li>A <a href="../explore/links.html">portal</a> to the internet that is 
+	      comprised of many of the favourites I have bookmarked throughout the
+	      year.</li>
+	    <li>Academic essays, research, and project <a 
+		href="../resources/index.html">resources</a> from work I have
+	      done in the past.</li>
+	    <li><b>Infinite space</b> (ok... well relatively infinite) for expansion
+	      and distribution of information, because that is what the internet
+	      is almost all about - <i>communication of information</i>.</li>
+	    <li>My own information for record keeping that may be of varying degrees
+	      of use for other internet users.</li>
+	  </ol>
+	</p>
+	<p>
+	  If you like computers or any topics in the 
+	  <a href="../explore/links.html">web gateway</a>,
+	  you will find the links useful. You can see an overview of
+	  the categories of links via the <a href="sitemap.html">sitemap</a>
+	  page.
+	</p>
+	<p>
+	  The content in the website is largely useful for my
+	  own records as well as paving the way for future information
+	  that I would like to publish on the web. So far my resources (e.g.
+	  articles) should be helpful to some people and maybe
+	  you might just learn something while browsing through the site.
+	  I know I have learned much just looking through other people's
+	  websites.
+        </p>
+
+	<a name="desmake"/>
+	<p>
+	  <b>How did you make this website and/or design it?</b><br/>
+	  I am <b>not</b> an very creative person (and some might think
+	  not even mildly creative) but I am good at research and learning
+	  and therefore I took a fair amount of time analyzing the <a 
+	    href="http://www.w3.org">World Wide Web Consortium</a>'s
+	  specifications for data and online presentation and looking at other people's
+	  webpages on the net from professional, corporate, community, to
+	  personal webpages. Even when I am not actively looking for a design,
+	  I always note down pages that I thought were particularly interesting.
+	  One of the best ways <i>to learn and sometimes do HTML is to look
+	    at the source of other people's webpages</i>.
+	</p>
+	<p>
+	  My structural design therefore closely resembles other
+	  people's personal websites with my personal touch being felt in simplicity, 
+	  actual content, and in minor text and structuring styles. My
+	  very first website was made in notepad and I later constructed a 
+	  20 page personal website through <a 
+	    href="http://www.microsoft.com/frontpage/">Frontpage</a>
+	  which is excellent for home users who want speed and a decent looking website.
+	  Due to my computer science background, for this third overhaul (artemis),
+	  I made some choices involving hand coding in XML (e<b>X</b>tensible <b>M</b>arkup
+	  <b>L</b>anguage). For more details, see the <a 
+	    href="support.html">site support</a> page.
+	</p>
+
+	<a name="conhist"/>
+	<p class="resume">
+	  
+	  <b>Website Construction History</b><br/>
+	  (chronological history from most recent to old)<br/><br/>
+	  <b>August 27, 2004</b> Biography changed for information reasons. Fixed links, updated resume,
+	  and reviewed stylesheets for errors. Minimized links around link pages to reduce clutter.<br/>
+	  <br/>
+	  <span class="welcome">ARTEMIS v.1.1</span>
+	  <br/>
+	  <b>November 3, 2003</b> Made changes to old CS 501 project website
+	  to update links and page layout.<br/>
+	  <b>October 16, 2003</b> Construction of artemis v.1 complete and
+	  website published to <b>http://www.people.cornell.edu/pages/jt96</b><br/>
+	  <b>October 2, 2003</b> Began offline construction/design of 
+	  <b>ARTEMIS</b> website.<br/>
+	  <br/>
+
+	  <span class="welcome">ARTEMIS v.1 Started</span><br/>
+	  <span class="dot">- - - - - - - -</span><br/>
+
+	  <b>October 16, 2003</b> ZEUS taken offline.<br/>
+	  <b>September 27, 2003</b> Last update to ZEUS<br/>
+	  <b>August 26, 2003</b> Added Linux commands page to resources area.<br/>
+	  <b>July 6th, 2003</b> More links added plus large update of resume.<br/>
+	  <b>May-July 2003</b> Graduated from Cornell! Started cleaning of old/non-functional
+	  links, still working on re-modeling and finishing incomplete sections.<br/>
+	  <b>Feb. 2, 2003</b> Updated the pictures of me on the website and added 
+	  additional links.<br/>
+	  <b>March 6th, 2002</b> Major reworking on research resources.<br/>
+	  <b>June 7th, 2001</b> Split links into 2 pages and added more links.<br/>
+	  <b>April 24th, 2001</b> Added many new essays to academic resources (some awaiting) 
+	  and changed link page.<br/>
+	  <b>April 20th, 2001</b> Minor re-modeling of website navigation and pictures.<br/>
+	  <b>April 4th, 2001</b> Added news page.<br/>
+	  <b>April 1st, 2001</b> Published website officially at
+	  <b>http://www.people.cornell.edu/pages/jt96</b><br/>
+	  <b>March 24th, 2001</b> Offline website construction of <b>ZEUS</b>
+	  website began.<br/>
+	  <br/>
+	  
+	  <span class="welcome">ZEUS (Cornell website) Started</span><br/>
+	  <span class="dot">- - - - - - - -</span><br/>
+
+	  <b>August 18th, 2000</b> Stopped work on first website with favourites.<br/>
+	  <b>July 15, 2000</b> Began construction of my very first website <b>LETO</b>,
+	  devoted to placing my favourites on a fancy page.<br/>
+	  <br/>
+
+	  <span class="welcome">LETO (First website) Started</span><br/>
+	  <span class="dot">- - - - - - - -</span><br/>
+	
+	</p>
+
+      <FOOTER>
+	<PATH>siteinfo/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

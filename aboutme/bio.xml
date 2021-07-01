@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="bio.xml">
+    <dc:description about="bio.html">
+      Biographical and personality information page about justin including
+      pictures.
+    </dc:description>
+    <dc:title>justin in life</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-07"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2004-08-27"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+      
+        <a name="person"/><h2>Put your personality to the test!</h2>
+
+	<p>
+	  Just a little <b>fun</b>, here is the result of a <a
+	    href="http://www.ullazang.com/personality.html#shapes">personality test</a>
+	  (it only takes 5 seconds) I took on the internet around 1999 and another time
+	  in 2003. I apparently lean on the "blue/purplish" shades in the pictures.<br/>
+	  Take it for yourself and see!
+	</p>
+
+	<!-- Floating bio images corresponding to personality info -->
+	<img src="../images/SmallJustin.jpg"
+	  id="front_bio" 
+	  alt="justin@ithaca 2001" /><br/>
+
+	<a name="bio"/><h2>That's life ; - )</h2>
+
+	<p>
+	  Birthdate: October 18, 1980 in Scarborough, <a 
+	    href="http://www.gov.on.ca/">Ontario</a>, <a 
+	    href="http://canada.gc.ca/">Canada.</a>
+	</p>
+
+	<p>
+	  That means... I am a Libra by the Western horoscope, a Monkey by the Chinese
+	  Zodiac, and a <em>Canadian</em> d(^_^)b .
+	</p>
+	
+	<center><img src="../images/canada.gif" /></center>
+
+      <FOOTER>
+	<PATH>aboutme/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+      <!-- Biography image -->
+      <img src="../images/merho.jpg" 
+	   id="side_bio"
+	   alt="justin@university 2002" />
+      <span class="f_purple">university 2002</span>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

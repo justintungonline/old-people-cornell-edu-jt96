@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="writeme.xml">
+    <dc:description about="writeme.html">
+      Contact information page for justin contained chat service referrals and nicknames
+      and email addresses.
+    </dc:description>
+    <dc:title>write : contact</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-10"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2004-08-27"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+
+    <CONTENT>
+      
+      <span class="f_red">Thank you for visiting my page !</span>
+      <p>
+	If you have enjoyed this site in any way or if this site has 
+	lighted a spark inside you and given you more power to explore 
+	the internet, please let me know so I can either improve
+	certain content that helps people or just know that there's
+	support out there.
+      </p>
+      <p>
+	In all honesty, I kindly thank you for your support and feedback as it does
+	mean something to me and I promise I will translate feedback for others 
+	to benefit from.<br/><br/>
+	<b>Send me your inspirational words at</b>:
+      </p>
+      <div class="bluebox">
+	<p>
+	  <b>E-mail</b>
+	  <br/>
+	  Primary:  <a href="mailto:kalreichi@hotmail.com">kalreichi at hotmail dot com</a><br/>
+	  University-related: <a href="mailto:jt96@cornell.edu">jt96 at cornell dot edu</a>
+	  <br/><br/>
+	  <b>Chat</b><br/>
+	  <a href="http://www.aim.com">AIM</a>: JustinMth <br/>
+	  <a href="http://messenger.msn.com/">MSN Messenger</a>:  kalreichi at hotmail dot com 
+        </p>
+      </div>
+      <FOOTER>
+	<PATH>explore/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

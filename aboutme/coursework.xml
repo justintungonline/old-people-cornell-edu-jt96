@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+
+<DOC>
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/" 
+                     xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+                     about="coursework.xml">
+      <dc:description about="coursework.html">
+	Page justin's undergraduate cornell coursework 1999-2003
+      </dc:description>
+      <dc:title>cornell coursework 1999-2003</dc:title>
+      <dc:date>
+	<rdf:Description 
+	  dcq:dateType="created" 
+	  dcq:dateScheme="W3C-DTF" 
+	  rdf:value="2003-10-14"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified"
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+    </rdf:Description>
+  </rdf:RDF>
+  <HTMLPAGE>
+    <BODY>
+      <CONTENT>
+        <table cellpadding="3">
+          <thead class="lite">
+            <tr>
+              <td class="norm">Department</td>
+              <td class="norm">Number</td>
+              <td class="norm">Title</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="spacer"/>
+            <!-- Coursework organized by FALL, SPRING semesters -->
+            <tr>
+	      <td class="norm"><b>FALL 1999</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">193</td>
+              <td class="norm">Calculus for Engineers</td>
+            </tr>
+            <tr>
+              <td class="norm">ENGINEERING GENERAL</td>
+              <td class="norm">193</td>
+              <td class="norm">Academic Excellence Workshop</td>
+            </tr>
+            <tr>
+              <td class="norm">ENGL</td>
+              <td class="norm">185</td>
+              <td class="norm">Comparative Literature of Twice Told Tales</td>
+            </tr>
+            <tr>
+              <td class="norm">COMP SCI (COM S)</td>
+              <td class="norm">100</td>
+              <td class="norm">Introduction to Computer Programming</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYS ED</td>
+              <td class="norm">154</td>
+              <td class="norm">Introduction to Gymnastics</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>Spring 2000</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">192</td>
+              <td class="norm">Calculus for Engineers</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYSICS</td>
+              <td class="norm">112</td>
+              <td class="norm">Engineering: Mechanics</td>
+            </tr>
+            <tr>
+              <td class="norm">ENGINEERING GENERAL</td>
+	      <td class="norm">192</td>
+              <td class="norm">Academic Excellence Workshop</td>
+            </tr>
+            <tr>
+              <td class="norm">ART HISTORY</td>
+              <td class="norm">200</td>
+              <td class="norm">Art, Achaeology, and Analysis</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">113</td>
+              <td class="norm">Introduction to C</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">114</td>
+              <td class="norm">Unix Tools</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">211</td>
+              <td class="norm">Computers and Programming (Java)</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">113</td>
+              <td class="norm">Introduction to C</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYS ED</td>
+              <td class="norm">171</td>
+              <td class="norm">Introduction to Tae Kwon Do</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>FALL 2000</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">293</td>
+              <td class="norm">Engineering: Calculus and Differential Equations</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYSICS</td>
+              <td class="norm">213</td>
+              <td class="norm">Engineering: Heat/Electromagnetism</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">280</td>
+              <td class="norm">Discrete Structures</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>SPRING 2001</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">294</td>
+              <td class="norm">Linear Algebra</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">312</td>
+              <td class="norm">Structure and Interpretation of Programs (SML)</td>
+            </tr>
+            <tr>
+              <td class="norm">HISTORY</td>
+              <td class="norm">190</td>
+              <td class="norm">Introduction to Asian Civilizations</td>
+            </tr>
+            <tr>
+              <td class="norm">ASIAN STUDIES</td>
+              <td class="norm">208</td>
+              <td class="norm">Introduction to Southeast Asia</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>SUMMER 2001</b></td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">222</td>
+              <td class="norm">Scientific Computation</td>
+            </tr>
+            <tr>
+              <td class="norm">HISTORY</td>
+              <td class="norm">268</td>
+              <td class="norm">History of the Roman Republic</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>FALL 2001</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">332</td>
+              <td class="norm">Algebra and Number Theory</td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">420</td>
+              <td class="norm">
+	      Differential Equations and Dynamical Systems</td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">500</td>
+              <td class="norm">College Teaching</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">321</td>
+              <td class="norm">Numerical Methods in Computational Molecular Biology</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">490</td>
+              <td class="norm">Independent Reading and Research: 
+		Project in "
+		<a href="../resources/projects/cs490/cs490.html">
+		  Interval Analysis and its Applications to Optimization in Behavioural Ecology
+	      </a>"</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>SPRING 2002</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">336</td>
+              <td class="norm">Linear Algebra</td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">422</td>
+              <td class="norm">Applied Complex Analysis</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYS ED</td>
+              <td class="norm">385</td>
+              <td class="norm">Introduction to Figure Skating</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">501</td>
+              <td class="norm">Software Engineering</td>
+            </tr>
+            <tr>
+              <td class="norm">MECHANICAL &amp; AEROSPACE ENGINEERING</td>
+	      <td class="norm">490</td>
+              <td class="norm">Special Investigations In Mechanical and Aerospace Engineering:
+	      Middle School Technology Teaching Project</td>
+            </tr>
+            <tr>
+              <td class="norm">CLASSICS</td>
+              <td class="norm">107</td>
+              <td class="norm">Intensive Latin</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>FALL 2002</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">471</td>
+              <td class="norm">Basic Probability</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">401</td>
+              <td class="norm">Applied Scientific Computing with MATLAB</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+              <td class="norm">402</td>
+              <td class="norm">Scientific Visualization with MATLAB</td>
+            </tr>
+            <tr>
+              <td class="norm">COM S</td>
+	      <td class="norm">504</td>
+              <td class="norm">Applied Systems Engineering I</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYS ED</td>
+              <td class="norm">293</td>
+              <td class="norm">Thai Boxing</td>
+            </tr>
+            <tr>
+              <td class="norm">FRENCH</td>
+	      <td class="norm">206</td>
+              <td class="norm">French Intermediate Reading and Writing</td>
+            </tr>
+            <tr class="spacer"/>
+            <tr>
+	      <td class="norm"><b>SPRING 2003</b></td>
+            </tr>
+            <tr>
+              <td class="norm">MATH</td>
+              <td class="norm">472</td>
+              <td class="norm">Statistics</td>
+            </tr>
+            <tr>
+              <td class="norm">LINGUISTICS</td>
+              <td class="norm">101</td>
+              <td class="norm">Introduction to Linguistics</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYS ED</td>
+              <td class="norm">293</td>
+              <td class="norm">Thai Boxing</td>
+            </tr>
+            <tr>
+              <td class="norm">FRENCH</td>
+              <td class="norm">219</td>
+              <td class="norm">French Intermediate Composition and Conversation II</td>
+            </tr>
+            <tr>
+              <td class="norm">PHYS ED</td>
+              <td class="norm">282</td>
+              <td class="norm">Judo</td>
+            </tr>
+          </tbody>
+        </table>
+        <FOOTER>
+          <PATH>aboutme/</PATH>
+        </FOOTER>
+      </CONTENT>
+      <RIGHTPANEL/>
+    </BODY>
+  </HTMLPAGE>
+</DOC>

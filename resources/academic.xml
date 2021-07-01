@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="academic.xml">
+    <dc:description about="academic.html">
+      artemis academic projects and essays index page
+    </dc:description>
+    <dc:title>artemis: articles, presentations, documents</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-14"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-24"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+
+      <span class="f_red">Computer Science</span>
+      <ul>
+	<li>This <a href="projects/cs490/cs490.html">independent research project</a> entitled
+	  "Interval Analysis and its Applications to Optimization in Behavioural Ecology
+	  focuses on applying error approximation to a simple foraging model in
+	  behavioural ecology.</li>
+	<li>The "<a href="projects/cs501/cs501.html">PDF Versions of the US Legal Code</a>"
+	  project was done with a group of 5 programmers for Cornell's <a 
+	    href="http://lii.law.cornell.edu">Legal Information Institute</a>.
+	  It was aimed at extending the existing transformations from XML 
+	  core legal code data to PDF</li>
+      </ul>
+
+      <span class="f_purple">History</span>
+      <ul>
+	<li>History of Rome (268) <a href="docs/romewomen.doc">Essay</a> (MS Word 2000)<br/>
+	  <b>Title:</b> Women in Roman Politics during the First Half of the First Century BC 
+	</li>
+	<li>Asian Studies (208) <a href="docs/essays.html#as_women">Essay</a><br/>
+	  <b>Title:</b> Influence of Political Goals on Gender Regulation
+	    in the Dutch East Indies during the 19th and 20th centuries
+	</li>
+      </ul>
+
+      <FOOTER>
+	<PATH>resources/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>

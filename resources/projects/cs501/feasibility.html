@@ -1,0 +1,391 @@
+<!DOCTYPE DOC PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<DOC>
+
+<!--Document created via transformation from xml to html--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:dcq="http://purl.org/dc/qualifiers/1.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:my="http://www.people.cornell.edu/pages/jt96/">
+    <head>
+      <title>Feasibility Study</title>
+      <link href="http://www.people.cornell.edu/pages/jt96/stylesheets/artemis.css" type="text/css" rel="stylesheet" />
+      <link href="http://web.archive.org/feasibility.xml" type="text/xml" rel="alternate" />
+      <link href="http://purl.org/dc/elements/1.1/" rel="schema.DC" />
+      <!--META Information for searching and page description-->
+      <meta content="text/html; charset=utf-8" http-equiv="Content-type" />
+      <meta content="&#10;      A Feasibility Report of PDF Versions of US Code Project &#10;      reporting on software, design, and cost/benefit analysis.&#10;    " name="DC.description" />
+      <meta content="Justin Tung" name="DC.creator" />
+      <meta content="justin tung, interval analysis, computer science,    xml, xslt, java, upper canada college, cornell, personal website, math, mathematics    numerical analysis, behavioural ecology, internet searching, resume, International    Baccalaureate, programming, xhtml, css, information technology, internet,    computer games" name="Keywords" />
+    </head>
+    <!--Top Panel (artemis header column)-->
+    <div id="toppanel">
+      <div id="artemisHeader">
+        <a href="http://www.people.cornell.edu/pages/jt96/index.html" class="art">
+	    artemis v 1.1</a>
+        <br />
+      </div>
+      <div id="pagepath">
+        <div class="flowleft">
+	    for alternative compatibility, try the 
+	    <a href="http://web.archive.org/web/20050307073121if_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/feasibility.xml" class="supt">XML version</a>
+          <br />if you have problems consult the 
+	    <a href="http://www.people.cornell.edu/pages/jt96/siteinfo/support.html" class="supt">support page</a>
+        </div>
+	  justin's homesite
+	  <br />
+	  /resources/cs501feasibility.html</div>
+    </div>
+
+  <body>
+  
+    <!--Content (middle column)--><div id="content">
+
+      <h1>CS 501 - Software Engineering
+	<br />
+	Feasibility Report
+      </h1>
+      
+      <h2>Project for the Cornell Legal Information Institute
+	<br />
+	PDF versions of the United States Code 
+      </h2>
+
+      <p>
+	Version 1.1 (revised)<br />
+	November 3 2003<br />
+	Project <a href="http://web.archive.org/web/20050307073121if_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/cs501.html">Homesite</a>
+      </p>
+      
+      <p class="resume">
+      <b>Key stakeholders/organizations :</b>
+          <br />
+	<b>Developer Team: </b>
+	Tsung-Yueh Chiou, Tsee Yuan Lee, Kohsuke Kawaguchi, Soyeon Kim, Justin Tung
+	<br />
+	<b>Project sponsors: </b>Thomas Bruce, Professor William Arms
+      </p>
+
+      <hr />
+      
+      <p>
+	<b>Table Contents</b>
+	<br />
+	I. Introduction
+	<ol>
+	  <li>
+              <a href="feasibility.html#po">Project Outline</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#scope">Scope</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#pr">Project Relations</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#bene">Benefits</a>
+            </li>
+	</ol>
+      </p>
+      <p>
+	II. Software Development Plan
+	<ol>
+	  <li>
+              <a href="feasibility.html#con">Constraints</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#oandr">Obstacles and Risk</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#deliv">Deliverables</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#ppro">Project Process</a>
+            </li>
+	  <li>
+              <a href="feasibility.html#res">Resources</a>
+            </li>
+	</ol>
+      </p>
+      
+      <hr />
+
+      <h3>I. Introduction</h3>
+      
+      <a name="po" />
+        <h4>1. Project Outline</h4>
+      
+      <p>
+	The United States Code is released to the general public by the US House of
+	Representatives on its Web site at <a href="http://uscode.house.gov/download.htm">
+	  http://uscode.house.gov/download.htm</a>. 
+	This code is a plain-vanilla ASCII version to which the Legal Information 
+	Institute (http://lii.law.cornell.edu/) adds value. This website is at: <br />
+	
+	<a href="http://www4.law.cornell.edu/uscode/">http://www4.law.cornell.edu/uscode/.</a>
+      </p>
+	
+      <p>
+	An earlier CS 501 team (Legal Data Markup Software Project) and a later
+	student project developed programs for the Legal Information Institute (LII) 
+	that convert the raw ASCII output of the House of Representatives to XML, for
+	subsequent reuse in various settings. This XML is then converted to HTML
+	producing the current website. This conversion was facilitated by XSLT scripts.
+	The existing web user interface supports a search engine, HTML legal code,
+	cross-referencing, and notes on each section of the code. The US Code currently 
+	gets about half a million hits daily. 
+      </p>
+      
+      <p>
+	The new project, overseen by Thomas Bruce, Co-Director of the Legal Information 
+	Institute, is to create PDF versions of code from the existing XML. In the
+	current website, users navigate through HTML links to see the leaves of the 
+	legal code tree, which are called 'sections'. Our goal is to implement a 
+	system where user can pick sections and more larger divisions (called as 
+	'chapter' or 'part') via a shopping cart system. The new PDF format adds 
+	printability and portability to the legal code, which was hard to achieve with
+	the HTML version. The cart functionality will be integrated into the existing 
+	website and will be present in each HTML page of legal code. The idea is then to 
+	possibly charge the user for the service followed by on-the-fly XML to PDF
+	conversion using XSL. Then the generated PDF documents containing the sections 
+	of code requested by the user along with additional information (e.g. table of
+	contents, notes, cross-referencing) will be delivered to the user.
+      </p>
+      
+      <a name="scope" />
+        <h4>2. Scope</h4>
+      
+      <p>
+	Required
+	<ul>
+	  <li>Pre-generate PDFs for bottom elements of legal code tree</li>
+	  <li>Pre-generate PDFs for larger divisions</li>
+	  <li>Modify existing XSLT script to incorporate PDF functionality in 
+	    existing website</li>
+	</ul>
+      </p>
+      <p>
+	Desired<br />
+	PDF generation of US legal code for either:
+	
+	<ul>
+	  <li>on-the-fly PDF generation</li>
+	  <li>an extensible caching-queuing framework</li>
+	  <li>Shopping cart payment system and charging scheme for PDFs</li>
+	</ul>
+      </p>
+      <p>
+	Optional
+	<ul>
+	  <li>Database to support queuing and to track user statistics</li>
+        </ul>
+      </p>
+
+      <a name="pr" />
+        <h4>3. Project Relations</h4>
+      
+      <p>
+	Another team is working at LII on improving XML format of US code
+	but does not directly affect our project.
+      </p>
+      
+      <a name="bene" />
+        <h4>4. Benefits</h4>
+
+      <p>
+	<ul>
+	  <li>Convenience of legal code in a PDF format available to public as supposed
+	    to website format</li>
+	  <li>Ability to provide an organized format for legal code in PDF for 
+	    printing purposes</li>	  
+	  <li>Shopping cart payment system for LII</li>
+        </ul>
+      </p>
+      <hr />
+      
+      <h3>II. Software Development Plan</h3>
+
+ 
+      <a name="con" />
+        <h4>1. Constraints</h4>
+
+      <p>
+	The project is funded by Red Hat, therefore the client expressed a preference 
+	to rely solely on open-source software. Given the number of visitors to the 
+	website (approx. 9 million per week), the system must be able to handle the
+	large volume. Experience-wise, the project team must learn new programming 
+	languages and environments.
+      </p>
+      
+      <a name="oandr" />
+        <h4>2. Obstacles and Risk</h4>
+      
+      <p>
+	<b>i.</b> Scalability
+	<br />
+	At this moment we are not sure whether the currently deployed shopping cart
+	system can handle a large number of code sections which we will need to handle. 
+	Also, it is not clear how many users will use this PDF service. Given the number
+	of visitors to the website, the load of the system can be huge.
+      </p>
+      <p>
+	<b>ii.</b> Lack of Experience
+	<br />
+	The developers' need to learn several systems and technologies is apparent in 
+	several areas. The production system is running on Linux, but none of the team
+	members has good Linux background. The project needs to use various XML-related 
+	technologies and CVS fairly extensively, but most of the team members need to
+	learn those technologies and CVS. In addition, none of the team members has
+	experience working with the shopping cart system and the payment system currently
+	deployed. Regarding legacy systems, the existing system that produces HTML from
+	US code has to be changed, therefore the team must spend some resources to become
+	knowledgeable about it.
+      </p>
+      <p>
+	<b>iii.</b> Integration with existing systems
+	<br />
+	The new system might need to coordinate with the currently deployed shopping 
+	cart system. However, at this moment we are not sure if this system provides
+	such a coordination mechanism.
+      </p>
+      <p>
+	<b>iv.</b> US Legal Code Complexities
+	<br />
+	The code contains many irregularities in structure and data organization.
+	Also, the DTD does not capture the precise semantics of the code.
+      </p>
+
+      <a name="deliv" />
+        <h4>3. Deliverables</h4>
+      <p>
+	<ul>
+	  <li>Feasibility Report</li>
+	  <li>Requirements Analysis</li>
+	  <li>Prototype</li>
+	  <li>System and Program Design</li>
+	  <li>Modified website</li>
+	  <li>PDF Conversion Engine</li>
+	</ul>
+      </p>
+      
+      <a name="ppro" />
+        <h4>4. Project Process</h4>
+      
+      <p>
+	Following feasibility and requirements analysis, we plan to produce an 
+	initial prototype of the system to show to the client to confirm developer 
+	thoughts on the project. After the prototype, we will move on to systems and 
+	program design and coding phases. Unfortunately, due to the nature of the legal
+	data, there is not comprehensive test plan. At the end, we will conduct documentation
+	and debugging as well as acceptance testing. 
+      </p>
+
+      <a name="res" />
+        <h4>5. Resources</h4>
+
+      <p>
+	Software:
+	<ul>
+	  <li>XSLT Engine</li>
+	  <li>PDG Shopping cart</li>
+	  <li>XML</li>
+	  <li>Verisign Pay Flow</li>
+	  <li>XSL/FO Processor (PDF Generation)</li>
+	  <li>Apache server</li>
+	  <li>CVS</li>
+	  <li> Linux</li>
+	</ul>
+      </p>
+      <p>
+	Hardware:
+	<ul>
+	  <li>1 server (lula.law.cornell.edu) used for project development and as
+	    a server for the concurrent version control system (CVS).</li>
+	</ul>
+      </p>
+      <p>
+	Facilities and Tools
+	<ul>
+	  <li>Regular meetings Mondays 5-7 in Upson Hall or the Law School</li>
+	  <li>Yahoo groups: cs501 (http://groups.yahoo.com/group/cs501/) 
+	    egroup for message board and limited file sharing capabilities</li>
+	  <li>CVS Repository on lula.law.cornell.edu will be used for development</li>
+	</ul>
+      </p>
+
+      <!--Standard content column footer--><hr />
+        <p>
+          <a href="http://www.people.cornell.edu/pages/jt96/index.html">ARTEMIS</a> | resources/cs501<a href="feasibility.html">feasibility.html</a> by <a href="mailto:kalreichi@hotmail.com">justin tung</a> generated using 
+      
+      <a href="http://xml.apache.org/xalan-j">Apache Software Foundation</a>'s Xalan-J version 2.5.1</p>
+    </div>
+
+    <!--Right Navigation Column--><div id="rightpanel">
+        <div class="navbar_list">
+          <b>
+            <span class="navbar_section">
+              <a href="http://www.people.cornell.edu/pages/jt96/aboutme/index.html">
+	      all</a> about me</span>
+          </b>
+          <ul class="none">
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/aboutme/bio.html">bio</a>
+            </li>
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/aboutme/interests.html">interests</a>
+            </li>
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/aboutme/resume.html">resume</a>
+            </li>
+          </ul>
+          <span class="dot">. . . . . . . . . . . . . . . . . . .</span>
+          <br />
+          <b>
+            <span class="navbar_section">
+              <a href="http://www.people.cornell.edu/pages/jt96/siteinfo/index.html">site info</a>
+            </span>
+          </b>
+          <ul class="none">
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/siteinfo/sitemap.html">sitemap</a>
+            </li>
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/siteinfo/support.html">support</a>
+            </li>
+          </ul>
+          <span class="dot">. . . . . . . . . . . . . . . . . . .</span>
+          <br />
+          <b>
+            <span class="navbar_section">
+              <a href="http://www.people.cornell.edu/pages/jt96/resources/index.html">
+	      resources</a>
+            </span>
+          </b>
+          <ul class="none">
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/resources/articles.html">
+		brief documents</a>
+            </li>
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/resources/academic.html">
+		essays/project</a>
+            </li>
+          </ul>
+          <span class="dot">. . . . . . . . . . . . . . . . . . .</span>
+          <br />
+          <b>
+            <span class="navbar_section">eXplore with me</span>
+          </b>
+          <ul class="none">
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/explore/writeme.html">
+		contact / write me</a>
+            </li>
+            <li class="linknode">
+              <a href="http://www.people.cornell.edu/pages/jt96/explore/links.html">
+		web gateway</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  <!--Filler column, possible for images (left column)--><div id="leftpanel">
+        <img alt="artemis on tower" id="artemis_left" src="http://www.people.cornell.edu/pages/jt96/images/artemis_tower.jpg" />
+      </div>
+    </body>
+</html>
+</DOC>

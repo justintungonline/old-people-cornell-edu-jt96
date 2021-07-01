@@ -1,0 +1,1317 @@
+<!--
+Please do not modify this document directly so conflicting versions do not appear.
+Instead, access the LIIPDF CVS to make the changes.
+-->
+<html>
+<head><script src="http://archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app200.us.archive.org';v.server_ms=456;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="http://web.archive.org/_static/js/playback.bundle.js?v=xTFGO54E" charset="utf-8"></script>
+<script type="text/javascript" src="http://web.archive.org/_static/js/wombat.js?v=i68pdzR-" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://web.archive.org/web");
+  __wm.wombat("http://www.people.cornell.edu:80/pages/jt96/resources/projects/cs501/SystemDesign.html","20050307072246","http://web.archive.org/","web","/_static/",
+	      "1110180166");
+</script>
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/banner-styles.css?v=omkqRugM" />
+<link rel="stylesheet" type="text/css" href="http://web.archive.org/_static/css/iconochive.css?v=qtvMKcIJ" />
+<!-- End Wayback Rewrite JS Include -->
+
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<link rel="stylesheet" type="text/css" href="http://web.archive.org/web/20050307072246cs_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/SystemDesign.css"/>
+	<title>LIIPDF Project: System Design Document</title>
+</head>
+<body>
+<div class="title">
+	System Design Document
+</div>
+<div class="meta">
+	$Id: SystemDesign.html,v 1.51 2002/05/01 01:26:44 tyl2 Exp $<br>
+	CS501 Project of LII PDF conversion<br>
+	Editors: Tsung-Yueh Chiu, Kohsuke Kawaguchi, Soyeon Kim
+</div>
+
+<h1>Table of Contents</h1>
+
+<ol>
+	<li><a href="SystemDesign.html#intro">Introduction</a>
+	<li><a href="SystemDesign.html#overview">Overview</a>
+	<ol>
+		<li><a href="SystemDesign.html#o_usecase">Use Case</a>
+		<li><a href="SystemDesign.html#o_sequence">Sequence Diagram</a>
+	</ol>
+	<li><a href="SystemDesign.html#cont_gen">Contents Generation Sub-System</a>
+	<li><a href="SystemDesign.html#order_selection">Order Selection Sub-System</a>
+	<li><a href="SystemDesign.html#order_fulfillment">Order Fulfillment Sub-System</a>
+	<li><a href="SystemDesign.html#component_design">Components</a>
+	<ol>
+		<li><a href="SystemDesign.html#cd_dataflow">Dataflow</a>
+		<li><a href="SystemDesign.html#cd_txt2xml">txt2xml Component</a>
+		<li><a href="SystemDesign.html#cd_xmlSplitter">xmlSplitter Component</a>
+		<li><a href="SystemDesign.html#cd_xml2html">xml2html Component</a>
+		<li><a href="SystemDesign.html#cd_shared">Shared Components</a>
+		<li><a href="SystemDesign.html#cd_pdfgen">PDF Generator Component</a>
+		<li><a href="SystemDesign.html#cd_ofe">Order Fulfillment Component</a>
+		<li><a href="SystemDesign.html#cd_getpdf">GetPDF CGI Component</a>
+		<li><a href="SystemDesign.html#cd_deployment">Deployment</a>
+	</ol>
+	<li><a href="SystemDesign.html#misc_considerations">Miscellaneous Design Considerations</a>
+	<li><a href="SystemDesign.html#appendix">Appendix</a>
+	<ol>
+		<li><a href="SystemDesign.html#a_divxml">Format of Code Division XML</a>
+		<li><a href="SystemDesign.html#a_pdgemail">Format of PDG Order Notification E-mail</a>
+		<li><a href="SystemDesign.html#a_catalog">Format of PDG Product Catalog File</a>
+		<li><a href="SystemDesign.html#a_naming">Naming Convention of XML/HTML/PDF Files</a>
+		<li><a href="SystemDesign.html#a_skugen">SKU Generation Algorithm</a>
+		<li><a href="SystemDesign.html#a_config">Configurable Parameters</a>
+	</ol>
+</ol>
+
+
+
+
+<h1><a name="intro">Introduction</a></h1>
+<h2>Purpose</h2>
+<p>
+	This document describes the system design for the project.
+</p><p>
+	Because of the request from the client, an effort is made on explicitly stating alternative solutions that we could have adopted and the reason why we decided not to adopt them.
+</p><p>
+	This document is organized in the following way. First, we describe the overall system architecture in terms of data flow and how components interact with each other. Next, we visit three main sub-systems of the system separately and specify the interfaces between them and between the components inside each sub-system. Finally, we move on to each component that makes up those sub-systems, and specify the design of them. Some details which are useful only to implementors are explained in appendices.
+</p>
+
+
+<h1><a name="overview">Overview</a></h1>
+<p>
+	The following figure illustrates the overall structure of the system.
+	The file icons represent data stored as files, boxes represent sub-systems.
+</p>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Subsystems.gif" width="615" height="310"/>
+</center>
+<p>
+	The system consists of three loosly coupled sub-systems:
+</p>
+<dl>
+	<dt>Contents Generation Sub-System</dt>
+	<dd>
+		A part of the system which converts US Code into HTML and PDF. It also produces catalog files for PDG shopping cart, which tells the PDG shopping cart what kind of PDF files we have as our "products". Those conversion processes are run in batch mode and they are not visible from users.
+	</dd>
+
+	<dt>Order Selection Sub-System</dt>
+	<dd>
+		A part of the system which interacts with users and assists in them placing orders. It consists mostly of the PDG shopping cart.
+	</dd>
+
+	<dt>Order Fulfillment Sub-System</dt>
+	<dd>
+		A part of the system that processes orders and delivers PDF files to users.
+		This sub-system runs asynchrnously from the order selection sub-system.
+	</dd>
+</dl>
+
+
+
+
+
+
+<a name="o_usecase"></a>
+<h2>Use Case</h2>
+<p>
+	From the functionality perspective, the system will provide the following services.
+</p>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/UseCase_Order.gif" width="517" height="461">
+</center>
+<p>
+	The actor is the user from the internet. There are three use cases for the user:
+</p>
+<ul>
+	<li>"Add/Remove items in shopping cart"
+	<li>"Place order"- Order the PDF files needed by the user.
+	<li>"Get PDF"- Get the PDF files the user ordered.
+</ul>
+<p>
+	The "Place Order" use case uses three other use cases:
+</p>
+<ul>
+	<li>"Bill User"- Charge the user through Verisign.
+	<li>"Send Order Notify Mail"- Send notify mail to the OrderFulfillmentEngine mailbox.
+	<li>"Send Order Confirm Mail"- Send confirm mail to the user.
+</ul>
+<p>
+	There are two dependencies between use cases.
+</p>
+<ul>
+	<li>The "Fulfill Order" use case can occur only after "Send Order Notify Mail" use case has occurred.
+	<li>The "Get Order" use case can occur only after "Send Order HTML Mail" use case has occurred.
+</ul>
+
+
+<a name="o_sequence"></a>
+<h2>Sequence Diagram</h2>
+<center><img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Sequence_PlaceOrder.gif" width="659" height="499"></center>
+<p>
+<ol>
+	<li>The user makes HTTPRequest to the web server for USCode information.
+	<li>The Apache web server replys the USCode information.
+	<li>The user clicks on the PDF icon beside the USCode section name.
+	This adds an item to the PDG shopping cart.
+	<li>The PDG shopping cart returns the whole items in the user's shopping cart to the user.
+	<li>The user clicks the "Check Out" icon. This makes a check-out request to the PDG shopping cart.
+	<li>The PDG shopping cart returns a billing form to the user.
+	<li>After completes the billing form (provides credit card number, email address and other information),
+	the user submit this form back to PDG shopping cart. At this moment, the user finished the order-placing process.
+	<li>The PDG shopping cart processes this transaction with Verisign.
+	<li>The PDG shopping cart write the order log to a text file.
+	<li>The PDG shopping cart send confirm mail to the user.
+	<li>The PDG shopping cart send notification mail to the OrderFulfillmentEngine.
+</ol>
+</p>
+
+
+<center><img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Sequence_fulfill&amp;getOrder.gif" width="769" height="402"></center>
+<p>
+	This is a high level view of the interactions between the user, OrderFulfillmentEngine and getPDF CGI.
+</p>
+<ol>
+	<li>Order Fulfillment Engine(OFE) checks e-mail from mailbox. This job is set to be a cron job.
+	It makes a polling to the mailbox periodically.
+	<li>OFE gets back the first order notify mail in the mailbox, if any.
+	<li>OFE process the order.
+	<li>OFE send a HTML to the user. There are hyperlink(s) to the PDF file(s) the
+	user ordered.
+	<li>User checks his/her mailbox which has the email address the user provided to us.
+	<li>User gets HTML mail which is sent by OFE.
+	<li>User makes a HTTPRequest (or say, the user click on the PDF filename listed on the HTML mail.)
+	 to out getPDF CGI.
+	<li>getPDF CGI checks the correctness of this requested URL. (Remember that the URLs are srambled.)
+	Return nothing if it is not correct.
+	<li>getPDF CGI reads that PDF file.
+	<li>fetPDF CGI returns the PDF file in a HTTPResponse to the user.
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+<h1><a name="cont_gen">Contents Generation Sub-System</a></h1>
+<h2>Component Interactions</h2>
+<p>
+	This sub-system is triggered by a batch script upon an update in the original US Code (such an update happens typically once a month).
+	Each component in this sub-system runs against one title of the Code.
+</p><p>
+	The first component "txt2xml" transforms a Code ASCII file (which corresponds to one title) into a "title XML" file, which contains the whole contents of one  title of the US Code in one XML file. Both the input and output are files.
+	This component is a perl script originally written by the previous CS501 team, and as stated in the requirement document, this design will not attempt to modify this component.
+</p><p>
+	The "xmlSplitter" component splits a title XML into a set of "division XML"s. A division XML is an XML that contains one Code division.
+
+	This component will receive the file name of the source XML file and the directory in which XML chunks will be produced. See the appendix for the naming convention of division XMLs.
+
+	This component will be also written in XSLT. Refer to the appendix for the specification of the format of the division XML.
+</p><p>
+	The third component "xml2html" transforms division XML files (which was produced by txt2xml) into a series of HTML files.
+
+	The input to this component is the number of the title. This program then generates HTML files for all divisions inside the specified title and places all of them into the target directory.
+
+	This component is written in XSLT by the previous CS501 team.
+	To implement the new functionalities in the web site,	this design requires the modification to this existing XSLT stylesheet, as well as the "driver" program that wraps the whole transformation processes as an executable program.
+
+	Names of the generated HTML files follow the naming convention described in the appendix, plus a slight exntension to support things like notes. This naming convention is also developed by the previous CS501 team, but never been documented.
+</p><p>
+	The "xml2pdf" component transforms division XML files (which was produced by xmlSplitter) into a series of PDF files.
+
+	The input to this component is (1) the number of Code title to process, (2) the file name of the generated PDG catalog file. The component will produce PDF files and place them into the directory specified in the configuration file, and it will also produce a product catalog for the PDG shopping cart, which describes the price of each generated PDF. See appendix for the format of this file.
+</p><p>
+	<span class="todo">Obsolete. We need a different deployment strategy.</span>
+	The "PDG import tool" is a component that reads a CSV file, which is the output of the xml2pdf component and turns it into the native format of PDG shopping cart and places it into the directory where PDG shopping cart is deployed.
+	This program is developed by PDGSoft and provided as a supplementary tool of PDG shopping cart package. The source code is not available.
+</p><p>
+	All of the components in this sub-system are the console-based program, and their status messages (such as errors/warnings) shall be sent to the console in a human-readable format (they are not neccessarily in a machine-readable format).
+	All except the "txt2xml" component takes a configuration file as a parameter, from which various environmental information is read. See the appendix for the format of this configuration file.
+</p>
+
+
+<h2>Coordination</h2>
+<p>
+	The client has developed and deployed an automated batch shell script which invokes "txt2xml" and "xml2html" in a sequence. The system shall extend this batch script so that other new components described in this section will be also executed.
+</p><p>
+	This design does not specify any other program that coordinates these programs.
+</p>
+
+<h2>Format of US Code Title XML</h2>
+<p>
+	There is a document written by the previous CS501 team that describes the structure of the initial Code XML file.
+	This file is available at <a href="http://web.archive.org/web/20050307072246/http://leda.law.cornell.edu/~LDMS/docs/DTD%20Design%20Document-2000-11-28.doc">http://leda.law.cornell.edu/~LDMS/docs/DTD%20Design%20Document-2000-11-28.doc</a>, but unfortunately this document doesn't seem to reflect the changes made to the format after the first phase of the development.
+</p><p>
+	A DTD, which formally describes the format of the XML, is also available at the project CVS repository, but this too doesn't seem to reflect the changes.
+</p><p>
+	In this project, as stated in the requirements document, we will not modify the structure/format of the title XML, and we will develop new stylesheets by following the structure of existing XSLT stylesheets to make up our lack of knowledge about the structure of this XML.
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1><a name="order_selection">Order Selection Sub-System</a></h1>
+<p>
+	To allow users to shop PDF files, we will modify and add new contents to the existing US Code web site (<code>www4.law.cornell.edu/uscode</code>). This section describes what changes we will make.
+</p>
+
+
+
+
+
+
+
+
+
+
+<h2>Step 1: An user enters the US Code web site</h2>
+<p>
+	The user will browse HTML versions of US Code just like he does right now, or click on the newly added PDF icon on the right hand side of each division to add corresponding PDF file to his shopping cart (see selection-UI-1).
+</p><p>
+	If an user clicks the PDF icon, the selected PDF shall be added to the cart and he shall be navigated to the confirmation page, which will be described in the step 2. To implement this semantics, the PDF icon shall be linked to <code>https://www.law.cornell.edu/cgi-bin/shopper.cgi?add=action&key;=[SKU]</code>, where <code>[SKU]</code> is the SKU of the PDF file (see the appendix for the detail of SKU.)
+</p><p>
+	From any US Code web page, such as selectino-UI-1 or selection-UI-2, he can click the "View my cart" link on the right hand side of the web page to view the current items in his shopping cart. To implement this semantics, the web page shall navigate users to <code>http://www.law.cornell.edu/cgi-bin/shopper.cgi?display=action</code>.
+</p>
+<div><center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/order_UI_1.png">
+	<div class="caption">figure: selection-UI-1</div>
+</center></div>
+<div><center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/order_UI_2.png">
+	<div class="caption">figure: selection-UI-2</div>
+</center></div>
+
+
+<h2>Step 2: The user gets the cart contents after clicking on the PDF icon</h2>
+<p>
+	By clicking a PDF icon or by clicking the "view my cart" link on a page, the user will see the page shown in the figure contents-UI-1.
+	This page allows him to perform several operations:
+</p>
+<ul>
+	<li>Empty the cart
+	<li>Change quantities of PDF files, then recalculate the total
+	<li>Go back to the US Code web site and shop other documents
+	<li>Proceed to check out
+</ul>
+<p>
+	This page shows various information about the cart, such as quantities, descriptions of PDFs he has, prices, and total price.
+</p>
+<div class="note">
+	By changing <code>add=action</code> in the above URL to <code>preadd=action</code> we can add the confirmation page. This page would let the user to change his mind before the PDF file is actually added to the shopping cart.<br>
+	We are going to skip this page only because the current web site is not using this feature.
+</div>
+<p>
+	By navigating him to this page, the shopping cart will display the following screen. The "shop some more" buttton is linked to the web page that he was visiting before he clicks the PDF icon.
+</p>
+<div><center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Order_UI_4.gif" width="694" height="611">
+	<div class="caption">figure: contents-UI-1</div>
+</center></div>
+
+
+<h2>Step 3: The user checks out selected PDFs</h2>
+<p>
+	By clicking one of two check-out buttons in the contents-UI-1 page, the user can start the check out process. The user will then prompted to fill in information such as credit card number, name, and so on.
+</p><p>
+	Once an order is placed, the user will see a "thank you" page, and the shopping cart system sends a notification e-mail. This e-mail is sent to the internal mailing list, which will be picked up later by the order fulfillment sub-system for processing. For the detailed web site structure, see the site map.
+</p><p>
+	Those pages are rendered by the PDG shopping cart system, and we will just follow the configuration of the currently deployed system for the consistency; we are not going to modify it anyway.
+</p>
+
+
+<h2>Site Map</h2>
+<p>
+	The following site-map shows the navigation structure of the new web pages.
+</p>
+
+<div><center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/site_map.gif" width="694" height="958">
+</center></div>
+
+
+
+<h1><a name="order_fulfillment">Order Fulfillment Sub-System</a></h1>
+<p>
+	For every newly placed order, PDG shopping cart will send an e-mail, which is intended to notify shop managers. The format of this e-mail is described in the appendix.
+</p><p>
+	PDG shopping cart shall be configured to send this notification e-mail to a mailing list which will be set up inside LII. This mailing list will send this e-mail to both the shop manager (for records) and a mail box which is dedicated for the order fulfillment engine.
+	E-mails are spooled in that mail box by the mail server and wait for processing. In other words, this mail box serves as a queue for unprocessed orders.
+</p><p>
+	The order fulfillment engine will be executed periodically (by cron daemon and/or by manually invoking the program if it is necessary). The engine accesses this mail box by POP3 and process those e-mails one by one.
+
+	A processing of an order starts by parsing an e-mail, then dispatches a delivery e-mail to the user, and ends with the deletion of the e-mail from the inbox.
+</p><p>
+	In case of any failure during the processing of an order, the engine must forward the original e-mail with error message to the administrator. The administrator is responsible to solve the problem and re-submit the failed order into the engine (s/he can do so by simply forwarding an e-mail back to the engine again.)
+</p>
+<p>
+	The engine shall produce a log of each processing and send it to a log file.
+</p>
+
+
+<h2>Delivery E-mail</h2>
+<p>
+	The engine shall generate one e-mail with a HTML attachment and send it to the customer who have placed the order. HTML attachment shall contain the following items:
+</p>
+<ol>
+	<li>
+		Links to the GetPDF CGI component which allow the customer to download the PDF file that s/he purchased. One hyper link will be generated for one PDF file.
+
+	<li>
+		A brief instruction of downloading PDF files.
+
+	<li>
+		Contact information of LII so that the user can seek assistance in case something goes wrong.
+</ol>
+<p>
+	Note that in many widely deployed browsers such as IE and NN, typing an URL of PDF files results in opening that PDF file within a browser window, which makes it very difficult for users to actually download those files.
+	Therefore the instruction in the HTML attachment shall instruct the user to right click the link and select "save link as" menu.
+</p>
+<div class="note">
+	Because of the well known problem in Internet Explorer with the MIME type, there is no reliable way to force the browser to open a download dialog box. Therefore the only robust way that we know of is to use a HTML file that contains links which can be right-clicked by the user.
+</div>
+<p>
+	For those mail programs which do not support HTML e-mail, the plain text part of the e-mail shall instruct the user to save the attached HTML file into disk and open it with a browser.
+</p>
+<div class="note">
+	Sometimes a PDF file name can be very long. Due to the way we scramble the PDF file information, URLs to PDF files can be very long, which causes trouble if we just put them in a plain text e-mail (a mail server can insert CR+LF in the middle of URL)
+</div>
+<p>
+	The entire e-mail shall be sent with the "multipart/alternative" MIME type so that the text part will be ignored with HTML-aware mail readers. Refer to RFC1341 (<a href="http://web.archive.org/web/20050307072246/http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html">http://www.w3.org/Protocols/rfc1341/7_2_Multipart.html</a>) for details.
+</p><p>
+	HTML part of the e-mail shall look like this:
+</p>
+<center>
+<iframe src="http://web.archive.org/web/20050307072246if_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/DeliveryMail.html" style="width:90%; height:15em; border:1 solid black;"></iframe>
+</center>
+
+<h2>Scrambling Links to PDF</h2>
+<p>
+	To satisfy the requirement that a knowledge of one PDF file location shall not let the user infer locations of other files, the system will "scramble" the hyper link to PDF files. This section describes how the URL is scrambled.
+</p><p>
+	A link to a PDF file shall be in the following form:
+	<code>http://.../..../GetPDF.cgi/XXXX.pdf?OrderID=OOOOO&amp;Code=YYYYYYY</code>, where "XXXX","OOOOO", and "YYYYYYY" are all alpha-numeric strings of variable lengths.
+</p><p>
+	"OOOOO" part is the order ID, which was assigned by PDG shopping cart. This ID is included in the URL to make it clear to users that we are monitoring what they will do with this URL. It is expected that this serves as a mental brake to casually distribute PDF URLs illegally. Also, having order ID in clear part would make it easy to find any abused URLs from Apache log files by using existing log analysis tools for Apache.
+</p><p>
+	"XXXX.pdf" is the non-scrambled name of the PDF file. By having the non-scrambled name in this way, most of the browsers will use this file name as the default file name when they prompt a dialog box to the user. "XXXX.pdf" shall follow the standard naming convention of the files. Note that this naming convention does not contain the title number.
+</p><p>
+	"YYYY" part will be generated by first encrypting the following message by DES and then encoding the obtained ciphertext into ASCII characters by MIME BASE64 encoding.
+</p><p>
+	The format of the un-encrpyted message is <code>OOOOO,AA,XXXX</code> where <code>OOOOO</code> is the order ID that produced this URL. <code>AA</code> is the title number and <code>XXXX</code> is the name of the PDF file without extension. Note that all the fields could be of variable length. To make sure that the URL is not tampered, related programs must make sure that information in the clear text part and the scrambled part agrees each other.
+</p>
+<div class="note">
+	We have discussed about the pros and cons of having expiration date in this field, this allows links to be time-limited, but we have agreed not to have this information for the following reasons:
+	<ol>
+		<li>
+			Expiration will always cause trouble to the support personnel, as some users always forget to download files before their files get expired.
+		<li>
+			Making links time-limited is not really a solution to the pirating problem. A malicious user can always distribute PDF files directly, instead of distributing hyperlinks.
+		<li>
+			It is easy to add this feature afterward.
+	</ol>
+</div>
+<p>
+	To ease the deployment process, the key used to encrypt/decrypt the message shall be hard-coded into the program. However, it shall be easy for a later development to modify this behavior (such as loading a key from an external file.)
+</p>
+<div class="note">
+	Note that the purpose of this design is to eliminate the need to maintain any state at the server side, so that the GetPDF CGI can run completely independently from the order fulfillment engine. Although this design results in a simpler system, it limits the way we can place rules on PDF downloading. For example, we cannot have a rule like "do not allow the same PDF file to be downloaded twice"
+</div>
+
+
+
+
+<h2>GetPDF CGI</h2>
+<p>
+	The GetPDF component will deliver the actual PDF data to the user. This program will work as a CGI program and waits for the user request. Once the user connects to this CGI, it decrypts the PDF file path information from the URL, locates the PDF file, then sends the bytes back to the user.
+</p>
+<div class="note">
+	We are assuming to use Apache as the web server, because Apache can recognize URLs like <code>http://lula.law.cornell.edu/cgi-bin/pdf/GetPDF.cgi/12/1026.pdf?XXXXX</code>, and it lets the GetPDF CGI process this request.
+</div>
+<p>
+	Due to the lack of good DES implementation in Perl and perl experience of the team, this program shall be developed in Java, with a tiny bootstrap shell script called "GetPDF.cgi" which will start the Java program.
+</p><p>
+	This component shall set the MIME type of the returned stream to "application/pdf", the registered MIME type for PDF files. We shall not make any effort to set the MIME type to other types just to force browsers open a download dialog box (we will rely solely on the HTML attachment of the e-mail to provide an opportunity to download PDFs.)
+</p><p>
+	The basic logging functionality for CGI programs are provided by Apache, and no logging functionality that goes beyond this will be implemented.
+</p>
+
+
+
+
+
+
+
+
+
+<h1><a name="component_design">Component Design</a></h1>
+<p>
+	This section sets forth the design of each component of the system in detail.
+</p>
+
+
+
+<a name="cd_dataflow">
+<h2>Dataflow</h2>
+<p>
+	Component-wise, the system looks like following:
+</p>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/DataFlow.gif" width="639" height="841"/>
+</center>
+<p>
+	File icons represent data stored as files, boxes represent components that are implemented as executable programs. Columns represent data stored in formats unknown to us.
+</p>
+
+
+
+<a name="cd_txt2xml"></a>
+<h2>txt2xml Component</h2>
+<h3>Command Line Syntax</h3>
+<p>
+	This component has the following command line syntax:
+</p>
+<pre>
+LDMS.pl &lt;ASCII file name&gt; -o &lt;output file name&gt;
+</pre>
+<dl>
+	<dt>ASCII file name</dt>
+	<dd>
+		Path name of the US Code ASCII file.
+	</dd>
+
+	<dt>output file name</dt>
+	<dd>
+		Path name of the title XML file. This file will be overwritten by the program, or a dash ('-') to use stdout for the output.
+	</dd>
+</dl>
+<p>
+	Note that there is a known problem in this component that prevents us from specifying arbitrary file name as the output file name. So any program that uses this component had better use output redirection.
+</p>
+
+
+
+<a name="cd_xmlSplitter"></a>
+<h2>xmlSplitter Component</h2>
+<h3>Command Line Syntax</h3>
+<pre>
+xmlSplitter &lt;title XML file&gt; &lt;output dir&gt;
+</pre>
+<dl>
+	<dt>title XML file</dt>
+	<dd>
+		Path name of a title XML file, which will be chopped into
+		division XML files.
+		See the appendix for the format of division XML files.
+	</dd>
+
+	<dt>output dir</dt>
+	<dd>
+		Name of the directory to which division XML files will be stored.
+	</dd>
+</dl>
+<p>
+	Implementors are encouraged to provide additional command line options.
+</p>
+
+<h3>Design</h3>
+<p>
+	This component shall be implemented either as a Java program invoking XSLT transformation.
+</p>
+<div class="note">
+	This component can be implemented as a Java program using SAX (<a href="http://web.archive.org/web/20050307072246/http://www.megginson.com/SAX/">http://www.megginson.com/SAX/</a>) to parse the input document. This would achieve much higher performance.
+	This project abandoned this design simply because of the schedule constraint.
+</div>
+
+
+
+<a name="cd_xml2html"></a>
+<h2>xml2html Component</h2>
+<h3>Command Line Syntax</h3>
+<pre>
+xml2html &lt;title number&gt; -c &lt;config file&gt;
+</pre>
+<dl>
+	<dt>title number</dt>
+	<dd>
+		The title number of the Code title from which we generate HTML files.
+	</dd>
+
+	<dt>config file</dt>
+	<dd>
+		File name of the configuration file. See the appendix for the syntax.
+		Information in this file shall be consulted to obtain path information.
+	</dd>
+</dl>
+<p>
+	Implementors are encouraged to provide additional command line options.
+</p>
+<h3>Design</h3>
+<p>
+	This component shall be implemented as a Java program, which uses XSLT transformation for actual transformation to HTML file. This component shall reuse the existing XSLT stylesheet.
+</p>
+
+
+
+
+
+
+<a name="cd_shared"></a>
+<h2>Shared Components</h2>
+<h3>Command Line Syntax</h3>
+<p>
+	This component is just a set of classes which is used by other components. Since it's not used as a stand-alone program, there is no command line syntax.
+</p>
+<h3>Domain Classes</h3>
+<p>
+	The following classes are shared by other components to model the basic concepts of the Code.
+</p>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Classes_Commons.gif" width="641" height="619"/>
+</center>
+<p>
+	The CodeTitle class and the CodeDivision class are used to represent abstract concepts of "title" and "division" of US Code.
+</p><p>
+	The primary role of these classes are to hide the physical layout of the resources (such as XML file or PDF file) from the rest of the system. Methods like the readPDF method or the parseXML method allow the other components to access those resources without knowing the actual location in the file system.
+</p><p>
+	Another role of these classes is to provide a virtual hierachy of code divisions which can be traversed. The entire code consists of a set of titles, and a code title consists of a tree of code divisions. The navigation functionality over this virtual tree is exposed to the other components (through methods like the enumChildren method and the getParent method).
+	In particular, the enumeration mechanism lets other components enumerate divisions through a callback interface called DivisionHandler.
+</p><p>
+	The code division class also expose several simple methods which can be used to obtain information about the division, such as the level of a division (e.g., is it a chapter or a section?), the display name of a division (e.g., "ACTS AND RESOLUTIONS; FORMALITIES OF ENACTMENT; REPEALS; SEALING OF INSTRUMENTS").
+</p><p>
+	The Order class represents an order. An order consists of a set of OrderItemInfo, each holds information about one PDF file which was ordered. The OrderItemInfo class provides two operations (fromURL/toURL) which implements the scrambling and de-scrambling of URL.
+
+	Also, OrderItemInfo object is usable by itself without the parent Order object.
+</p>
+
+
+<h3>Logging Service</h3>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Classes_Logger.gif" width="164" height="216"/>
+</center>
+<p>
+	The Logger interface provides a logging service to the rest of the system. It exposes a set of methods to write a log file. Using an interface instead of a concrete implementation allows us to change the destination of log messages without affecting the other part of the system.
+</p>
+<p>
+	The FileLogger class shall be also implemented, which will send log messages to a file. The path of the log file should be configurable.
+</p>
+
+
+
+<a name="cd_pdfgen"></a>
+<h2>PDF Generation Component</h2>
+<h3>Command Line Syntax</h3>
+<pre>
+xml2pdf &lt;title number&gt; &lt;catalog file&gt; -c &lt;config file&gt;
+</pre>
+<dl>
+	<dt>title number</dt>
+	<dd>
+		The title number of the Code from which we generate PDF files.
+	</dd>
+
+	<dt>catalog file</dt>
+	<dd>
+		The name of the catalog file to be produced. Existing file shall be overwritten.
+	</dd>
+
+	<dt>config file</dt>
+	<dd>
+		File name of the configuration file. See the appendix for the syntax.
+		Information in this file shall be consulted to obtain path information.
+	</dd>
+</dl>
+<p>
+	Options and parameters can be interleaved (thus "-c &lt;config&gt; &lt;title&gt; &lt;catalog&gt; is a valid command line).
+	Implementors are encouraged to provide additional command line options.
+</p>
+
+
+<h3>Class Diagram</h3>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Classes_PDFGen.gif" width="700" height="535"/>
+</center>
+<p>
+	PDF generation is done in per-division basis. Therefore, the PDFGenerator class, which is the main class that generates PDF files and a catalog file for PDG shopping cart, is implemented as a DivisionHandler. An external driver class can start the PDF generation process by passing an instance of PDFGenerator to one of the enumeration methods of the CodeDivision or CodeTitle class.
+</p><p>
+	PDFGenerator uses two policies that controls the generation process. One is the PDFGenerationPolicy interface, and this policy controls whether a PDF file should be generated for a given Code division. The other is the PDFPricingPolicy interface, and this policy computes price for each generated PDF file.
+	PDFGenerator receives these policies as parameters of the constructor, and this class shall be completely independent from any particular implementation of those policies.
+</p><p>
+	To allow policies to be changed without recompiling the program, the Driver class will consult the global configuration for the names of the policy implementation classes. Initially, we will role out one implementation for PDFGenerationPolicy, which generates PDF files for divisions in lower most two level. We will also implement one PDFPricingPolicy which sets the price of all PDFs to $1. The plan is to revisit the pricing policy after the system starts working.
+</p><p>
+	The actual PDF generation shall be done by first using XSLT to transform a source XML into XSL/FO, then by using FOP to transform XSL/FO into PDF.
+</p><p>
+	PDFGenerator also produces a catalog file for PDG shopping cart. See the appendix for the format of this catalog file.
+</p><p>
+	Any error message during the processing shall be sent to the standard error, instead of a logger.
+</p>
+
+
+
+
+
+
+<a name="cd_ofe"></a>
+<h2>Order Fulfillment Component</h2>
+<h3>Command Line Syntax</h3>
+<pre>
+ofe -c &lt;config file&gt;
+</pre>
+<dl>
+	<dt>config file</dt>
+	<dd>
+		File name of the configuration file. See the appendix for the syntax.
+	</dd>
+</dl>
+<p>
+	Implementors are encouraged to provide additional command line options.
+</p>
+
+
+
+<h3>Class Diagram</h3>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Classes_OFE.gif" width="567" height="702"/>
+</center>
+<p>
+	The core part of the order fulfillment component follows the pipeline architecture. A pipeline consists of three interfaces. It starts with <code>OrderReader</code>, followed by zero or more <code>OrderFilter</code>, then finally ends with <code>OrderHandler</code>.
+</p>
+<div class="note">
+	This design allows various future extensions such as scheduling (by splitting a pipeline into two and spooling orders into a storage), PDF on-the-fly generation (by generating PDFs before passing an order to the next component in the pipeline), and/or more sophisticated logging.
+</div>
+<p>
+	We will role out three components.
+</p><p>
+	The first is the OrderEmailReader class. This class implements OrderReader. It reads order confirmation e-mails from the mailbox, parses it, constructs an Order object, then finally passes it down to the next component in the pipeline.
+</p><p>
+	The second pipeline component is the OrderLogger class. This component uses Logger and record the time when it starts processing and the outcome of the processing.
+</p><p>
+	The third pipeline component is the OrderSender class. This component generates HTML e-mail and delivers it to the user. Construction of HTML e-mail and SMTP protocol handling is done by a separate utility class named HTMLMailSender.
+</p><p>
+	All the configuration (such as the name of the mail server and the mailbox name) shall be obtained through the system property.
+</p>
+
+<h3>Sequence Diagram</h3>
+<center><img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Sequence_FulfillOrder.gif" width="653" height="458"></center>
+<p>
+	The program starts with the Driver class, which contains the main method.
+	The Driver class first sets up a pipe line, which is not depicted in the above figure. Then, the processing goes as follows:
+</p>
+<ol>
+	<li>The Driver class calls the run method of the first component in the pipeline, which is OrderEmailReader.
+	<li>The OrderEmailReader class (OER) reads an order notification e-mail and parses it into an Order object. The information contained in an Order object includes:
+	<ul>
+		<li>order ID, which is an unique ID assigned by the PDG shopping cart
+		<li>e-mail address of the custoemr
+		<li>the PDF files the user ordered
+	</ul>
+	<li>OER then calls the processOrder method of the next component in the pipeline, which is a Logger object. The Logger object sends a log entry that says the processing of this order has started.
+
+	<li>The Logger object then passes the order further down the pipeline by calling the processOrder method of the next component in the piepline, which is a OrderSender object.
+	<li>The OrderSender object composes an HTML e-mail and sends it to the user.
+	<li>Message returned from OrderSender.
+	<li>Message returned from Logger.
+	<li>If there is another order notify mail in the mailbox, the same processs in 2-7 will be taken.
+	<li>Finally the OrderEmailReader returns message to Driver.
+</ol>
+
+
+
+
+
+
+<a name="cd_getpdf"></a>
+<h2>GetPDF CGI Component</h2>
+<h3>Command Line Syntax</h3>
+<pre>
+getpdf -c &lt;config file&gt; &lt;PATH_INFO env var&gt; &lt;QUERY_STRING env var&gt;
+</pre>
+<dl>
+	<dt>config file</dt>
+	<dd>
+		File name of the configuration file. See the appendix for the syntax.
+	</dd>
+	<dt>PATH_INFO</dt>
+	<dd>
+		PATH_INFO environmental variable.
+	</dd>
+	<dt>QUERY_STRING</dt>
+	<dd>
+		QUERY_STRING environmental variable.
+	</dd>
+</dl>
+<p>
+	A CGI program cannot take any command line arguments. Therefore, a wrapper shell script that just passes those arguments to the Java program shall be developed.
+	Implementors are encouraged to provide additional command line options.
+</p>
+<div class="note">
+	It is difficult to achieve a good performance with a CGI program written in Java. However, again due to the time constraint of the project, we have decided to use Java so that we can reuse existing code (in particular, encryption library necessary to de-scramble URLs) to speed up the development.
+	We have conducted an experiment to see the feasibility of Java-based CGI, and its result suggests that the turn-around-time will be around a few seconds.
+</div>
+
+<h3>Class Diagram</h3>
+<p>
+	The GetPDF component does not involve any additional class other than the classes described in the shared component part.
+</p><p>
+	The program shall take PATH_INFO and QUERY_STRING CGI variables as command line parameters. Checking correctness of a given URL and obtaining actual PDF byte stream are both done by the shared component.
+</p>
+
+<h3>Sequence Diagram</h3>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Sequence_getPDF.gif" width="637" height="384">
+</center>
+<p>
+	An user clicks a hyperlink inside the HTML e-mail. This causes a browser to send an HTTP request to the GetPDF CGI program at <code>lula</code> [1]. The CGI de-scrambles the specified URL by using the fromURL method of the OrderItemInfo class [2]. Any malformed URL is detected by this method.
+
+	If the URL is correct, an OrderItemInfo object is returned, which contains information about the PDF file to be retrieved [3]. The CGI then uses the readPDF method to retrieve the image of the PDF file [4,5,6] and send it back to the browser [7].
+</p>
+
+
+
+
+
+<a name="cd_deployment"></a>
+<h2>Deployment of System</h2>
+<center>
+	<img src="http://web.archive.org/web/20050307072246im_/http://www.people.cornell.edu/pages/jt96/resources/projects/cs501/Deployment.gif" width="650" height="443">
+</center>
+<p>
+	The envisioned envrionment that this system will be deployed consists of three computers connected to a network. The abovementioned components shall be deployed as follows:
+</p>
+<dl>
+	<dt>www.law.cornell.edu</dt>
+	<dd>
+		The entry point of the LII web site. There is some general information, including the user tutorial pages.
+		The PDG shopping cart system runs on this node, and this system has to be shared with other services currently deployed on the LII web site.
+	</dd>
+
+	<dt>www4.law.cornell.edu</dt>
+	<dd>
+		Runs US Code web site.
+	</dd>
+
+	<dt>lula.law.cornell.edu</dt>
+	<dd>
+		Most of the components that we develop will be deployed on this node:
+
+		<ul>
+			<li>Contents generation sub-system
+			<li>Order fulfillment sub-system
+		</ul>
+
+    There is also a RDBMS (MySQL Server) in this node. It will be possiblly used to store some processing log information in in the future.
+
+	</dd>
+</dl>
+
+
+
+
+
+
+
+<h1><a name="misc_considerations">Miscellaneous Design Considerations</a></h1>
+<p>
+	Describe things that we need to keep in our mind. Such as the shopping cart problem, deployment, cronjob, and so on.
+</p>
+
+
+<h2>Running Environment</h2>
+<p>
+	The whole system can assume that it will be run on lula.
+	Due to the size of the US Code, a special care has to be taken to the
+	memory consumption during the processing. Note that lula comes with 2GB of memory.
+</p>
+
+<h2>Security Consideration</h2>
+<p>
+	The mail box for the order fulfillment engine should be set up so that it won't accept any e-mail from outside. For otherwise, it is possible for a malicious user to send a fake order notification e-mail to the system and have it deliver whatever PDF files s/he wants without paying fee.
+</p>
+
+<h2>Update to the U.S. Code</h2>
+<p>
+	As a result of an update to the ASCII version of the Code, divisions can removed. The currently deployed script for automated update just removes all the old contents and replace them with freshly generated contents. This means that customers that have ordered PDF files that correspond to the removed divisions will not be able to get their PDFs.
+</p><p>
+	The system will not provide any particular support for those customers.
+</p>
+
+
+
+
+
+
+<a name="appendix">
+<h1>Appendix</h1>
+
+
+<a name="a_divxml">
+<h2>Format of Code Division XML</h2>
+<p>
+	Division XMLs can be obtained by splitting a title XML as follows:
+</p>
+<ol>
+	<li>
+		for every occurrence of &lt;STRUCTDIV&gt; element (which denotes a division), a separate file will be created. The name of this file follows the naming convention described in the appendix.
+	<li>
+		The sub-tree rooted at &lt;STRUCTDIV&gt; will be placed into this file.
+	<li>
+		The root &lt;STRUCTDIV&gt; element in this newly created division XML file will have the PARENT attribute whose value is the name of the parent division, unless the division has no parent.
+	<li>
+		The XML file corresponds to the parent division will have a &lt;STRUCTDIVREF&gt; element instead of a &lt;STRUCTDIV&gt; element. This element will have a REF attribute which has the name of this new child division.
+</ol>
+
+<p>
+	For example, given the following source title XML:
+</p>
+<pre>
+&lt;STRUCTDIV&gt;
+  .... 1 ....
+  &lt;STRUCTDIV&gt;
+    .... 2 ....
+    &lt;STRUCTDIV&gt;
+      .... 3 ....
+    &lt;/STRUCTDIV&gt;
+    .... 4 ....
+    &lt;STRUCTDIV&gt;
+      .... 5 ....
+    &lt;/STRUCTDIV&gt;
+    .... 6 ....
+  &lt;/STRUCTDIV&gt;
+  .... 7 ....
+&lt;/STRUCTDIV&gt;
+</pre>
+<p>
+	According to the above rules, we will obtain the following four division XMLs.
+</p>
+<pre>
+a.xml
+-----
+&lt;STRUCTDIV SELF="a"&gt;
+  .... 1 ....
+  &lt;STRUCTDIVREF REF="b" /&gt;
+  .... 7 ....
+&lt;/STRUCTDIV&gt;
+
+b.xml
+-----
+&lt;STRUCTDIV SELF="b" PARENT="a"&gt;
+  .... 2 ....
+  &lt;STRUCTDIVREF REF="c" /&gt;
+  .... 4 ....
+  &lt;STRUCTDIVREF REF="d" /&gt;
+  .... 6 ....
+&lt;/STRUCTDIV&gt;
+
+c.xml
+-----
+&lt;STRUCTDIV SELF="c" PARENT="b"&gt;
+  .... 3 ....
+&lt;/STRUCTDIV&gt;
+
+d.xml
+-----
+&lt;STRUCTDIV SELF="d" PARENT="b"&gt;
+  .... 5 ....
+&lt;/STRUCTDIV&gt;
+</pre>
+<p>
+	The SELF attribute holds the name of the division itself, whereas the PARENT attribute holds the name of the parent division. If there is no parent (that is, the division is the root division), the PARENT attribute is not present.
+</p><p>
+	A STRUCTDIVREF element is placed where a STRUCTDIV was in the title XML. This element has the REF attribute, which holds the name of the child division.
+</p>
+
+
+
+
+<a name="a_pdgemail">
+<h2>Format of PDG Order Notification E-mail</h2>
+<p>
+	The Order Fulfillment Engine (OFE) will retrieve the order information from this mail.
+	The format is as follows:
+</p>
+<pre>
+To: OFE@lula.law.cornell.edu
+Subject: Order Placed--[ORDER_ID]
+
+Order [ORDER_ID]
+For [CUSTOMER_NAME]:
+
+
+Qty  Description                             Unit                Amount
+--------------------------------------------------------------------------------
+1.00  TITLE 26  Subtitle A  CHAPTER 1
+      Subchapter B  PART II  Sec. 75.
+      Sec. 76. PDF[26=CH1_SEC7576]           $5.00               $5.00
+
+
+--------------------------------------------------------------------------------
+     Total Shipment Weight: 2.00 lbs.   Subtotal:                $5.00
+                                        Shipping &amp; Handling:     $0.00
+                                        Total:                   $5.00
+
+     Total Frequent Buyer Points: 5.00
+
+Order placed at: Wed Mar 06 18:27:39 2002
+
+-
+SHIP TO:
+Charles Chiu
+123 First Av.
+Ithaca, NY 14850
+United States
+Shipping Method: Standard Shipping
+E-mail: charles@hotmail.com
+Remote IP Address: 127.0.0.1
+
+
+
+BILL TO:
+Charles Chiu
+123 First Av.
+Ithaca, NY 14850
+United States
+Phone 1: 1234567
+Payment Information: Off Line Credit Card
+</pre>
+<p>
+	Format of product description: DESCRIPTION + SPACE + "PDF[" + TITLE# + "=" + DivisionName + "]"
+</p>
+<p>
+	Descriptions of products shall include the name of the PDF file at its end, and OFE shall parse this part to retrieve PDFs that have ordered. Note that, as in the example, a description can be wrapped into next line.
+</p>
+
+
+
+
+
+<a name="a_catalog">
+<h2>Format of PDG Product Catalog File</h2>
+<p>
+	The PDF generator component will produce a product catalog file for PDG shopping cart in the following format:
+</p>
+<pre>
+;PDG Shopping Cart Product Definitions
+;
+;Auto-generated by PDG Data Importer
+;Do not modify manually unless you know what you are doing!
+;
+Begin Product <i style="color: red">{SKU}</i>
+	<i style="color: red">{Description}</i>
+	<i style="color: red">{Price}</i>:0.00 0.00
+	0.00 0.00
+	No ; Tracking Inventory?
+
+
+End Product
+;
+Begin Product XY2sJ5
+	TITLE 26  Subtitle A  PDF[26=stA]
+	1.00:0.00 0.00
+	0.00 0.00
+	No ; Tracking Inventory?
+
+
+End Product
+;
+<i style="color: red">continue ... </i>
+</pre>
+<p>
+	For one product, 9 lines (from <code>Begin ...</code> to <code>;</code>) are required. This 9 lines block are repated for all products. The part shown in italic and red should be replaced by appropriate strings (see the <code>XY2sJ5</code> item for the example.)
+</p>
+
+<dl>
+	<dt>SKU</dt>
+	<dd>
+		The unique ID for each PDF file. This SKU shall be generated from the PDF file name by the algorithm specified in the appendix.
+	</dd>
+
+	<dt>Description</dt>
+	<dd>
+		Human-readable description of a PDF file. The title number, followed by '/', then by the division name must be appended at the end of the description (with the "PDF[...]" bracket) to allow the order fulfillment component to find the name of PDF file.
+		Example: "<code>TITLE 26  Subtitle A  CHAPTER 1  Subchapter B  PART II  Sec. 77. PDF[26=stAch1scBpII]</code>"
+	</dd>
+
+	<dt>Price</dt>
+	<dd>
+		Price of the PDF file.
+	</dd>
+</dl>
+<p>
+	In the PDG shoping cart, a set of products can be put together into a "category". Each product category will have its own product database file. Because of the restriction of the PDG shopping cart, a category can't have more than 20,000 products.
+</p><p>
+	For performance reason, a category shall be create for each Code title.
+</p>
+
+
+
+
+
+
+
+
+<a name="a_naming">
+<h2>Naming Convention of XML/HTML/PDF Files</h2>
+<p>
+	The previous CS501 team introduced a naming convention that is supposed to uniquely identify any division of the Code in one title (note that two divisions in two different titles can have the same name). This naming convention is used as file names for most of per-division resources such as HTML and PDF.
+</p><p>
+	The following algorithm computes the name for a division:
+</p>
+<pre>
+let r be the STRUCTDIV element of which we want to compute the name.
+
+let ref be the result of executing XPath query of
+  "TITLEDATA/NAVGROUP/HEAD/@REF"
+
+let parentRef be the result of executing XPath query of
+  "TITLEDATA/NAVGROUP/EXPCITE/@REF"
+
+if ref starts with either "p","sp","ch","sch", or "d" then
+    if parentRef contains ref as a substring then
+        use parentRef as the name
+    else
+        use parentRef+ref as the name
+    end if
+else
+    use ref as the name
+end if
+</pre>
+
+
+
+
+
+<a name="a_skugen">
+<h2>SKU Generation Algorithm</h2>
+<p>
+	Each PDF file needs to have an unique SKU which is used by the PDG shopping cart to identify it as a product. Because of the constraint imposed by the PDG shopping cart, we cannot use SKU longer than 20 characeters, which makes it impossible to use file names directly as SKU.
+</p><p>
+	Given a title number <i>tn</i> and file name <i>name</i>, the SKU shall be generated as follows:
+</p>
+<div style="text-align:center">
+	"PDF" <i>tn</i> BASE64'{ <i>tn</i>, Adler-32 check sum of <i>name</i>, CRC-32 check sum of <i>name</i> }, first 5 characters of <i>name</i>
+</div>
+<p>
+	According to the restriction of PDG shopping cart, the first four characters must be the product category name. <i>tn</i> in the fourth character is escaped to printable ascii character.
+	The PDG shopping cart system is also used by other systems of LII, therefore this four character prefix is also necessary to avoid name conflicts with other currently deployed systems.
+</p><p>
+	The "BASE64'{ ... }" part denotes the MIME base64 encoding (see <a href="http://web.archive.org/web/20050307072246/http://www.faqs.org/rfcs/rfc2045.html">RFC 2045</a>) of the "..." part, followed by replacing '+' by '-' and '/' by '_'. In this encoding, we will encode the title number <i>tn</i> as one byte, followed by Adler-32 check sum of <i>name</i> as four bytes (in little endian), further followed by CRC-32 check sum of <i>name</i> as four bytes (also in little endian). Encoding 9 bytes in BASE64 yields 12 characters. Finally, the first 4 characters of the file name is appended (if <i>name</i> is shorter than 4 characters, the whole string is appended).
+</p><p>
+	Generated SKUs will be always at most 20 characters.
+</p>
+<div class="note">
+	Although this scheme does not guarantee that uniqueness of SKU, no collision was detected with our preliminary experiment with title 1, 17, and 26.
+</div>
+
+
+
+
+<a name="a_config">
+<h2>Configurable Parameters</h2>
+<p>
+	The system depends on various environmental settings, such as the name of e-mail server. These configurations are supplied to the system in Java property file format (<a href="http://web.archive.org/web/20050307072246/http://java.sun.com/j2se/1.3/docs/api/java/util/Properties.html#load(java.io.InputStream)">http://java.sun.com/j2se/1.3/docs/api/java/util/Properties.html#load(java.io.InputStream)</a>).
+</p><p>
+	The following table specifies the name of properties and their purposes.
+</p>
+
+<table cellspacing="0" border="1">
+<thead>
+	<tr>
+		<td rowspan="2">Property Name</td>
+		<td>Function</td>
+	</tr><tr>
+		<td>Example</td>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td rowspan="2">
+			LIIPDF.common.path.xml
+		</td><td>
+			Path name of the directory where division XML files are stored. A sub-directory will be created for each title under this directory, and actual division XML files are stored inside that directory.
+			The path name must ends with the path separator '/'.
+		</td>
+	</tr><tr>
+		<td>
+			/usr/local/uscode/xml/
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.common.path.html
+		</td><td>
+			Path name of the directory where HTML files are stored. The same rule and constraint applies as the "LIIPDF.common.path.xml" property.
+
+			Different path parameters can have the same path name (in that case different file formats are stored in the same directory.)
+		</td>
+	</tr><tr>
+		<td>
+			/usr/local/uscode/html/
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.common.path.pdf
+		</td><td>
+			Path name of the directory where PDF files are stored. The same rule and constraint applies as the "LIIPDF.common.path.xml" property.
+		</td>
+	</tr><tr>
+		<td>
+			/usr/local/uscode/pdf/
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.common.DESKey
+		</td><td>
+			This key will be used to scramble PDF URLs. It is a hexadecimal representation of 64-bit DES key. An administrator can always generate a fresh key by using a supplementary DESKeyGen tool or any other publicly available tool that can generate 64-bit DES key.
+		</td>
+	</tr><tr>
+		<td>
+			04B915BA43FEB5B6
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.ofe.pop3serer
+		</td><td>
+			Order confirmation e-mails from PDG shopping cart will be retrieved from this POP3 server.
+		</td>
+	</tr><tr>
+		<td>
+			donut.cs.cornell.edu
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.ofe.pop3user, LIIPDF.ofe.pop3password
+		</td><td>
+			The POP3 account name and the password that will be presented to the POP3 server to access e-mails. Passwords are written in a clear text.
+		</td>
+	</tr><tr>
+		<td>
+			pdfOfe,password
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.ofe.smtpServer
+		</td><td>
+			Name of the SMTP server which will be used to send e-mails to customers.
+		</td>
+	</tr><tr>
+		<td>
+			smtp.mail.yahoo.com
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.ofe.supportEMail
+		</td><td>
+			This e-mail address is used as the sender of the order delivery e-mail. Therefore, when a customer hits a reply botton, it will be sent to this address. So we expect this e-mail address to reach a tech support personnel.
+		</td>
+	</tr><tr>
+		<td>
+			pdf.tech.support@law.cornell.edu
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.util.logger
+		</td><td>
+			Fully qualified name of the Java class that implements the Logger interface. This class will be used to write log messages.
+
+			We don't expect a system administrator to casually modify this parameter.
+		</td>
+	</tr><tr>
+		<td>
+			edu.cornell.law.liipdf.util.FileLogger
+		</td>
+	</tr>
+
+	<tr>
+		<td rowspan="2">
+			LIIPDF.util.FileLogger.logfile
+		</td><td>
+			Used by FileLogger, the default logger. This property specifies the full path name of the log file to which log messages are sent.
+		</td>
+	</tr><tr>
+		<td>
+			/usr/local/uscode/logfile.log
+		</td>
+	</tr>
+</tbody>
+</table>
+
+
+<!--
+$Log: SystemDesign.html,v $
+Revision 1.51  2002/05/01 01:26:44  tyl2
+added warning not to alter file directly.
+
+Revision 1.50  2002/04/28 01:02:02  jt96
+Fixed Typo
+
+Revision 1.49  2002/04/22 00:28:00  kk277
+modified the SKU generation algorithm.
+
+Revision 1.48  2002/04/14 19:15:20  jt96
+Changed image reference for DataFlow.gif
+
+Revision 1.47  2002/04/09 00:10:02  kk277
+We will NOT produce a CSV file for PDG.
+Instead, we will produce the product file in a proprietary format.
+
+Revision 1.46  2002/04/08 23:07:25  kk277
+Added the SELF attribute to the division XML.
+
+-->
+
+
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 07:22:46 Mar 07, 2005 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 12:02:20 Jul 01, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 334.114
+  exclusion.robots: 0.079
+  exclusion.robots.policy: 0.072
+  RedisCDXSource: 221.773
+  esindex: 0.008
+  LoadShardBlock: 94.09 (3)
+  PetaboxLoader3.datanode: 110.585 (4)
+  CDXLines.iter: 16.077 (3)
+  load_resource: 113.832
+  PetaboxLoader3.resolve: 69.857
+-->

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../../../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="cs490.xml">
+    <dc:description about="cs490.html">
+      Computer Science 490 Research Project on the topic of Interval Analysis.
+      In the project, interval analysis is used as an error approximation method
+      and applied to an optimization problem in a foraging model within
+      behavioural ecology. The software of choice is Matlab.
+    </dc:description>
+    <dc:title>artemis: articles, presentations, documents</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-15"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+      
+      <h1>Interval Analysis and its Applications to Optimization in Behavioural Ecology</h1>
+      
+      <img src="../../../images/intlablo.gif" 
+	      alt="intlab graphic"
+	      width="100%"
+	      height="100%"/>
+      <p>
+        <b>Researcher:</b> Justin Tung (<a 
+	  href="mailto:jt96@cornell.edu">jt96@cornell.edu</a>)<br/>
+	<b>Instructor:</b> <a
+	  href="http://www.cs.cornell.edu/dis/">David Schwartz</a> 
+	(<a href="mailto:dis@cs.cornell.edu">dis@cs.cornell.edu</a>)
+      </p>
+
+      <h3>Contents:</h3>
+      <p>
+	Overview 
+	<ol>
+	  <li><a href="#abstract">Abstract</a></li>
+	  <li><a href="#ia">Interval Analysis</a></li>
+	  <li><a href="#beco">Behavioural Ecology and the Foraging Model</a></li>
+	  <li><a href="#metho">Methodology</a></li>
+	  <li><a href="#summ">Summary Results</a></li>
+        </ol>
+      </p>
+
+      <p>
+	<a href="#paper">Paper</a><br/>
+	Software<br/>   
+	<ul>
+	  <li><a href="#pfiles">Project Files</a></li>
+	  <li><a href="#mattool">Matlab Toolbox</a></li>
+        </ul>
+      </p>
+  
+      <span><a href="refs">References</a></span>
+
+      <h2>Overview</h2>
+      <p>
+	
+	<b>1. <a name="abstract"/>Abstract</b>
+	<br/>
+	<br/>
+	
+	Interval Analysis is a means of representing uncertainty by replacing single
+	(fixed-point) values with intervals. In this project, <b> interval analysis is
+	applied to a foraging model in behavioural ecology</b>. The model describes an 
+        individual foraging in a collection of continuously renewing resource patches.
+	This model is used to determine the optimal residence time of the forager in a
+	resource patch assuming the forager wants to maximize its rate of resource
+	intake. Before applying interval analysis, fixed-point (non-interval)
+	optimization will be done to serve as a basis. Certain parameters in the mode
+	will then be replaced with intervals and interval-based optimization conducted.
+	
+      </p>
+      <p>
+	A comparison of the interval and fixed-point results will be done as well as
+	analysis of parameter intervals and their constraints, root approximations, and
+	applications to the model.
+	<br/><br/>
+	<b>Key Words:</b> single variable optimization, interval analysis, 
+	behavioural ecology, foraging
+      </p>
+
+      <p>
+	<b>2. <a name="ia"/>Interval Analysis</b>
+      </p>
+      <p>
+	The paper covers only a brief outline of <b>Interval Analysis</b> 
+	  <b> (IA) </b> and the math associated with IA that is needed to understand 
+	  the topics covered and assumes some prior knowledge of IA and Matlab though 
+	  it is possible to understand the applications to the foraging model without
+	  that knowledge. For a formal mathematical introduction and in depth coverage
+	  of concepts see Schwartz (1999) or Moore (1966) listed in the references.
+	  Interval analysis is a deterministic way of <i>representing uncertainty 
+	    in values by replacing a number with a range of values</i> (Schwartz 17). 
+	  Fixed-point analysis is simply analysis using non-interval values where 
+	  there is no uncertainty in the values. As a result, IA uncertainty concepts
+	  can be used to model varying biological parameters in the ecological model 
+	  and also to frame fixed-point results. One website providing an excellent gateway
+	  to interval analysis resources and information is at 
+	  <a href="http://www.cs.utep.edu/interval-comp/main.html">
+	    http://www.cs.utep.edu/interval-comp/main.html</a>
+	</p>
+	<p>
+	  <b>3. <a name="beco"/>Behavioural Ecology and the Foraging Model</b>
+	</p>
+	<p>
+	  Foraging models in general study two basic problems of a forager: which food/prey 
+	  items to consume and when to leave an area containing food (a resource patch).
+	  This paper will concentrate on the latter as an optimization problem. The paper
+	  discusses the framework of foraging models and also explains foraging and 
+	  optimality models through the three main components of decision, currency, and
+	  constraint assumptions.  Given the structure of a foraging model, it is easy 
+	  to frame a model examining the foraging of a single animal over a collection of 
+	  distinct resource patches. I have taken the model along with its decision,
+	  currency, and constraint assumptions from Wilson (2000) (in references) so
+	  the construction of the model's equations, its origins, and an analysis and extensions
+	  of the model in C can be found in his book. The rules of the forager in the 
+	  model are that the animal stays for a fixed time before moving to a new resource 
+	  patch, time is discrete, and patch resource values (biomass, energy, etc) grow
+	  logistically. The decision assumption lies in the determination of the fixed time
+	  value. Assuming behavioural and evolutionary mechanisms drive foragers to optimize 
+	  the time spent on each patch. This assumption implies that they will stay long
+	  enough to optimize the rate of resource consumption. 
+	</p>
+	<p>
+	  The mathematical conclusion, explained in the paper using the model's structure
+	  is that the optimal time to leave a patch is when the expected rate of resource
+	  return decreases to the average rate of return of a new patch (a statement of
+	  the <b>marginal value theorem</b> for foraging). This result then allows an
+	  optimization problem to be constructed.
+	</p>
+	<p>
+	  <b>4. <a name="metho"/>Methodology</b>
+	  <br/>
+	  <br/>
+	  The optimization problem was approached in two ways. One way was a fixed point
+	  analysis of the problem using the <i>bisection method</i> after some
+	  graphical analysis of the functions involved. The second way was an IA
+	  approach using the <b>interval Newton's method</b>. The results and details
+	  of these two methods and their comparisons can be found in the paper. A
+	  <b>stability analysis</b> was also conducted on the model, which was
+	  testing the limits of the uncertainties of the variables before the model 
+	  &quot;broke down&quot;.
+	</p>
+	<p>
+	  <b>5. <a name="summ"/>Summary Results</b>
+	  <br/>
+	  <br/>
+	  The values obtained from both optimization methods corresponded well 
+	  since error bounds derived from the error between the fixed-point roots and 
+	  the endpoints of the optimal residence time intervals shows relatively small 
+	  differences from each other. The use of IA to simulate a range of parameter 
+	  states in the system was successful since the percent uncertainties yielded 
+	  interval optimal residence times. As a result, IA allows the ecologist to 
+	  vary parameters of the model within certain limitations established by
+	  stability analysis and obtain a range of optimal residence times a forager
+	  might choose. The percent uncertainty limitations on parameter variation 
+	  obtained from the stability analysis are high, which is good since it allows 
+	  a large amount of model variability.
+	</p>
+	<img src="../../../images/intvalfig3.jpg"
+	    alt="matlab figure"
+	    width="100%" 
+	    height="100%"/>
+	<p><i>IA's applications to the foraging model include adding more realism to the
+	    model through deterministic variability as well as allowing the ecologist to
+	    select which parameters are to be uncertain, their range, or different
+	    beginning time intervals</i>. The variability is important due to the
+	  stochastic nature of ecological process and IA offers an alternative to 
+	  average state approximations.
+	</p>
+	 
+	<hr/>
+
+        <p class="resume">
+	  <b><a name="paper"/>Paper</b><br/>
+	  Interval Analysis and its Applications to Optimization in Behavioural Ecology
+	  <br/>
+	  January 2002
+	  <a href="cs490report.doc">Download</a> MS-Word 2000 Document
+	</p>
+	<p>
+	  <b>Software</b>
+	  <br/>
+	  <br/>
+	  <b>I. <a name="pfiles"/>Project Files</b>
+	</p>
+	<p>
+	  See the paper regarding descriptions and functions contained in this zip 
+	  <a href="iaprojv10.zip"> file</a> (version 1.0). The file contains all
+	  the m-files (matlab files) listed below:
+	  <br/><br/>
+	  <table cellspacing="1">
+	    <thead class="lite">
+	      <tr>
+		<td>Text User Interface</td>
+		<td>Support Functions</td>
+		<td>Data Analysis</td>
+		<td>Numerical Algorithms</td>
+	      </tr>
+	    </thead>
+	      <tr>
+		<td valign="top">
+		  main.m<br/>
+		  dispara.m<br/>
+		  disparafp.m<br/>
+		  disparaia.m<br/>
+		  fpOptimizeMain.m<br/>
+		  intOptimizeMain.m<br/>
+		  selectP.m<br/>
+		  selectPIA.m
+		</td>
+		<td valign="top">
+		  gain.m<br/>
+		  gainPrime.m<br/>
+		  gawMax.m<br/>
+		  newInterval<br/>
+		  r.m<br/>
+		  rootFunc.m<br/>
+		  rootPrime.m
+		</td>
+		<td valign="top">
+		  sa.m<br/>
+		  ga.m<br/>
+		  fpOptimize.m<br/>
+		  intOptimize.m
+		</td>
+		<td valign="top">
+		  bisection.m<br/>
+		  intNewton.m<br/>
+		  UnitedNewtonStep.m
+		</td>
+  	      </tr>
+	  </table>
+	</p>
+	<p><b>II. <a name="mattool"/>Project Files</b>
+	  <br/>
+	  <br/>
+	  The language used in this project was Matlab version 5.3 with an add-on
+	  toolbox called INTLAB programmed by Siegfried Rump (2001). Refer to 
+	  <a href="http://www.ti3.tu-harburg.de/~rump/intlab/index.html">
+	    http://www.ti3.tu-harburg.de/~rump/intlab/index.html</a> for
+	  additional information on the INTLAB toolbox. For this paper, the INTLAB toolbox
+	  was used to provide interval data structures, implementation of interval
+	  arithmetic and interval-valued functions, as well as basic functions for radius,
+	  midpoint, and intersection interval functions in Matlab.
+	</p>
+	<p class="resume">
+	  <b><a name="paper"/>References</b>
+	  <br/>
+	  <br/>
+	  Hart, John C. "Ray Tracing Implicit Surfaces." <u>Notes for Advanced
+	    Surface Modeling</u>. <a href="http://graphics.cs.uiuc.edu/~jch/cs497jch/rtis.pdf">
+	    http://graphics.cs.uiuc.edu/~jch/cs497jch/rtis.pdf</a> (8 Nov. 2001).
+	  <br/>
+	  
+	  Hansen, E. R. "Global Optimization Using Interval Analysis: The One-Dimensiona
+	  Case" <u>Journal of Optimization Theory and Applications</u> 
+	  29 (1979): 331-344.
+	  <br/>
+	  Krebs, John R. and N. B. Davies. <u>An Introduction to Behavioural Ecology</u>. 
+	  2nd ed. Sunderland: Sinauer Associates, Inc., 1987.
+	  <br/>
+	  Kulisch, U., R. Lohner, and A. Facius., eds. <u>Perspectives on Enclosure
+	    Methods</u>. New York: Springer-Verlag, 2001.
+	  <br/>
+	  Moore, Ramon E. <u>Interval Analysis</u>. Englewood Cliffs: Prentice-Hall,
+	  Inc. 1966.
+	  <br/>
+	  Neumaier, Arnold. <u>Interval Methods for Systems of Equations</u>.
+	  New York: Cambridge University Press, 1990.
+	  <br/>
+	  Rice, John R. <u>Numerical Methods, Software, and Analysis</u>. 
+	  2nd ed. New York: Academic Press, Inc., 1993.
+	  <br/>
+	  Rump, Siegfried M. "INTerval LABoratory Version 3." <u>INTLAB</u>
+	  <a href="http://www.ti3.tu-harburg.de/~rump/intlab/index.html">
+	    http://www.ti3.tu-harburg.de/~rump/intlab/index.html</a> 
+	  (14 Dec. 2001).
+	  <br/>
+	  Schwartz, David I. <u>Deterministic Interval Uncertainty Methods for 
+	    Structural Analysis</u>. Diss. State University of New York at Buffalo,
+	  1999.
+	  <br/>
+	  Stephens, David W. and John R, Krebs. <u>Foraging Theory</u>. 
+	  Princeton: Princeton University Press, 1986).
+	  <br/>
+	  Van Loan, Charles. <u>Introduction to Scientific Computing</u>.
+	  2nd ed. Upper Saddle River: Prentice Hall 2000.
+	  <br/>
+	  Wilson, Will. <u>Simulating Ecological and Evolutionary Systems in C</u>.
+	  Cambridge: Cambridge University Press, 2000.
+	</p>
+      <FOOTER>
+	<PATH>resources/cs490/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>
+

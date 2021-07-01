@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<?xml-stylesheet type="text/xsl" href="../stylesheets/xml2html.xsl"?>
+<DOC>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:Description xmlns:dc="http://purl.org/dc/elements/1.1/"
+                   xmlns:dcq="http://purl.org/dc/qualifiers/1.0/"
+		   about="index.xml">
+    <dc:description about="index.html">
+      artemis academic and article resource page
+    </dc:description>
+    <dc:title>artemis: resources</dc:title>
+    <dc:date>
+      <rdf:Description 
+	dcq:dateType="created" 
+	dcq:dateScheme="W3C-DTF"
+	rdf:value="2003-10-07"/>
+      </dc:date>
+      <dc:date>
+	<rdf:Description
+	  dcq:dateType="modified" 
+	  dcq:dateScheme="W3C-DTF"
+	  rdf:value="2003-10-24"/>
+      </dc:date>
+      <dc:creator rdf:about="kalreichi@hotmail.com">
+	justin tung
+      </dc:creator>
+  </rdf:Description>
+</rdf:RDF>
+<HTMLPAGE>
+
+  <BODY>
+  
+    <CONTENT>
+      <div class="index">
+	
+	<center><b><h1>resources : information : articles</h1></b></center>
+	<br/>
+	<h3>Articles</h3>
+
+	<p>
+	  This <a href="articles.html">section</a> consists of short articles,
+	  presentations, and otherwise small documents.
+	</p>
+
+	<h3>Projects and Essays</h3>
+
+	<p>
+	  The academic <a href="academic.html">essays and projects</a> presented
+	  should be of great use for students in both high school and university for 
+	  information finding.
+	</p>
+
+	<p>
+	  I hope these sites are helpful to you. The academic section is sorted
+	  by subjects and it based on electronic material I have been able to gather 
+	  since April 1st 2001 when I first started large scale construction of   
+	  the predecessor site of artemis.
+	  Please <a href="mailto:kalreichi@hotmail.com">e-mail</a> 
+	  me if you would like more information regarding the resources I 
+	  have provided.
+        </p>
+      </div>
+      <br/>
+
+      <FOOTER>
+	<PATH>resources/</PATH>
+      </FOOTER>
+    </CONTENT>
+
+    <RIGHTPANEL>
+    </RIGHTPANEL>
+  </BODY>
+</HTMLPAGE>
+</DOC>
