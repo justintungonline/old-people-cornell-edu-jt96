@@ -43,14 +43,11 @@
 	<b><a href="../aboutme/index.html">all about me</a></b>
 	<div class="tabbed">
 	  <a href="../aboutme/bio.html">bio</a><br/>
-	  
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../aboutme/coursework.html">cornell coursework</a><br/>
+	  - <a class="site" href="../aboutme/coursework.html">cornell coursework</a><br/>
 
 	  <a href="../aboutme/interests.html">interests</a><br/>
 	 
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../aboutme/readinglist.html">reading list</a><br/>
+	  - <a class="site" href="../aboutme/readinglist.html">reading list</a><br/>
 
 	  <a href="../aboutme/resume.html">resume</a>
 	</div>
@@ -67,27 +64,22 @@
 	<div class="tabbed">
 	  <a href="../resources/articles.html">brief documents</a><br/>
 
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../resources/oscoms.html">
+	  - <a class="site" href="../resources/oscoms.html">
 	    list of useful operating system commands</a><br/>
 
 	  <a href="../resources/academic.html">essays/projects</a><br/>
 
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../resources/projects/cs490/cs490.html">
+	  - <a class="site" href="../resources/projects/cs490/cs490.html">
 	    Interval Analysis and its Applications to Optimization in 
 	    Behavioural Ecology</a><br/>
 	  
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../resources/projects/cs501/cs501.html">
+	  - <a class="site" href="../resources/projects/cs501/cs501.html">
 	    PDF Versions of the US Legal Code</a><br/>
 
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../resources/docs/texts.html">
+	  - <a class="site" href="../resources/docs/texts.html">
 	    collection of short texts and articles</a><br/>
 
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../resources/docs/essays.html">
+	  - <a class="site" href="../resources/docs/essays.html">
 	    collection of essays</a><br/>
 
 	</div>
@@ -98,8 +90,7 @@
 	  <a href="../explore/writeme.html">contact / write me</a><br/>
 	  <a href="../explore/links.html">web gateway</a><br/>
 
-	  <img src="../images/pointer.gif" alt="pointer icon"/>
-	  <a class="site" href="../explore/personalink.html">
+	  - <a class="site" href="../explore/personalink.html">
 	    justin's specilized links</a>
 	</div>
       </p>
