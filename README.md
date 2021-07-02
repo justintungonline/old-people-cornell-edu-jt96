@@ -54,6 +54,7 @@ Site was extracted from the [Wayback Machine](https://archive.org/web/) 2004 and
 
 Original Wayback Machine archive links:
 
+- [Search of URLs at http://web.archive.org/web/*/http://www.people.cornell.edu/pages/jt96/*](http://web.archive.org/web/*/http://www.people.cornell.edu/pages/jt96/*)
 - <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/index.html>
 - <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/stylesheets/artemis.css>
 - <http://web.archive.org/web/20050306232558if_/http://www.people.cornell.edu/pages/jt96/stylesheets/xml2html.xsl>
