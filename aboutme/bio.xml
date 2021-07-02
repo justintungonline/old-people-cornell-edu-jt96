@@ -62,13 +62,11 @@
 				</center>
 				
 				<!-- Floating bio images corresponding to personality info -->
-				<img src="../images/SmallJustin.jpg" id="front_bio" alt="justin in Ithaca 2001" />
+				<img src="../images/SmallJustin.jpg" id="front_bio" alt="Justin in Ithaca 2001" />
 				<br /><br />
 
 				<!-- Biography image -->
-				<img src="../images/merho.jpg" id="front_bio" alt="justin at Cornell University Rhodes building 2002" />
-				<span class="f_purple">university 2002</span>
-
+				<img src="../images/merho.jpg" id="front_bio" alt="Justin at Cornell University Rhodes building 2002" />
 				<FOOTER>
 					<PATH>aboutme/</PATH>
 				</FOOTER>
