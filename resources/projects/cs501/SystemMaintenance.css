@@ -1,0 +1,120 @@
+.title {
+	text-align:center;
+	font-size: 3em;
+	line-height: 2em;
+}
+
+.meta {
+	text-align:right;
+	font-size: 0.8em;
+	line-height: 1.1em;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 2em;
+}
+
+h2 {
+	margin-left: 1em;
+}
+
+h3 {
+	margin-left: 2em;
+}
+
+p {
+	margin-left: 3em;
+}
+
+ul {
+	margin-left: 5em;
+}
+
+ol {
+	margin-left: 5em;
+}
+
+dl {
+	margin-left: 3em;
+}
+
+dt {
+	margin-top:	0.3em;
+	font-weight: bold;
+}
+
+<!-- note -->
+div.note {
+	border:		1px black solid;
+	margin-left: 10em;
+	margin-right: 10em;
+	padding: 1em;
+	font-size: 0.9em;
+	line-height: 1.2em;
+}
+
+<!-- used to mark TODO items -->
+span.todo {
+	color:		red;
+	font-weight:	bold;
+	text-decoration:	underline;
+}
+
+<!-- used to mark symbolic links -->
+span.sln {
+	color:		blue;
+	font-size: 	0.8em;
+}
+
+<!-- mark pseudo algorithms -->
+pre {
+	border: 1 solid black;
+	font-weight: bold;
+	background-color: rgb(230,230,230);
+	margin-left:4em;
+	margin-right:4em;
+	padding: 1em;
+	line-height: 1em;
+}
+
+div.caption {
+	margin-bottom: 2em;
+	font-weight: bold;
+}
+
+thead {
+	background-color: black;
+	font-weight: bold;
+	color: white;
+}
+
+td {
+	padding: 0.3em;
+}
+
+body {
+	line-height: 1.5em;
+}
+
+/*
+     FILE ARCHIVED ON 01:31:29 Sep 01, 2004 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 23:03:32 Jul 02, 2021.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 219.779
+  exclusion.robots: 0.106
+  exclusion.robots.policy: 0.097
+  RedisCDXSource: 3.434
+  esindex: 0.009
+  LoadShardBlock: 193.178 (3)
+  PetaboxLoader3.datanode: 214.238 (4)
+  CDXLines.iter: 19.984 (3)
+  load_resource: 70.654
+  PetaboxLoader3.resolve: 42.932
+*/
