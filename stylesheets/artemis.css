@@ -83,7 +83,7 @@ h4 {
 	position: absolute; 
 	top: 10em;
 	right: 0; 
-	width: 28%;
+	width: 20%;
 } 
 
 #content {
@@ -157,18 +157,22 @@ h4 {
  * ****************
  */
 
-#front_bio { float: right; padding: 1em; }
+#front_bio { 
+	/* float: right;  */
+	padding: 1em; 
+}
 
 #side_bio {
-	padding-top: 35em;
+	/* padding-top: 35em; */
+	padding: 1em; 
   	border: 0;
-    	height: 100%;
-	width: 100%;
+    height: 30%;
+	width: 30%;
 }
 
 #artemis_left {
   	border: 0;
-    	height: 100%;
+   	/* height: 100%; */
 	width: 100%;
 	text-align: left;
 }

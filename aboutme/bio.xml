@@ -66,7 +66,7 @@
 				<br /><br />
 
 				<!-- Biography image -->
-				<img src="../images/merho.jpg" id="front_bio" alt="Justin at Cornell University Rhodes building 2002" />
+				<img src="../images/merho.jpg" id="side_bio" alt="Justin at Cornell University Rhodes building 2002" />
 				<FOOTER>
 					<PATH>aboutme/</PATH>
 				</FOOTER>
