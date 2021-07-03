@@ -36,14 +36,11 @@
 	
       <h1>Support</h1>
       <p>
-	The website is <b>tested and designed</b> for the Windows native browser 
+	The website was originally <b>tested and designed</b> for the Windows native browser 
 	<b><a href="http://www.microsoft.com/windows/ie/">Internet Explorer</a> 6.0.x</b>,
 	<b><a href="http://www.opera.com/">Opera</a> 7.11</b> browser, and 
-	<b><a href="http://www.mozilla.org/">Mozilla</a> 1.7.1.</b>
-	If you cannot view something in your browser or the formatting looks
-	out of place, then please drop 
-	<a href="mailto:kalreichi@hotmail.com">me</a> a note and I will
-	take a look.
+	<b><a href="http://www.mozilla.org/">Mozilla</a> 1.7.1.</b>. It has been enhanced to work
+	with Chrome, Microsoft Edge, Opera, and Firefox.
       </p>
       <p>
 	Regarding portability (transfer of information to other systems and browsers),
@@ -79,7 +76,7 @@
 	conversion processes and standardizing data.
       </p>
       <p>
-	These pages are designed and tested for use with transformations from XML core
+	These pages were designed and tested for use with transformations from XML core
 	data using Microsoft's <a href="http://msdn.microsoft.com/xml/">MSXML</a> version 3.
 	MSXML is Internet Explorer's own XSLT processor within the browser which
 	generates HTML. 
