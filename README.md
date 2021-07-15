@@ -16,7 +16,6 @@ The content for the site was managed in `xml` files and `html` was generated usi
 
 - Java Development Kit 11+
 - [Apache Maven](https://maven.apache.org/)
-- Xalan Java libraries, see `pom.xml`
 
 ## Installation and Build
 
