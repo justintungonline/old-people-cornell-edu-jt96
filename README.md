@@ -44,7 +44,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-[Find me on GitHub](https://github.com/justintungonline/)
+[Find me on GitHub](https://github.com/justunsix/)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
