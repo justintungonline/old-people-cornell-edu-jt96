@@ -21,7 +21,7 @@ The content for the site was managed in `xml` files and `html` was generated usi
 
 In `stylesheets/xml2html.xsl` modify this line to change it to the root of where the html pages will be
 
-`<xsl:variable name="root">https://justintungonline.github.io/old-people-cornell-edu-jt96</xsl:variable>`
+`<xsl:variable name="root">https://justunsix.github.io/old-people-cornell-edu-jt96</xsl:variable>`
 
 Execute this Maven command to build and generate the site from the `xml` files.
 
@@ -36,7 +36,7 @@ Transformation progress will be output to the console.
 
 Visit the website at the root you set in the installation.
 
-A live version is at GitHub pages: <https://justintungonline.github.io/old-people-cornell-edu-jt96/>
+A live version is at GitHub pages: <https://justunsix.github.io/old-people-cornell-edu-jt96/>
 
 ## License
 
